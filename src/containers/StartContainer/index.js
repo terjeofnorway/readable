@@ -26,5 +26,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(StartContainer);
-
-export default StartContainer;

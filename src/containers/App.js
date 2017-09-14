@@ -1,14 +1,38 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
+
 import './App.scss';
 
+
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        app!
-      </div>
-    );
-  }
+
+    constructor(props){
+        super(props);
+    }
+
+    componentDidMount(){
+
+    }
+
+    render() {
+        return (
+            <div className="App">
+                app!
+            </div>
+        );
+    }
 }
 
-export default App;
+function mapStateToProps({}) {
+    return {}
+}
+
+function mapDispatchToProps(dispatch) {
+    return {}
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);

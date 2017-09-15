@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 
-class StartContainer extends Component {
+class Start extends Component {
 
     render() {
-
+        return (
+            <div>Start</div>
+        )
     }
 
 }
@@ -25,4 +27,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(StartContainer);
+)(Start);

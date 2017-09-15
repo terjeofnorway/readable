@@ -1,6 +1,7 @@
-import {inflateCategories} from '../actions/initActions';
-
-
+/**
+ * The API class is responsible for the initial API loads from the server. Each static
+ * function will return a promise for further handling of the caller.
+ */
 class API {
     /**
      * Load categories from server. Only used for initial load.

@@ -1,3 +1,17 @@
+@import '../constants/variables';
+@import '~foundation-sites/scss/foundation';
+
+@include foundation-everything(true);
+@include foundation-flex-classes;
+@include foundation-flex-grid;
+
+
 body {
-  background-color:#ff0000;
+  background-color:$background-color;
+  font-family: $font-face-sansserif;
+  font-size: $font-base-size;
+
+  border:0;
 }
+
+

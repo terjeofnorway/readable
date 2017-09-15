@@ -1,0 +1,30 @@
+@import '../../constants/variables';
+
+.Titlebar {
+  background-color: $background-color-dark;
+
+  .Titlebar__backbutton {
+    background-image:url('../../graphics/icon-back.svg');
+    background-repeat:no-repeat;
+    background-size:40px 40px;
+    background-color:transparent;
+    border:0;
+    width:40px;
+    height:40px;
+  }
+
+  .Titlebar__title {
+    color:$text-color-negative;
+  }
+
+  .Titlebar__menubutton {
+    background-image:url('../../graphics/icon-category.svg');
+    background-repeat:no-repeat;
+    background-size:40px 40px;
+    background-color:transparent;
+    box-shadow:none;
+    border:0;
+    width:40px;
+    height:40px;
+  }
+}

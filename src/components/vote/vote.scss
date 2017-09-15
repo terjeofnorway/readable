@@ -1,0 +1,21 @@
+@import '../../constants/variables';
+
+.Vote {
+
+  .Vote__CurrentScore {
+    color:$nav-color-dark;
+    font-size:$font-base-size * 1.1;
+  }
+
+  .Vote__VoteButton--Up, .Vote__VoteButton--Down {
+    width:25px;
+    height:25px;
+  }
+
+  .Vote__VoteButton--Up {
+    background-image:url('../../graphics/icon-upvote.svg');
+  }
+  .Vote__VoteButton--Down {
+    background-image:url('../../graphics/icon-downvote.svg');
+  }
+}

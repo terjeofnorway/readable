@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {Route} from 'react-router-dom';
 
 import './App.scss';
-import Titlebar from '../components/titlebar/titlebar';
+import Titlebar from '../components/titleBar/titleBar';
 
-import Start from './StartContainer/start';
+import Start from './start/start';
 
 
 class App extends Component {

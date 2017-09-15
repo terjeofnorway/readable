@@ -5,9 +5,6 @@
 
   .Titlebar__backbutton {
     background-image:url('../../graphics/icon-back.svg');
-    background-repeat:no-repeat;
-    background-size:40px 40px;
-    background-color:transparent;
     border:0;
     width:40px;
     height:40px;
@@ -15,14 +12,12 @@
 
   .Titlebar__title {
     color:$text-color-negative;
+    font-size:$font-base-size * 1.5; //TODO: Refactor to REM mixin.
   }
 
   .Titlebar__menubutton {
     background-image:url('../../graphics/icon-category.svg');
-    background-repeat:no-repeat;
     background-size:40px 40px;
-    background-color:transparent;
-    box-shadow:none;
     border:0;
     width:40px;
     height:40px;

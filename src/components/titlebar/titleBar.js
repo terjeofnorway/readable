@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {Row, Column, Foundation} from 'react-foundation';
 
-import './titlebar.scss';
+import './titleBar.scss';
 
 
 class Titlebar extends Component {

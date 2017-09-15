@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
+import PostList from '../../components/postList/postList';
 
 class Start extends Component {
 
     render() {
         return (
-            <div>Start</div>
+            <div>
+                <PostList></PostList>
+            </div>
         )
     }
 

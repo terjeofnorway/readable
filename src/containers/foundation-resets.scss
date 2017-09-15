@@ -1,0 +1,9 @@
+/** This is a custom Foundation reset class to override commonly
+ * used elements that has originally been styled by Foundation.
+ */
+
+button {
+  box-shadow:none;
+  background-repeat:no-repeat;
+  background-color:transparent;
+}

@@ -1,5 +1,6 @@
 @import '../constants/variables';
 @import '~foundation-sites/scss/foundation';
+@import './foundation-resets';
 
 @include foundation-everything(true);
 @include foundation-flex-classes;

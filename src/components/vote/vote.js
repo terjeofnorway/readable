@@ -5,21 +5,14 @@ import {connect} from 'react-redux';
 import './vote.scss';
 
 
-class Vote extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div className="Vote">
-                <button className='Vote__VoteButton--Up'></button>
-                <div className='Vote__CurrentScore'>43</div>
-                <button className='Vote__VoteButton--Down'></button>
-            </div>
-        );
-    }
+const Vote = () => {
+    return (
+        <div className="Vote">
+            <button className='Vote__VoteButton--Up'></button>
+            <div className='Vote__CurrentScore'>43</div>
+            <button className='Vote__VoteButton--Down'></button>
+        </div>
+    );
 }
 
 function mapStateToProps({}) {

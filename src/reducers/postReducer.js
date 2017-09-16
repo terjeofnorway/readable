@@ -15,12 +15,12 @@ function postReducer(state = {}, action){
 
             break;
         case 'ADD_VOTE_SCORE_TO_POST':
-            const post = state[action.postId];
-            const currentVoteScore = post.voteScore;
-            post.voteScore = currentVoteScore + action.voteScore;
+            const {postId, voteScore} = action;
+            const post = state[postId];
 
+            post.voteScore = post.voteScore + voteScore;
 
-            return {...state,[1]:{...post}}
+            return {...state,[postId]:{...post}}
         default:
             return state
     }

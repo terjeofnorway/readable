@@ -5,12 +5,13 @@ import {connect} from 'react-redux';
 import './vote.scss';
 
 
-const Vote = () => {
+const Vote = (props) => {
+    const {voteScore, id} = props.post;
     return (
         <div className="Vote">
-            <button className='Vote__VoteButton--Up'></button>
-            <div className='Vote__CurrentScore'>43</div>
-            <button className='Vote__VoteButton--Down'></button>
+            <button className='Vote__VoteButton--Up' onClick={() => props.upVote(1,id)}></button>
+            <div className='Vote__CurrentScore'>{ voteScore }</div>
+            <button className='Vote__VoteButton--Down' onClick={() => props.upVote(-1,id)}></button>
         </div>
     );
 }

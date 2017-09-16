@@ -15,8 +15,10 @@ class Start extends Component {
 
 }
 
-function mapStateToProps ({}) {
+function mapStateToProps ({categories, posts}) {
     return {
+        posts,
+        categories
 
     }
 }

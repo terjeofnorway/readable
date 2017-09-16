@@ -5,11 +5,22 @@
  * @returns {{}}
  */
 function postReducer(state = {}, action){
-    const {posts} = action;
     switch(action.type){
         case 'INFLATE_POSTS':
-            return {...state,...posts};
+            //Reduce the posts into an object where post.id is used as object key
+            return action.posts.reduce((collection,item) => {
+                collection[item.id] = item;
+                return collection;
+            },{});
+
             break;
+        case 'ADD_VOTE_SCORE_TO_POST':
+            const post = state[action.postId];
+            const currentVoteScore = post.voteScore;
+            post.voteScore = currentVoteScore + action.voteScore;
+
+
+            return {...state,[1]:{...post}}
         default:
             return state
     }

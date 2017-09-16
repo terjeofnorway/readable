@@ -12,19 +12,24 @@ class PostList extends Component {
     }
 
     render() {
+        const {posts} = this.props;
+
+
         return (
             <div className="PostList__Container">
-                <PostListItem></PostListItem>
-                <PostListItem></PostListItem>
-                <PostListItem></PostListItem>
-                <PostListItem></PostListItem>
+                {
+                    posts.map((post) => (<PostListItem post={post} key={post.id}/>))
+                }
             </div>
         );
     }
 }
 
-function mapStateToProps({}) {
-    return {}
+function mapStateToProps({posts, categories}) {
+    return {
+        posts:Object.keys(posts).map((key) => posts[key]),
+        categories
+    }
 }
 
 function mapDispatchToProps(dispatch) {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import PostListItem from '../postListItem/postListItem';
+import PostListItem from '../../components/postListItem/postListItem';
 
 import './postList.scss';
 

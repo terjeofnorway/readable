@@ -7,7 +7,7 @@ import {withRouter} from 'react-router-dom';
 import './App.scss';
 import Titlebar from '../components/titleBar/titleBar';
 
-import Start from './start/start';
+import PostList from './postList/postList';
 
 
 class App extends Component {
@@ -26,7 +26,7 @@ class App extends Component {
                 <Titlebar />
                 <Route path='/' exact render={ (props) => {
                     return (
-                        <Start/>
+                        <PostList/>
                     )
                 }} />
             </div>

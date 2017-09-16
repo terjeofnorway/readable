@@ -18,5 +18,10 @@ body {
 
 a {
   color:inherit;
+
+  &:hover, &:visited {
+    color:inherit;
+  }
 }
+
 

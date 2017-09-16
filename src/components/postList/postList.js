@@ -11,6 +11,11 @@ class PostList extends Component {
         super(props);
     }
 
+    testRender(){
+        this.props.history.push('something');
+        console.log(this.props.history);
+    }
+
     render() {
         const {posts} = this.props;
 

@@ -19,7 +19,6 @@ function mapStateToProps ({categories, posts}) {
     return {
         posts,
         categories
-
     }
 }
 

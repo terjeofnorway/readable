@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
+
 import {Row, Column} from 'react-foundation';
 import './postListItem.scss';
 
@@ -16,19 +17,19 @@ const PostListItem = function (props) {
 
 
     return (
-        //<Link to='/something'>
-            <Row className="PostListItem">
-                <Column small={8} large={8}>
+        <Row className="PostListItem">
+            <Column small={8} large={8}>
+                <Link to='/something'>
                     <div className='PostListItem__Category'>React</div>
                     <div className='PostListItem__Date'>{DateTimeHelper.timestampToHumanDate(timestamp)}</div>
                     <div className='PostListItem__Title'>{title}</div>
                     <div className='PostListItem__Author'>{author}</div>
-                </Column>
-                <Column small={4} large={4}>
-                    <Vote post={props.post} upVote={props.upVote} downVote={props.downVote}></Vote>
-                </Column>
-            </Row>
-        //</Link>
+                </Link>
+            </Column>
+            <Column small={4} large={4}>
+                <Vote post={props.post} upVote={props.upVote} downVote={props.downVote}></Vote>
+            </Column>
+        </Row>
     );
 }
 
@@ -38,12 +39,12 @@ function mapStateToProps({}) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        upVote:(voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
-        downVote:(voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
+        upVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
+        downVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
     }
 }
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(PostListItem);

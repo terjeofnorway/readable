@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Route} from 'react-router-dom';
 
+import {withRouter} from 'react-router-dom';
+
 import './App.scss';
 import Titlebar from '../components/titleBar/titleBar';
 
@@ -22,9 +24,11 @@ class App extends Component {
         return (
             <div className="App">
                 <Titlebar />
-                <Route path='/' exact render={ () => (
-                    <Start />
-                )} />
+                <Route path='/' exact render={ (props) => {
+                    return (
+                        <Start/>
+                    )
+                }} />
             </div>
         );
     }
@@ -38,7 +42,7 @@ function mapDispatchToProps(dispatch) {
     return {}
 }
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(App);
+)(App));

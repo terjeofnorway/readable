@@ -8,38 +8,32 @@ import {toggleSortOrder} from "../../actions/uiActions";
 import './filter.scss';
 
 
-class Filter extends Component {
+const Filter = function (props) {
+    const {filterLabel} = props;
 
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const {filterLabel} = this.props;
-
-        return (
-            <Row>
-                <Column small={12} large={12}>
-                    <div className='Filter' onClick={() => this.props.toggleSortOrder()}>
-                        <div className='Filter__Button'>
-                            <span className='Filter__ButtonLabel'>{filterLabel}</span>
-                        </div>
+    return (
+        <Row>
+            <Column small={12} large={12}>
+                <div className='Filter' onClick={() => props.toggleSortOrder()}>
+                    <div className='Filter__Button'>
+                        <span className='Filter__ButtonLabel'>{filterLabel}</span>
                     </div>
-                </Column>
-            </Row>
-        );
-    }
+                </div>
+            </Column>
+        </Row>
+    );
 }
+
 
 function mapStateToProps({ui}) {
     return {
-        filterLabel:ui.post_order.label,
+        filterLabel: ui.post_order.label,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        toggleSortOrder:() => dispatch(toggleSortOrder()),
+        toggleSortOrder: () => dispatch(toggleSortOrder()),
     }
 }
 

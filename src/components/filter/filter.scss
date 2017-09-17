@@ -1,0 +1,24 @@
+@import '../../constants/variables';
+
+.Filter {
+  display:flex;
+  flex-direction: column;
+  align-items:flex-end;
+
+  .Filter__Button {
+    background-image: url('../../graphics/icon-filter.svg');
+    background-repeat:no-repeat;
+    background-position:left center;
+    height:20px;
+    margin:15px 0;
+
+    .Filter__ButtonLabel {
+      font-size:$font-base-size  * 1.3;
+      font-weight:bold;
+      margin-left:50px;
+      line-height:0;
+      color:$nav-color-dark;
+    }
+
+  }
+}

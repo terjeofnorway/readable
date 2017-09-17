@@ -26,7 +26,7 @@ class App extends Component {
                 <Titlebar />
                 <Route path='/' exact render={ (props) => {
                     return (
-                        <PostList/>
+                        <PostList />
                     )
                 }} />
             </div>
@@ -35,7 +35,8 @@ class App extends Component {
 }
 
 function mapStateToProps({}) {
-    return {}
+    return {
+    }
 }
 
 function mapDispatchToProps(dispatch) {

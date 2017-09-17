@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PostListItem from '../../components/postListItem/postListItem';
+import Filter from '../../components/filter/filter';
 
 import './postList.scss';
 
@@ -11,28 +12,39 @@ class PostList extends Component {
         super(props);
     }
 
-    testRender(){
-        this.props.history.push('something');
-        console.log(this.props.history);
-    }
-
     render() {
         const {posts} = this.props;
+        const postOrder= this.props.post_order.id;
 
 
         return (
-            <div className="PostList__Container">
-                {
-                    posts.map((post) => (<PostListItem post={post} key={post.id}/>))
-                }
+            <div>
+                <Filter/>
+                <div className="PostList__Container">
+                    {
+                        posts.map((post) => (<PostListItem post={post} key={post.id}/>))
+                    }
+                </div>
             </div>
         );
     }
+    shouldComponentUpdate(){
+        console.log('i am updating');
+        return true;
+    }
 }
 
-function mapStateToProps({posts, categories}) {
+
+function mapStateToProps({posts, categories, ui}) {
+
+    const orderByPostKey = ui.post_order.post_object_key;
+
+    const postArray = Object.keys(posts).map((key) => posts[key]);
+    const sortedPosts = postArray.sort((a,b) => a[orderByPostKey] < b[orderByPostKey]);
+
     return {
-        posts:Object.keys(posts).map((key) => posts[key]),
+        posts: sortedPosts,
+        post_order:ui.post_order,
         categories
     }
 }

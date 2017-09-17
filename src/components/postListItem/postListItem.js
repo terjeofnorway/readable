@@ -13,14 +13,14 @@ import {addVoteScore} from '../../actions/postActions';
 
 
 const PostListItem = function (props) {
-    const {timestamp, title, author} = props.post;
+    const {id, timestamp, title, author, category} = props.post;
 
 
     return (
         <Row className="PostListItem">
             <Column small={8} large={8}>
-                <Link to='/something'>
-                    <div className='PostListItem__Category'>React</div>
+                <Link to={`/posts/${id}`}>
+                    <div className='PostListItem__Category'>{category}</div>
                     <div className='PostListItem__Date'>{DateTimeHelper.timestampToHumanDate(timestamp)}</div>
                     <div className='PostListItem__Title'>{title}</div>
                     <div className='PostListItem__Author'>{author}</div>
@@ -34,7 +34,8 @@ const PostListItem = function (props) {
 }
 
 function mapStateToProps({}) {
-    return {}
+    return {
+    }
 }
 
 function mapDispatchToProps(dispatch) {

@@ -6,7 +6,7 @@ import './vote.scss';
 
 
 const Vote = (props) => {
-    const {voteScore, id} = props.post;
+    const {voteScore, id} = props;
     return (
         <div className="Vote">
             <button className='Vote__VoteButton--Up' onClick={() => props.upVote(1,id)}></button>

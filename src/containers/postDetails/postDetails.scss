@@ -1,0 +1,32 @@
+@import '../../constants/variables';
+
+.PostDetails {
+  .PostDetails_Header {
+    text-align:center;
+    margin:2em 0;
+
+    .Header__Category {
+      color: $nav-color-dark;
+      text-transform: uppercase;
+      font-weight:bold;
+      font-size:$font-base-size * 1.5;
+    }
+
+    .Header__Title {
+      font-size:$font-base-size * 3;
+      font-weight:200;
+
+    }
+    .Header__Byline, .Header__Date {
+      color: $nav-color-dark;
+      font-family: $font-face-serif;
+      font-size:$font-base-size * 1.5;
+    }
+
+    .Vote {
+      flex-direction: row;
+      justify-content: center;
+      padding:1em 0;
+    }
+  }
+}

@@ -8,7 +8,7 @@ import './App.scss';
 import Titlebar from '../components/titleBar/titleBar';
 
 import PostList from './postList/postList';
-
+import PostDetails from './postDetails/postDetails';
 
 class App extends Component {
 
@@ -29,6 +29,13 @@ class App extends Component {
                         <PostList />
                     )
                 }} />
+
+                <Route path='/posts/:id' exact render={ (props) => {
+                    return (
+                        <PostDetails id={props.match.params.id} />
+                    )
+                }} />
+
             </div>
         );
     }

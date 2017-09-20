@@ -15,8 +15,8 @@
     .Header__Title {
       font-size:$font-base-size * 3;
       font-weight:200;
-
     }
+
     .Header__Byline, .Header__Date {
       color: $nav-color-dark;
       font-family: $font-face-serif;
@@ -27,6 +27,12 @@
       flex-direction: row;
       justify-content: center;
       padding:1em 0;
+    }
+  }
+
+  .PostDetails__Content {
+    .PostDetails__Body {
+
     }
   }
 }

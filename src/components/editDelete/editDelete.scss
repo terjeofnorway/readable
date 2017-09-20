@@ -1,0 +1,16 @@
+.EditDelete{
+  .EditDelete__Edit, .EditDelete__Delete {
+    width:20px;
+    height:20px;
+    background-repeat:no-repeat;
+    margin:0 5px;
+  }
+
+  .EditDelete__Edit {
+    background-image:url('../../graphics/icon-edit.svg');
+
+  }
+  .EditDelete__Delete {
+    background-image:url('../../graphics/icon-delete.svg');
+  }
+}

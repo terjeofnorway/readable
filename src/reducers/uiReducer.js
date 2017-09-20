@@ -7,6 +7,12 @@ import {UI_FILTER} from "../constants/constants";
 
 const defaultState = {
     post_order:UI_FILTER[0],
+    confirm: {
+        visible:false,
+        title:'',
+        body:''
+
+    }
 }
 
 function uiReducer(state=defaultState, action){

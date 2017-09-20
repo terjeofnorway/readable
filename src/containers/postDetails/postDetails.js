@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {Column, Row} from 'react-foundation';
 
 import Vote from '../../components/vote/vote';
+import EditDelete from '../../components/editDelete/editDelete';
+import DateTimeHelper from '../../helpers/datetime';
 
 import './postDetails.scss';
 import {addVoteScore} from "../../actions/postActions";
@@ -18,6 +20,7 @@ class PostDetails extends Component {
 
         if (this.props.post) {
             const {id, title, author, timestamp, voteScore, body, category} = this.props.post;
+            const {downVote, upVote} = this.props;
 
 
             return (
@@ -28,23 +31,34 @@ class PostDetails extends Component {
                         </Row>
                         <Row>
                             <Column small={12} large={12}><h1
-                                className='Header__Title'>{title}</h1></Column>
+                                className='Header__Title'>{title}</h1>
+                            </Column>
                         </Row>
                         <Row>
                             <Column small={12} large={6}><span
-                                className='Header__Byline'>{author}</span></Column>
+                                className='Header__Byline'>{author}</span>
+                            </Column>
                             <Column small={12} large={6}><span
-                                className='Header__Date'>{timestamp}</span></Column>
+                                className='Header__Date'>{DateTimeHelper.timestampToHumanDate(timestamp)}</span>
+                            </Column>
                         </Row>
                         <Row>
-                            <Column small={12} large={12}><Vote id={id} voteScore={voteScore} upVote={this.props.upVote}
-                                                                downVote={this.props.downVote}></Vote></Column>
+                            <Column small={12} large={12}><Vote id={id} voteScore={voteScore} upVote={upVote}
+                                                                downVote={downVote}></Vote>
+                            </Column>
+                        </Row>
+                    </div>
+                    <div className='PostDetails__Content'>
+                        <Row>
+                            <Column small={12} large={12}>
+                                <p className='PostDetails__Body'>{body}</p>
+                            </Column>
                         </Row>
                         <Row>
-                            <Column small={12} large={12}>{body}</Column>
-                        </Row>
-                        <Row>
-                            <Column small={12} large={12}>Edit and delete</Column>
+                            <Column small={12} large={12}>
+                                <EditDelete postId={id}/>
+
+                            </Column>
                         </Row>
                     </div>
                 </div>

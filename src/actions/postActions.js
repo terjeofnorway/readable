@@ -13,3 +13,10 @@ export function addVoteScore(voteScore, postId){
 }
 
 
+export function deletePost(postId, confirmed=false){
+    return {
+        type:'DELETE_POST',
+        postId,
+    }
+}
+

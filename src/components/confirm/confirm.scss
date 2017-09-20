@@ -1,0 +1,36 @@
+@import '../../constants/variables';
+
+.Confirm {
+  position: fixed;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+
+  .Confirm__Background {
+    position: absolute;
+    height:100vh;
+    width:100%;
+    background-color: $background-color;
+    opacity: 0.8;
+  }
+
+  .Confirm__Container {
+    position:relative;
+    width: 80%;
+    height: auto;
+    padding:1em;
+    background-color:$background-color;
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+  }
+
+   .Confirm__Button {
+     background-color: $nav-color-dark;
+     color:white;
+     padding:10px;
+     margin:0 10px 0 0;
+   }
+}

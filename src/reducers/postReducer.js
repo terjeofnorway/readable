@@ -21,6 +21,9 @@ function postReducer(state = {}, action){
             post.voteScore = post.voteScore + voteScore;
 
             return {...state,[postId]:{...post}}
+        case 'DELETE_POST':
+            console.log(action);
+            return state;
         default:
             return state
     }

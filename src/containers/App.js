@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Route} from 'react-router-dom';
+import Confirm from '../components/confirm/confirm';
 
 import {withRouter} from 'react-router-dom';
 
@@ -35,6 +36,7 @@ class App extends Component {
                         <PostDetails id={props.match.params.id} />
                     )
                 }} />
+                <Confirm></Confirm>
 
             </div>
         );

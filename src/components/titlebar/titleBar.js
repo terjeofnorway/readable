@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {Row, Column, Foundation} from 'react-foundation';
+import {Row, Column} from 'react-foundation';
 
 import './titleBar.scss';
 
 
 class Titlebar extends Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (

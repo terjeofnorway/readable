@@ -13,13 +13,6 @@ import PostDetails from './postDetails/postDetails';
 
 class App extends Component {
 
-    constructor(props){
-        super(props);
-    }
-
-    componentDidMount(){
-
-    }
 
     render() {
         return (

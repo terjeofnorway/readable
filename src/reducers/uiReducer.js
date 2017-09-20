@@ -18,13 +18,10 @@ const defaultState = {
 function uiReducer(state=defaultState, action){
     switch (action.type) {
         case 'TOGGLE_SORT_ORDER':
-            const currentOrderPos = UI_FILTER.findIndex(item => (item === state['post_order']));
+            const currentOrderPos = UI_FILTER.findIndex(item => (item === state.post_order));
             const newOrderPos = currentOrderPos + 1 < UI_FILTER.length ? currentOrderPos + 1 : 0;
 
-            return {...state, ['post_order']: UI_FILTER[newOrderPos]};
-
-            break;
-
+            return {...state, 'post_order': UI_FILTER[newOrderPos]};
         default:
             return state;
     }

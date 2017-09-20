@@ -121,6 +121,9 @@ module.exports = {
                         options: {
                             formatter: eslintFormatter,
                             eslintPath: require.resolve('eslint'),
+                            rules: {
+                                "no-empty-pattern": 0,
+                            }
 
                         },
                         loader: require.resolve('eslint-loader'),

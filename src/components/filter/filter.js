@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 
-import {Row, Column, Foundation} from 'react-foundation';
+import {Row, Column} from 'react-foundation';
 
 import {toggleSortOrder} from "../../actions/uiActions";
 

@@ -12,9 +12,6 @@ import {addVoteScore} from "../../actions/postActions";
 
 class PostDetails extends Component {
 
-    constructor(props) {
-        super(props);
-    }
 
     render() {
 

@@ -10,9 +10,9 @@ function categoryReducer(state = {}, action){
     switch(action.type){
         case 'INFLATE_CATEGORIES':
             return {...state,...categories};
-            break;
         default:
-            return state
+            return state;
+
     }
 }
 

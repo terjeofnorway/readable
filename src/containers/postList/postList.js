@@ -8,13 +8,8 @@ import './postList.scss';
 
 class PostList extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const {posts} = this.props;
-        const postOrder= this.props.post_order.id;
 
 
         return (

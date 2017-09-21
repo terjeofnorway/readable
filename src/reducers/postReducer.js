@@ -21,8 +21,13 @@ function postReducer(state = {}, action){
 
             return {...state,[postId]:{...post}}
         case 'DELETE_POST':
-            console.log(action);
-            return state;
+            const newStateAsArray = Object.keys(state).map((item) => item.id !== action.id);
+
+            return newStateAsArray.reduce((collection,item) => {
+                collection[item.id] = item;
+                return collection;
+            },{});
+
         default:
             return state
     }

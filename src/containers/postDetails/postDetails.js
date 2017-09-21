@@ -12,13 +12,17 @@ import {addVoteScore} from "../../actions/postActions";
 
 class PostDetails extends Component {
 
+    componentWillReceiveProps(nextProps) {
+        if (!nextProps.post) {
+        }
+    }
+
 
     render() {
 
         if (this.props.post) {
             const {id, title, author, timestamp, voteScore, body, category} = this.props.post;
             const {downVote, upVote} = this.props;
-
 
             return (
                 <div className='PostDetails'>

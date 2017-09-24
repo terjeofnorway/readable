@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import {Column, Row} from 'react-foundation';
 
 import Vote from '../../components/vote/vote';
@@ -13,7 +14,9 @@ import {addVoteScore} from "../../actions/postActions";
 class PostDetails extends Component {
 
     componentWillReceiveProps(nextProps) {
-        if (!nextProps.post) {
+        console.log('component will recieve props',nextProps);
+        if (nextProps.post === undefined) {
+            nextProps.history.push('/');
         }
     }
 
@@ -86,7 +89,7 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(PostDetails);
+)(PostDetails));

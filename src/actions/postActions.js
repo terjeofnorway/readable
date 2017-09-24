@@ -27,8 +27,8 @@ export function deletePost(postId, confirmed){
             rejectCallback = reject;
 
         }).then((value) => {
+            //Redispatch theis action, but with confirmed as true
             dispatch(deletePost(postId, true));
-            //TODO: Redirect after deletion
 
         }).catch(() => {
 

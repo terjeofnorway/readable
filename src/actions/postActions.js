@@ -23,6 +23,7 @@ export function deletePost(postId, confirmed){
     return (dispatch) => {
         let resolveCallback = null, rejectCallback = null;
 
+        // eslint-disable-next-line
         const confirmPromise = new Promise((resolve, reject) => {
             resolveCallback = resolve;
             rejectCallback = reject;

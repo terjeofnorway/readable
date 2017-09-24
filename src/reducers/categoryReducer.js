@@ -4,12 +4,12 @@
  * @param action
  * @returns {{}}
  */
-function categoryReducer(state = {}, action){
+function categoryReducer(state = [], action){
     const {categories} = action;
 
     switch(action.type){
         case 'INFLATE_CATEGORIES':
-            return {...state,...categories};
+            return [...state,...categories];
         default:
             return state;
 

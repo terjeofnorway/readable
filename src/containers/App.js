@@ -7,7 +7,7 @@ import {withRouter} from 'react-router-dom';
 
 import './App.scss';
 import Titlebar from '../components/titleBar/titleBar';
-
+import Drawer from '../containers/drawer/drawer';
 import PostList from './postList/postList';
 import PostDetails from './postDetails/postDetails';
 
@@ -18,6 +18,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Titlebar />
+                <Drawer />
                 <Route path='/' exact render={ (props) => {
                     return (
                         <PostList />

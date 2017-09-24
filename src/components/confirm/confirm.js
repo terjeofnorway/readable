@@ -43,7 +43,7 @@ function mapStateToProps({ui}) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        ok:()=>dispatch(confirmCancel()),
+        ok:()=>dispatch(confirmOK()),
         cancel:()=>dispatch(confirmCancel()),
     }
 }

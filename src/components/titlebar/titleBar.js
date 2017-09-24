@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
 import {Row, Column} from 'react-foundation';
+
+import {showDrawer} from "../../actions/uiActions";
 
 import './titleBar.scss';
 
@@ -9,6 +10,8 @@ import './titleBar.scss';
 class Titlebar extends Component {
 
     render() {
+        const {showDrawer} = this.props;
+
         return (
             <Row className="Titlebar">
                 <Column small={2} large={3}>
@@ -18,7 +21,7 @@ class Titlebar extends Component {
                     <div className='Titlebar__title'>The application title</div>
                 </Column>
                 <Column small={2} large={3}>
-                    <button className='Titlebar__menubutton'></button>
+                    <button className='Titlebar__menubutton' onClick={showDrawer}></button>
                 </Column>
             </Row>
         );
@@ -30,7 +33,10 @@ function mapStateToProps({}) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return {}
+    return {
+        showDrawer:() => dispatch(showDrawer()),
+
+    }
 }
 
 export default connect(

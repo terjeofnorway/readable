@@ -22,12 +22,25 @@ export function showConfirm(title, body, resolveCallback, rejectCallback){
 
 export function confirmOK(){
     return {
-        type:'CONFIRM_OK'
+        type:'CONFIRM_OK',
     }
 }
 
 export function confirmCancel(){
     return {
-        type:'HIDE_CONFIRM'
+        type:'HIDE_CONFIRM',
+    }
+}
+
+
+export function closeDrawer(){
+    return {
+        type:'CLOSE_DRAWER',
+    }
+}
+
+export function showDrawer(){
+    return {
+        type:'SHOW_DRAWER',
     }
 }

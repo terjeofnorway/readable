@@ -12,8 +12,10 @@ const defaultState = {
         title: '',
         body: '',
         confirmPayload:'',
-
-    }
+    },
+    drawer:{
+        visible:false
+    },
 }
 
 function uiReducer(state = defaultState, action) {
@@ -27,10 +29,16 @@ function uiReducer(state = defaultState, action) {
         case 'SHOW_CONFIRM':
             const {title, body, resolveCallback, rejectCallback} = action;
 
-            return {...state,'confirm':{visible:true,title,body, resolveCallback, rejectCallback}}
+            return {...state,'confirm':{visible:true,title,body, resolveCallback, rejectCallback}};
 
         case 'HIDE_CONFIRM':
-            return {...state, 'confirm':{visible:false,title:null, body:null}}
+            return {...state, 'confirm':{visible:false,title:null, body:null}};
+
+        case 'CLOSE_DRAWER':
+            return {...state, 'drawer':{visible:false}};
+
+        case 'SHOW_DRAWER':
+            return {...state, 'drawer':{visible:true}};
 
         default:
             return state;

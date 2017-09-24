@@ -1,0 +1,18 @@
+@import '../../constants/variables';
+
+.DrawerCategories {
+
+  h1.DrawerCategories__Title {
+    color: $nav-color-light;
+    text-transform: uppercase;
+    padding-left: 25px;
+    font-size: $font-base-size * 1.5;
+    font-weight: 900;
+  }
+
+  ul.DrawerCategoryList {
+    list-style: none;
+  }
+
+
+}

@@ -1,5 +1,6 @@
 
 import {showConfirm} from "./uiActions";
+import API from '../helpers/api';
 
 
 /** Adds a new vote to the total post score. Votes can be 1 or -1
@@ -29,6 +30,8 @@ export function deletePost(postId, confirmed){
         }).then((value) => {
             //Redispatch theis action, but with confirmed as true
             dispatch(deletePost(postId, true));
+            API.requestDeletePost(postId).then((value) => console.log('god this from server:',value))
+                .catch(error => console.log(error));
 
         }).catch(() => {
 

@@ -3,19 +3,19 @@
 .Titlebar {
   background-color: $background-color-dark;
 
-  .Titlebar__backbutton {
+  .Titlebar__Backbutton {
     background-image:url('../../graphics/icon-back.svg');
     border:0;
     width:40px;
     height:40px;
   }
 
-  .Titlebar__title {
+  .Titlebar__Title {
     color:$text-color-negative;
     font-size:$font-base-size * 1.5; //TODO: Refactor to REM mixin.
   }
 
-  .Titlebar__menubutton {
+  .Titlebar__Menubutton {
     background-image:url('../../graphics/icon-category.svg');
     background-size:40px 40px;
     border:0;

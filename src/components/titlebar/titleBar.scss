@@ -1,25 +1,36 @@
 @import '../../constants/variables';
 
-.Titlebar {
+.TitleBar {
   background-color: $background-color-dark;
+  align-items:center;
+  padding:10px 0;
+
+  .columns {
+    align-items:center;
+  }
 
   .Titlebar__Backbutton {
     background-image:url('../../graphics/icon-back.svg');
     border:0;
-    width:40px;
-    height:40px;
+    width:25px;
+    height:25px;
+    display: block;
   }
 
   .Titlebar__Title {
+    display: flex;
+    flex-direction:column;
+    align-items:center;
     color:$text-color-negative;
     font-size:$font-base-size * 1.5; //TODO: Refactor to REM mixin.
   }
 
   .Titlebar__Menubutton {
     background-image:url('../../graphics/icon-category.svg');
-    background-size:40px 40px;
+    background-size:contain;
     border:0;
     width:40px;
     height:40px;
+    display: block;
   }
 }

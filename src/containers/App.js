@@ -25,13 +25,18 @@ class App extends Component {
                     )
                 }} />
 
+                <Route path='/categories/:categorySlug' exact render={ (props) => {
+                    return (
+                        <PostList categorySLug={props.match.params.categorySlug} />
+                    )
+                }} />
+
                 <Route path='/posts/:id' exact render={ (props) => {
                     return (
                         <PostDetails id={props.match.params.id} />
                     )
                 }} />
                 <Confirm></Confirm>
-
             </div>
         );
     }

@@ -13,14 +13,15 @@ class Titlebar extends Component {
     render() {
 
         const {showDrawer} = this.props;
+        const title = this.props.title ? this.props.title : 'Readable app';
 
         return (
-            <Row className="Titlebar">
+            <Row className="TitleBar">
                 <Column small={2} large={3}>
                     <button className='Titlebar__Backbutton' onClick={this.props.history.goBack}></button>
                 </Column>
                 <Column small={8} large={6}>
-                    <div className='Titlebar__Title'>The application title</div>
+                    <div className='Titlebar__Title'>{title}</div>
                 </Column>
                 <Column small={2} large={3}>
                     <button className='Titlebar__Menubutton' onClick={showDrawer}></button>

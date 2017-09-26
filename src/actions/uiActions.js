@@ -22,7 +22,7 @@ export function showConfirm(title, body, resolveCallback, rejectCallback){
 
 export function confirmOK(){
     return {
-        type:'CONFIRM_OK',
+        type:'HIDE_CONFIRM',
     }
 }
 
@@ -43,4 +43,13 @@ export function showDrawer(){
     return {
         type:'SHOW_DRAWER',
     }
+}
+
+export function toggleEditPost(postId){
+    return {
+        type:'TOGGLE_EDIT_POST',
+        postId,
+
+    }
+
 }

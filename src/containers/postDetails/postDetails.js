@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Column, Row} from 'react-foundation';
+import ContentEditable from 'react-contenteditable';
 
 import Vote from '../../components/vote/vote';
 import EditDelete from '../../components/editDelete/editDelete';
@@ -13,11 +14,22 @@ import {addVoteScore} from "../../actions/postActions";
 
 class PostDetails extends Component {
 
+    constructor(props){
+        super(props);
+
+        this.handleContentChange = this.handleContentChange.bind(this);
+    }
+
     componentWillReceiveProps(nextProps) {
-        console.log('component will recieve props',nextProps);
         if (nextProps.post === undefined) {
             nextProps.history.push('/');
         }
+    }
+
+    handleContentChange(event, origin){
+        const newValue = event.target.value;
+
+        //TOTO Fire dispatch for editorContent update (for each keystroke as component state is not allowed
     }
 
 
@@ -26,6 +38,8 @@ class PostDetails extends Component {
         if (this.props.post) {
             const {id, title, author, timestamp, voteScore, body, category} = this.props.post;
             const {downVote, upVote} = this.props;
+            const {isEditingPost} = this.props;
+
 
             return (
                 <div className='PostDetails'>
@@ -35,7 +49,12 @@ class PostDetails extends Component {
                         </Row>
                         <Row>
                             <Column small={12} large={12}><h1
-                                className='Header__Title'>{title}</h1>
+                                className='Header__Title'>
+                                <ContentEditable
+                                    html={title}
+                                    disabled={!isEditingPost}
+                                    onChange={(e) => this.handleContentChange(e,'title')}/>
+                            </h1>
                             </Column>
                         </Row>
                         <Row>
@@ -79,6 +98,8 @@ class PostDetails extends Component {
 function mapStateToProps({posts, categories, ui}, {id}) {
     return {
         post: posts[id],
+        isEditingPost: ui.postEditor.isEditingPost,
+        editorContent:ui.postEditor.editorContent,
     }
 }
 

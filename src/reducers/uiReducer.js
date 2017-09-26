@@ -16,6 +16,10 @@ const defaultState = {
     drawer:{
         visible:false
     },
+    postEditor:{
+        isEditingPost:false,
+        editorContent:{},
+    }
 }
 
 function uiReducer(state = defaultState, action) {
@@ -39,6 +43,10 @@ function uiReducer(state = defaultState, action) {
 
         case 'SHOW_DRAWER':
             return {...state, 'drawer':{visible:true}};
+
+        case 'TOGGLE_EDIT_POST':
+            const newFlag = !state.isEditingPost;
+            return {...state, 'postEditor':{...state['postEditor'], 'isEditingPost':newFlag}};
 
         default:
             return state;

@@ -31,7 +31,7 @@ export function deletePost(postId, confirmed){
         }).then((value) => {
             //Redispatch theis action, but with confirmed as true
             dispatch(deletePost(postId, true));
-            API.requestDeletePost(postId).then((value) => console.log('god this from server:',value))
+            API.requestDeletePost(postId).then((value) => console.log('god this from server:', value))
                 .catch(error => console.log(error));
 
         }).catch(() => {
@@ -53,4 +53,5 @@ export function deletePost(postId, confirmed){
     }
 
 }
+
 

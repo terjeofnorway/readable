@@ -45,7 +45,7 @@ function uiReducer(state = defaultState, action) {
             return {...state, 'drawer':{visible:true}};
 
         case 'TOGGLE_EDIT_POST':
-            const newFlag = !state.isEditingPost;
+            const newFlag = !state.postEditor.isEditingPost;
             return {...state, 'postEditor':{...state['postEditor'], 'isEditingPost':newFlag}};
 
         default:

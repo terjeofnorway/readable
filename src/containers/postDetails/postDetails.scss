@@ -1,26 +1,32 @@
 @import '../../constants/variables';
 
-.PostDetails {
+.PostDetails, .PostDetails--editing {
   .PostDetails_Header {
     text-align:center;
     margin:2em 0;
 
     .Header__Category {
+      position:relative;
       color: $nav-color-dark;
       text-transform: uppercase;
       font-weight:bold;
       font-size:$font-base-size * 1.5;
+      transition:all .5s;
     }
 
     .Header__Title {
+      position:relative;
       font-size:$font-base-size * 3;
       font-weight:200;
+      transition:all .5s;
     }
 
-    .Header__Byline, .Header__Date {
+    .Header__Author, .Header__Date {
+      position:relative;
       color: $nav-color-dark;
       font-family: $font-face-serif;
       font-size:$font-base-size * 1.5;
+      transition:all .5s;
     }
 
     .Vote {
@@ -32,7 +38,48 @@
 
   .PostDetails__Content {
     .PostDetails__Body {
+      position: relative;
+      padding:0.6em 5px;
 
     }
   }
+}
+
+.PostDetails--editing {
+  .Header__Title, .Header__Author, .Header__Date, .PostDetails__Body {
+    background-color:$white;
+    display:block;
+    border:1px solid $light-gray;
+    border-radius:3px;
+    padding:0.6em 5px;
+    margin:0.2em 0;
+    outline:0;
+
+    &:before {
+      color:$nav-color-light;
+      text-transform:uppercase;
+      position:absolute;
+      top:0px;
+      left:10px;
+      font-size:$font-base-size * 0.8;
+      font-weight:900;
+      font-family:$font-face-sansserif;
+    }
+  }
+
+  .Header__Title:before {
+    content:'Title';
+  }
+
+  .Header__Author:before {
+    content:'Author';
+  }
+
+  .Header__Date:before {
+    content:'Date';
+  }
+  .PostDetails__Body {
+    content:'';
+  }
+
 }

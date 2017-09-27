@@ -46,7 +46,13 @@ function uiReducer(state = defaultState, action) {
 
         case 'TOGGLE_EDIT_POST':
             const newFlag = !state.postEditor.isEditingPost;
-            return {...state, 'postEditor':{...state['postEditor'], 'isEditingPost':newFlag}};
+            const newPostEditor = {...state['postEditor'], 'isEditingPost':newFlag, 'editorContent':{}};
+
+            return {...state, 'postEditor':newPostEditor};
+
+        case 'UPDATE_EDITOR_CONTENT':
+            const newEditorContent = {...state.postEditor.editorContent,[action.field]:action.content};
+            return {...state, 'postEditor':{...state['postEditor'],'editorContent':newEditorContent}}
 
         default:
             return state;

@@ -54,4 +54,9 @@ export function deletePost(postId, confirmed){
 
 }
 
-
+export function updatePost(partialFields){
+    return {
+        type:'UPDATE_POST',
+        partialFields,
+    }
+}

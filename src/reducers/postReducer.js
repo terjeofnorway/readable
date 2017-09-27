@@ -30,11 +30,15 @@ function postReducer(state = {}, action) {
                 return collection;
             }, {});
 
-
-            console.log(newState);
-
-
             return newState;
+
+        case 'UPDATE_POST':
+            return (() => {
+                const {postId} = action.partialFields;
+                console.log('postid is '+ postId);
+                return {...state,[postId]:{...state[postId], ...action.partialFields}};
+            })();
+
 
         default:
             return state

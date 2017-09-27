@@ -9,12 +9,13 @@ import EditDelete from '../../components/editDelete/editDelete';
 import DateTimeHelper from '../../helpers/datetime';
 
 import './postDetails.scss';
-import {addVoteScore} from "../../actions/postActions";
+import {addVoteScore} from '../../actions/postActions';
+import {updateEditorContent} from '../../actions/uiActions';
 
 
 class PostDetails extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.handleContentChange = this.handleContentChange.bind(this);
@@ -26,8 +27,9 @@ class PostDetails extends Component {
         }
     }
 
-    handleContentChange(event, origin){
+    handleContentChange(event, field) {
         const newValue = event.target.value;
+        this.props.updateEditorContent(newValue,field);
 
         //TOTO Fire dispatch for editorContent update (for each keystroke as component state is not allowed
     }
@@ -40,9 +42,11 @@ class PostDetails extends Component {
             const {downVote, upVote} = this.props;
             const {isEditingPost} = this.props;
 
+            const postBaseClassName = isEditingPost ? 'PostDetails--editing' : 'PostDetails';
+
 
             return (
-                <div className='PostDetails'>
+                <div className={postBaseClassName}>
                     <div className='PostDetails_Header'>
                         <Row>
                             <Column small={12} large={12}><span className='Header__Category'>{category}</span></Column>
@@ -53,16 +57,26 @@ class PostDetails extends Component {
                                 <ContentEditable
                                     html={title}
                                     disabled={!isEditingPost}
-                                    onChange={(e) => this.handleContentChange(e,'title')}/>
+                                    onChange={(e) => this.handleContentChange(e, 'title')} />
                             </h1>
                             </Column>
                         </Row>
                         <Row>
-                            <Column small={12} large={6}><span
-                                className='Header__Byline'>{author}</span>
+                            <Column small={12} large={6}>
+                                <span className='Header__Author'>
+                                    <ContentEditable
+                                        html={author}
+                                        disabled={!isEditingPost}
+                                        onChange={(e) => this.handleContentChange(e, 'author')} />
+                                </span>
                             </Column>
                             <Column small={12} large={6}><span
-                                className='Header__Date'>{DateTimeHelper.timestampToHumanDate(timestamp)}</span>
+                                className='Header__Date'>
+                                <ContentEditable
+                                    html={DateTimeHelper.timestampToHumanDate(timestamp)}
+                                    disabled={!isEditingPost}
+                                    onChange={(e) => this.handleContentChange(e, 'date')} />
+                                </span>
                             </Column>
                         </Row>
                         <Row>
@@ -74,7 +88,12 @@ class PostDetails extends Component {
                     <div className='PostDetails__Content'>
                         <Row>
                             <Column small={12} large={12}>
-                                <p className='PostDetails__Body'>{body}</p>
+                                <div className='PostDetails__Body'>
+                                    <ContentEditable
+                                        html={body}
+                                        disabled={!isEditingPost}
+                                        onChange={(e) => this.handleContentChange(e, 'body')} />
+                                </div>
                             </Column>
                         </Row>
                         <Row>
@@ -99,7 +118,7 @@ function mapStateToProps({posts, categories, ui}, {id}) {
     return {
         post: posts[id],
         isEditingPost: ui.postEditor.isEditingPost,
-        editorContent:ui.postEditor.editorContent,
+        editorContent: ui.postEditor.editorContent,
     }
 }
 
@@ -107,6 +126,7 @@ function mapDispatchToProps(dispatch) {
     return {
         upVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
         downVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
+        updateEditorContent: (content,field) => dispatch(updateEditorContent(content,field)),
     }
 }
 

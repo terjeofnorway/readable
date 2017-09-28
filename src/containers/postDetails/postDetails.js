@@ -11,6 +11,7 @@ import DateTimeHelper from '../../helpers/datetime';
 import './postDetails.scss';
 import {addVoteScore} from '../../actions/postActions';
 import {updateEditorContent} from '../../actions/uiActions';
+import {loadComments} from "../../actions/commentActions";
 
 
 class PostDetails extends Component {
@@ -32,6 +33,13 @@ class PostDetails extends Component {
         this.props.updateEditorContent(newValue,field);
 
         //TOTO Fire dispatch for editorContent update (for each keystroke as component state is not allowed
+    }
+
+    componentDidUpdate(){
+        //As new comments may have been added, make a new request to the server. Meanwhile,
+        //the render method will load the old posts.
+
+        this.props.post && this.props.loadComments(this.props.post.id);
     }
 
 
@@ -127,6 +135,7 @@ function mapDispatchToProps(dispatch) {
         upVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
         downVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
         updateEditorContent: (content,field) => dispatch(updateEditorContent(content,field)),
+        loadComments:(postId) => dispatch(loadComments(postId)),
     }
 }
 

@@ -18,6 +18,7 @@ export function loadPosts(){
     return (dispatch) => API.loadPostsFromServer().then(data => dispatch(inflatePosts((data))));
 }
 
+
 /** Inflate categories into the app for the first time. **/
 export function inflateCategories(data){
     return {

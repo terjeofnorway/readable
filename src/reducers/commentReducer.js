@@ -6,7 +6,7 @@
  */
 function commentReducer(state = {}, action) {
     switch (action.type) {
-        case 'INJECT_COMMENTS':
+        case 'INFLATE_COMMENTS':
             //Add the comments into the comment state.
 
             //TODO: Add load timestamp for checking for stale data.

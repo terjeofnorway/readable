@@ -19,7 +19,7 @@ export function loadComments(postId){
 
 export function injectComments(comments){
     return {
-        type: 'INJECT_COMMENTS',
+        type: 'INFLATE_COMMENTS',
         comments
     }
 }

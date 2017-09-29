@@ -6,6 +6,7 @@ import ContentEditable from 'react-contenteditable';
 
 import Vote from '../../components/vote/vote';
 import EditDelete from '../../components/editDelete/editDelete';
+import CommentList from '../../components/commentList/commentList';
 import DateTimeHelper from '../../helpers/datetime';
 
 import './postDetails.scss';
@@ -111,6 +112,8 @@ class PostDetails extends Component {
                             </Column>
                         </Row>
                     </div>
+                    <CommentList/>
+
                 </div>
             )
         } else {

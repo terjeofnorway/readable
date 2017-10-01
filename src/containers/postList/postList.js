@@ -23,10 +23,6 @@ class PostList extends Component {
             </div>
         );
     }
-    shouldComponentUpdate(){
-        console.log('i am updating');
-        return true;
-    }
 }
 
 

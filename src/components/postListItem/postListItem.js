@@ -15,15 +15,14 @@ import {addVoteScore} from '../../actions/postActions';
 const PostListItem = function (props) {
     const {id, timestamp, title, author, category, voteScore} = props.post;
 
-
     return (
         <Row className="PostListItem">
             <Column small={8} large={8}>
                 <Link to={`/posts/${id}`}>
-                    <div className='Header__Category'>{category}</div>
-                    <div className='Header__Date'>{DateTimeHelper.timestampToHumanDate(timestamp)}</div>
-                    <div className='Header__Title'>{title}</div>
-                    <div className='Header__Author'>{author}</div>
+                    <div className='PostListItem__Category'>{category}</div>
+                    <div className='PostListItem__Date'>{DateTimeHelper.timestampToHumanDate(timestamp)}</div>
+                    <div className='PostListItem__Title'>{title}</div>
+                    <div className='PostListItem__Author'>{author}</div>
                 </Link>
             </Column>
             <Column small={4} large={4}>

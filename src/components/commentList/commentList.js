@@ -13,7 +13,6 @@ class CommentList extends Component {
     }
 
     render() {
-        console.log(this.props.comments);
         return (
             <div className="commentList">
                 {Object.keys(this.props.comments).map((key) => <CommentListItem comment={this.props.comments[key]} key={key} />)}

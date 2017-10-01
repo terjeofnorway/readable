@@ -3,6 +3,7 @@
 - Global variable
 - Refactor scss color variables
 - Refactor variables to global
+- Refactor stateful to stateless components where appropriate.
 
 
 #Issues

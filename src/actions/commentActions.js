@@ -1,5 +1,3 @@
-
-import {showConfirm} from "./uiActions";
 import API from '../helpers/api';
 
 

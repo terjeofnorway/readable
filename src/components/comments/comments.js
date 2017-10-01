@@ -9,11 +9,6 @@ import './comments.scss';
 
 
 class Comments extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="Comments">

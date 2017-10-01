@@ -9,7 +9,7 @@ import './postList.scss';
 class PostList extends Component {
 
     render() {
-        const {posts, categorySlug} = this.props;
+        const {posts} = this.props;
 
 
         return (

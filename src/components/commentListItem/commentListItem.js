@@ -8,11 +8,6 @@ import './commentListItem.scss';
 
 
 class CommentListItem extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const {author, timestamp, body} = this.props.comment;
         return (

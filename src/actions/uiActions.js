@@ -5,9 +5,10 @@ import {updatePost} from "./postActions";
  * application.
  * @returns {{type: string}}
  */
-export function toggleSortOrder() {
+export function toggleSortOrder(sortTarget) {
     return {
         type: 'TOGGLE_SORT_ORDER',
+        sortTarget
     }
 }
 

@@ -14,7 +14,7 @@ class PostList extends Component {
 
         return (
             <div>
-                <Filter/>
+                <Filter sortTarget='post'/>
                 <div className="PostList__Container">
                     {
                         posts.map((post) => (<PostListItem post={post} key={post.id}/>))

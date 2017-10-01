@@ -14,7 +14,7 @@ const Filter = function (props) {
     return (
         <Row>
             <Column small={12} large={12}>
-                <div className='Filter' onClick={() => props.toggleSortOrder()}>
+                <div className='Filter' onClick={() => props.toggleSortOrder(props.sortTarget)}>
                     <div className='Filter__Button'>
                         <span className='Filter__ButtonLabel'>{filterLabel}</span>
                     </div>
@@ -25,15 +25,16 @@ const Filter = function (props) {
 }
 
 
-function mapStateToProps({ui}) {
+function mapStateToProps({ui},{sortTarget}) {
     return {
-        filterLabel: ui.post_order.label,
+        sortTarget,
+        filterLabel: ui[`${sortTarget}_order`].label,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        toggleSortOrder: () => dispatch(toggleSortOrder()),
+        toggleSortOrder: (sortTarget) => dispatch(toggleSortOrder(sortTarget)),
     }
 }
 

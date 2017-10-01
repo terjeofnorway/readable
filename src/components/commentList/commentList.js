@@ -12,7 +12,7 @@ class CommentList extends Component {
     render() {
         return (
             <div>
-                <Filter />
+                <Filter sortTarget='comment' />
                 <div className="CommentList">
                     {Object.keys(this.props.comments).map((key) => <CommentListItem comment={this.props.comments[key]}
                                                                                     key={key}/>)}
@@ -22,9 +22,15 @@ class CommentList extends Component {
     }
 }
 
-function mapStateToProps({comments}) {
+function mapStateToProps({ui,comments}) {
+
+    const orderByCommentsKey = ui.comment_order.post_object_key;
+
+    const commentsArray = Object.keys(comments).map((key) => comments[key]);
+    const sortedComments = commentsArray.sort((a,b) => a[orderByCommentsKey] < b[orderByCommentsKey]);
+
     return {
-        comments: comments,
+        comments: sortedComments,
     }
 }
 

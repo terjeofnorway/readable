@@ -102,12 +102,10 @@ class PostDetails extends Component {
                         <Row>
                             <Column small={12} large={12}>
                                 <EditDelete postId={id}/>
-
                             </Column>
                         </Row>
                     </div>
                     <Comments/>
-
                 </div>
             )
         } else {

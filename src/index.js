@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter,withRouter} from 'react-router-dom';
+import {BrowserRouter, withRouter} from 'react-router-dom';
 
 import {Provider} from 'react-redux';
 
@@ -16,13 +16,14 @@ store.dispatch(loadPosts());
 
 
 withRouter(ReactDOM.render(
-    <BrowserRouter>
-        <Provider store={store}>
+    <Provider store={store}>
+        <BrowserRouter>
             <App/>
-        </Provider>
-    </BrowserRouter>,
-    document.getElementById('root')
-));
+        </BrowserRouter>
+    </Provider>,
+document.getElementById('root')
+))
+;
 
 
 registerServiceWorker();

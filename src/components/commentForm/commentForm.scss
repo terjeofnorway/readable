@@ -1,0 +1,21 @@
+@import '../../constants/forms';
+
+.CommentForm {
+  padding:0.5em;
+
+  .Comments__Author, .Comments__Body {
+    @include formField
+  }
+
+  .Comments__Author:before{
+      content:'Author';
+  }
+
+  .Comments__Body {
+    min-height:100px;
+
+  }
+  .Comments__Body:before{
+    content:'Comment';
+  }
+}

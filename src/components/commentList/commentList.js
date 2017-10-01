@@ -8,22 +8,21 @@ import './commentList.scss';
 
 class CommentList extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
-            <div className="commentList">
-                {Object.keys(this.props.comments).map((key) => <CommentListItem comment={this.props.comments[key]} key={key} />)}
+            <div>
+                <div className="CommentList">
+                    {Object.keys(this.props.comments).map((key) => <CommentListItem comment={this.props.comments[key]}
+                                                                                    key={key}/>)}
+                </div>
             </div>
-        );
+        )
     }
 }
 
 function mapStateToProps({comments}) {
     return {
-        comments:comments,
+        comments: comments,
     }
 }
 

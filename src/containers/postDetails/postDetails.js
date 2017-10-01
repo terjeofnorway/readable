@@ -6,7 +6,7 @@ import ContentEditable from 'react-contenteditable';
 
 import Vote from '../../components/vote/vote';
 import EditDelete from '../../components/editDelete/editDelete';
-import CommentList from '../../components/commentList/commentList';
+import Comments from '../../components/comments/comments';
 import DateTimeHelper from '../../helpers/datetime';
 
 import './postDetails.scss';
@@ -20,6 +20,7 @@ class PostDetails extends Component {
     constructor(props) {
         super(props);
 
+
         this.handleContentChange = this.handleContentChange.bind(this);
     }
 
@@ -27,22 +28,15 @@ class PostDetails extends Component {
         if (nextProps.post === undefined) {
             nextProps.history.push('/');
         }
-
-        //As new comments may have been added, make a new request to the server. Meanwhile,
-        //the render method will load the old posts.
-        console.log('componentWillReceiveProps');
-        //nextProps.post && this.props.loadComments(nextProps.post.id);
     }
-
-    componentWillUpdate(){
-        console.log('componentWillUpdate');
-    }
-
-
 
     handleContentChange(event, field) {
         const newValue = event.target.value;
         this.props.updateEditorContent(newValue,field);
+    }
+
+    componentDidMount(){
+        this.props.loadComments(this.props.id);
     }
 
     render() {
@@ -112,7 +106,7 @@ class PostDetails extends Component {
                             </Column>
                         </Row>
                     </div>
-                    <CommentList/>
+                    <Comments/>
 
                 </div>
             )
@@ -138,7 +132,7 @@ function mapDispatchToProps(dispatch) {
         upVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
         downVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
         updateEditorContent: (content,field) => dispatch(updateEditorContent(content,field)),
-        //loadComments:(postId) => dispatch(loadComments(postId)),
+        loadComments:(postId) => dispatch(loadComments(postId)),
     }
 }
 

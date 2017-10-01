@@ -1,0 +1,39 @@
+@import './variables';
+
+@mixin formField {
+  position: relative;
+  background-color: $white;
+  display: block;
+  border: 1px solid $light-gray;
+  border-radius: 3px;
+  padding: 0.9em 5px;
+  margin: 0.2em 0;
+  outline: 0;
+  transition: all 0.2s;
+
+  &:before {
+    color: $nav-color-light;
+    text-transform: uppercase;
+    position: absolute;
+    left: 5px;
+    top: 0px;
+    font-size: $font-base-size * 0.8;
+    font-weight: 900;
+    font-family: $font-face-sansserif;
+    transition: all 0.2s;
+  }
+
+  &:empty {
+    &:before {
+      top: 10px;
+      font-size: $font-base-size * 1.1;
+    }
+  }
+
+  &:focus {
+    &:before {
+      top: 0px;
+      font-size: $font-base-size * 0.8;
+    }
+  }
+}

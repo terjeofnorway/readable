@@ -1,0 +1,16 @@
+@import '../../constants/variables';
+
+.Button {
+  display: flex;
+  background-color: $nav-color-dark;
+  color: $white;
+  padding: 1em;
+  margin: 0.3em 0;
+  font-size: $font-base-size * 1.2;
+  flex-direction: column;
+
+  &.Button--Wide {
+    align-items: center;
+    width: 100%;
+  }
+}

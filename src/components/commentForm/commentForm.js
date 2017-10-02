@@ -4,10 +4,15 @@ import {Column, Row} from 'react-foundation';
 import Button from '../../components/button/button';
 
 
+
 import './commentForm.scss';
 
 
 class CommentForm extends Component {
+    handleCommentChange(event, field) {
+        const newValue = event.target.value;
+        this.props.updateEditorContent(newValue,field);
+    }
     render() {
         return (
             <div className='CommentForm'>

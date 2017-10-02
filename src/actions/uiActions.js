@@ -65,9 +65,17 @@ export function toggleEditPost(postId) {
     }
 }
 
+export function updatePostEditorContent(content, field) {
+    return {
+        type: 'UPDATE_POST_EDITOR_CONTENT',
+        content,
+        field,
+    }
+}
+
 export function updateEditorContent(content, field) {
     return {
-        type: 'UPDATE_EDITOR_CONTENT',
+        type: 'UPDATE_POST_EDITOR_CONTENT',
         content,
         field,
     }

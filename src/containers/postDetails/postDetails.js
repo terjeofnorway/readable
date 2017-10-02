@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Column, Row} from 'react-foundation';
-import ContentEditable from 'react-contenteditable';
+import ContentEditable from '../../components/contentEditable/contentEditable';
 
 import Vote from '../../components/vote/vote';
 import EditDelete from '../../components/editDelete/editDelete';
@@ -11,7 +11,7 @@ import DateTimeHelper from '../../helpers/datetime';
 
 import './postDetails.scss';
 import {addVoteScore} from '../../actions/postActions';
-import {updateEditorContent} from '../../actions/uiActions';
+import {updatePostEditorContent} from '../../actions/uiActions';
 import {loadComments} from "../../actions/commentActions";
 
 
@@ -19,7 +19,6 @@ class PostDetails extends Component {
 
     constructor(props) {
         super(props);
-
 
         this.handleContentChange = this.handleContentChange.bind(this);
     }
@@ -32,7 +31,7 @@ class PostDetails extends Component {
 
     handleContentChange(event, field) {
         const newValue = event.target.value;
-        this.props.updateEditorContent(newValue,field);
+        this.props.updatePostEditorContent(newValue,field);
     }
 
     componentDidMount(){
@@ -47,6 +46,7 @@ class PostDetails extends Component {
 
             const postBaseClassName = isEditingPost ? 'PostDetails--editing' : 'PostDetails';
 
+            //Todo: Fix disabled flag for editable contend. Has for some reason started to bug.
 
             return (
                 <div className={postBaseClassName}>
@@ -129,7 +129,7 @@ function mapDispatchToProps(dispatch) {
     return {
         upVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
         downVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
-        updateEditorContent: (content,field) => dispatch(updateEditorContent(content,field)),
+        updatePostEditorContent: (content,field) => dispatch(updatePostEditorContent(content,field)),
         loadComments:(postId) => dispatch(loadComments(postId)),
     }
 }

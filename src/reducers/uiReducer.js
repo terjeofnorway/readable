@@ -20,6 +20,10 @@ const defaultState = {
     postEditor:{
         isEditingPost:false,
         editorContent:{},
+    },
+    commentEditor: {
+        isEditingComment:false,
+        editorContent:{},
     }
 }
 
@@ -52,7 +56,7 @@ function uiReducer(state = defaultState, action) {
 
             return {...state, 'postEditor':newPostEditor};
 
-        case 'UPDATE_EDITOR_CONTENT':
+        case 'UPDATE_POST_EDITOR_CONTENT':
             const newEditorContent = {...state.postEditor.editorContent,[action.field]:action.content};
             return {...state, 'postEditor':{...state['postEditor'],'editorContent':newEditorContent}}
 

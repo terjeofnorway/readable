@@ -16,6 +16,11 @@ function commentReducer(state = {}, action) {
                 return collection;
             }, {});
 
+        case 'SAVE_COMMENT':
+            const {comment} = action;
+
+            return {...state,[comment.id]:{...comment}};
+
         default:
             return state;
     }

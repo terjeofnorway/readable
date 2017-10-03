@@ -9,15 +9,21 @@ import API from '../helpers/api';
  */
 
 
-
 /** Load Posts **/
-export function loadComments(postId){
+export function loadComments(postId) {
     return (dispatch) => API.loadCommentsFromServer(postId).then(data => dispatch(injectComments((data))));
 }
 
-export function injectComments(comments){
+export function injectComments(comments) {
     return {
         type: 'INFLATE_COMMENTS',
-        comments
+        comments,
+    }
+}
+
+export function saveComment(comment) {
+    return {
+        type: 'SAVE_COMMENT',
+        comment,
     }
 }

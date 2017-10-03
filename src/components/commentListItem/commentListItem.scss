@@ -1,4 +1,5 @@
 @import '../../constants/variables';
+@import '../../constants/forms';
 
 .CommentListItem {
   background-color: $white;
@@ -22,5 +23,25 @@
 
   .Comment__Body {
 
+  }
+}
+
+.CommentForm {
+  padding:0.5em;
+
+  .Comments__Author, .Comments__Body {
+    @include formField
+  }
+
+  .Comments__Author:before{
+    content:'Author';
+  }
+
+  .Comments__Body {
+    min-height:100px;
+
+  }
+  .Comments__Body:before{
+    content:'Comment';
   }
 }

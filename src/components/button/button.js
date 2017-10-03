@@ -6,7 +6,7 @@ import './button.scss';
 
 
 const Button = (props) => (
-    <button className="Button Button--Wide">
+    <button className="Button Button--Wide" onClick={props.onClick}>
         {props.children}
     </button>
 );

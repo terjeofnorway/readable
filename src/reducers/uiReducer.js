@@ -57,8 +57,8 @@ function uiReducer(state = defaultState, action) {
             return {...state, 'postEditor':newPostEditor};
 
         case 'UPDATE_POST_EDITOR_CONTENT':
-            const newEditorContent = {...state.postEditor.editorContent,[action.field]:action.content};
-            return {...state, 'postEditor':{...state['postEditor'],'editorContent':newEditorContent}}
+            const newPostEditorContent = {...state.postEditor.editorContent,[action.field]:action.content};
+            return {...state, 'postEditor':{...state['postEditor'],'editorContent':newPostEditorContent}}
 
         default:
             return state;

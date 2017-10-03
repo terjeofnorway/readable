@@ -105,7 +105,7 @@ class PostDetails extends Component {
                             </Column>
                         </Row>
                     </div>
-                    <Comments/>
+                    <Comments postId={id}/>
                 </div>
             )
         } else {

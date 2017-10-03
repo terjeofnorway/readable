@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import CommentList from '../commentList/commentList';
-import CommentForm from '../commentForm/commentForm';
 
 
 import './comments.scss';
@@ -14,7 +13,6 @@ class Comments extends Component {
             <div className="Comments">
                 <h1>Comments</h1>
                 <CommentList/>
-                <CommentForm/>
             </div>
         );
     }

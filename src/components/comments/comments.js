@@ -12,14 +12,25 @@ class Comments extends Component {
         return (
             <div className="Comments">
                 <h1>Comments</h1>
-                <CommentList/>
+                <CommentList comments={this.props.comments}/>
             </div>
         );
     }
 }
 
-function mapStateToProps({}) {
-    return {}
+function mapStateToProps({ ui, comments }) {
+    const orderByCommentsKey = ui.comment_order.post_object_key;
+
+    const commentsArray = Object
+        .keys(comments)
+        .map(key => comments[key])
+        .filter(item => !item.deleted);
+
+    const sortedComments = commentsArray.sort((a,b) => a[orderByCommentsKey] < b[orderByCommentsKey]);
+
+    return {
+        comments: sortedComments,
+    }
 }
 
 function mapDispatchToProps(dispatch) {

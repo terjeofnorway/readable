@@ -22,15 +22,9 @@ class CommentList extends Component {
     }
 }
 
-function mapStateToProps({ui,comments}) {
-
-    const orderByCommentsKey = ui.comment_order.post_object_key;
-
-    const commentsArray = Object.keys(comments).map((key) => comments[key]);
-    const sortedComments = commentsArray.sort((a,b) => a[orderByCommentsKey] < b[orderByCommentsKey]);
+function mapStateToProps() {
 
     return {
-        comments: sortedComments,
     }
 }
 

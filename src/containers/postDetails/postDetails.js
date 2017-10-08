@@ -14,6 +14,9 @@ import {addVoteScore} from '../../actions/postActions';
 import {updatePostEditorContent} from '../../actions/uiActions';
 import {loadComments} from "../../actions/commentActions";
 
+import {deletePost} from '../../actions/postActions';
+import {toggleEditPost} from '../../actions/uiActions';
+
 
 class PostDetails extends Component {
 
@@ -101,11 +104,11 @@ class PostDetails extends Component {
                         </Row>
                         <Row>
                             <Column small={12} large={12}>
-                                <EditDelete postId={id}/>
+                                <EditDelete id={id} toggleEdit={id => this.props.toggleEditPost(id)} delete={id => this.props.deletePost(id)} />
                             </Column>
                         </Row>
                     </div>
-                    <Comments postId={id}/>
+                    <Comments parentId={id} />
                 </div>
             )
         } else {
@@ -131,6 +134,8 @@ function mapDispatchToProps(dispatch) {
         downVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
         updatePostEditorContent: (content,field) => dispatch(updatePostEditorContent(content,field)),
         loadComments:(postId) => dispatch(loadComments(postId)),
+        deletePost:(postId) => dispatch(deletePost(postId)),
+        toggleEditPost:(postId) => dispatch(toggleEditPost(postId)),
     }
 }
 

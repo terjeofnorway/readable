@@ -24,6 +24,7 @@ const defaultState = {
     commentEditor: {
         isEditingComment:false,
         editorContent:{},
+        activeCommentAction:'',
     }
 }
 
@@ -59,6 +60,15 @@ function uiReducer(state = defaultState, action) {
         case 'UPDATE_POST_EDITOR_CONTENT':
             const newPostEditorContent = {...state.postEditor.editorContent,[action.field]:action.content};
             return {...state, 'postEditor':{...state['postEditor'],'editorContent':newPostEditorContent}}
+
+        case 'TOGGLE_EDIT_COMMENT':
+            console.log(action.commentId);
+            return {...state};
+
+        case 'TOGGLE_COMMENT_ACTIONS':
+            const actionId = state.commentEditor.activeCommentAction === action.commentId ? '' : action.commentId;
+
+            return {...state, 'commentEditor':{...state.commentEditor,activeCommentAction:actionId}};
 
         default:
             return state;

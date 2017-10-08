@@ -12,7 +12,8 @@ function commentReducer(state = {}, action) {
             //TODO: Add load timestamp for checking for stale data.
 
             return action.comments.reduce((collection, item) => {
-                collection[item.id] = item;
+                const comment = {...item, isEditing:false};
+                collection[comment.id] = comment;
                 return collection;
             }, {});
 
@@ -21,6 +22,8 @@ function commentReducer(state = {}, action) {
 
             return {...state,[comment.id]:{...comment}};
 
+        case 'DELETE_COMMENT':
+            return {...state,[action.commentId]:{...state[action.commentId],deleted:true}}
         default:
             return state;
     }

@@ -27,3 +27,11 @@ export function saveComment(comment) {
         comment,
     }
 }
+
+
+export function deleteComment(commentId) {
+    return {
+        type: 'DELETE_COMMENT',
+        commentId,
+    }
+}

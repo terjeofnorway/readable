@@ -21,6 +21,20 @@ export function injectComments(comments) {
     }
 }
 
+export function startEditComment(commentId){
+    return {
+        type:'START_EDIT_COMMENT',
+        commentId,
+    }
+}
+
+export function stopEditComment(commentId){
+    return {
+        type:'START_EDIT_COMMENT',
+        commentId,
+    }
+}
+
 export function saveComment(comment) {
     return {
         type: 'SAVE_COMMENT',
@@ -35,3 +49,4 @@ export function deleteComment(commentId) {
         commentId,
     }
 }
+

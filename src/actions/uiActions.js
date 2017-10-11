@@ -64,24 +64,10 @@ export function toggleEditPost(postId) {
     }
 }
 
-export function toggleEditComment(commentId){
-    return {
-        type:'TOGGLE_EDIT_COMMENT',
-        commentId,
-    }
-}
-
 export function updatePostEditorContent(content, field) {
     return {
         type: 'UPDATE_POST_EDITOR_CONTENT',
         content,
         field,
-    }
-}
-
-export function toggleCommentActions(commentId) {
-    return {
-        type: 'TOGGLE_COMMENT_ACTIONS',
-        commentId,
     }
 }

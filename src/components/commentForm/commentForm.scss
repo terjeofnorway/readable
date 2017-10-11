@@ -1,0 +1,15 @@
+@import '../../constants/forms';
+
+.CommentForm {
+  display:flex;
+  flex-direction:column;
+  padding:1em;
+
+  input, textarea {
+    @include formField;
+  }
+
+  input.Comment__Submit {
+    @include submitButton;
+  }
+}

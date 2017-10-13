@@ -12,4 +12,20 @@
   input.Comment__Submit {
     @include submitButton;
   }
+
+  input.Comment__Submit--disabled {
+    background-color: $dark-gray;
+    color:$light-gray;
+  }
+
+  .Comment__Date {
+    color: $nav-color-dark;
+    font-weight: 300;
+    font-size: $font-base-size * 1.2;
+    margin:0;
+  }
+  .Comment__Body {
+    height:150px;
+  }
+
 }

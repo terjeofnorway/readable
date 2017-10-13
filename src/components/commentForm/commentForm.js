@@ -1,8 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {saveComment} from '../../actions/commentActions';
-
+import DateTimeHelper from '../../helpers/datetime.js';
 import './commentForm.scss';
+import classname from 'classname';
+
+const uuid = require('uuid/v4');
 
 
 class CommentForm extends Component{
@@ -20,7 +23,9 @@ class CommentForm extends Component{
     }
 
     saveCommentToState = (comment) =>{
-     this.setState({comment})
+        comment = comment ? comment : {author:'',timestamp:Date.now(),body:'',parentId:this.props.parentId};
+
+        this.setState({comment})
     }
 
     onFieldChange = (target,value) => {
@@ -32,22 +37,29 @@ class CommentForm extends Component{
     saveForm = (event) => {
         event.preventDefault();
         const comment = {...this.state.comment};
+        if(comment.author === '' && comment.body === '') return;
         comment.isEditing = false;
         this.props.saveComment(comment);
+        this.resetComment();
+    }
+
+    resetComment = () => {
+        this.setState({comment:{author:'', body:'', id:'', timestamp:''}});
     }
 
     render(){
 
-        const {id, author, timestamp, body} = this.state.comment;
-
+        const {author, timestamp, body} = this.state.comment;
+        const submitEnabled = false;
+        const submitButtonClass = classname({Comment__Submit:true,'Comment__Submit--disabled':(author ==='' || body === '')})
 
 
         return (
             <form className="CommentForm" onSubmit={this.saveForm}>
-                <input className='Comment__Date' name="timestamp" type="text" value={timestamp} onChange={(event) => this.onFieldChange('timestamp',event.target.value)} />
+                <h2 className='Comment__Date'>{DateTimeHelper.timestampToHumanDate(timestamp)}</h2>
                 <input className='Comment__Author' name="author" type="text" value={author} onChange={(event) => this.onFieldChange('author',event.target.value)}  />
                 <textarea className='Comment__Body' name='body' value={body} onChange={(event) => this.onFieldChange('body',event.target.value)}  />
-                <input type="submit" value="Save" className="Comment__Submit"/>
+                <input type="submit" value="Save" className={submitButtonClass} />
             </form>
         )
     }

@@ -36,4 +36,16 @@
   .Input__Wrapper--blurandempty {
     @include inputWrapper(true);
   }
+
+  .Input__Wrapper__Author {
+    &:before {
+      content:'Author';
+    }
+  }
+
+  .Input__Wrapper__Body {
+    &:before {
+      content:'Body';
+    }
+  }
 }

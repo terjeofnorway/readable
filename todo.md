@@ -1,5 +1,4 @@
 #Todo
-- Connect stateless component to redux
 - Global variable
 - Refactor scss color variables
 - Refactor variables to global

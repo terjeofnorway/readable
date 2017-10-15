@@ -37,7 +37,7 @@ class CommentForm extends Component{
     saveForm = (event) => {
         event.preventDefault();
         const comment = {...this.state.comment};
-        if(comment.author === '' && comment.body === '') return;
+        if(comment.author === '' || comment.body === '') return;
         comment.isEditing = false;
         this.props.saveComment(comment);
         this.resetComment();
@@ -67,6 +67,7 @@ class CommentForm extends Component{
                 <h2 className='Comment__Date'>{DateTimeHelper.timestampToHumanDate(timestamp)}</h2>
                 <div className={classname({
                     Input__Wrapper:true,
+                    Input__Wrapper__Author:true,
                     'Input__Wrapper--blurandempty':(this.state.inputFocus !== 'author' && this.state.comment.author === '')
                 })}>
                     <input className='Comment__Author'
@@ -80,6 +81,7 @@ class CommentForm extends Component{
                 </div>
                 <div className={classname({
                     Input__Wrapper:true,
+                    Input__Wrapper__Body:true,
                     'Input__Wrapper--blurandempty':(this.state.inputFocus !== 'body' && this.state.comment.body === '')
                 })}>
                     <textarea

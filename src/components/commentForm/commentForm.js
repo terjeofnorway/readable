@@ -43,6 +43,14 @@ class CommentForm extends Component{
         this.resetComment();
     }
 
+    inputOnFocus = (event) => {
+        this.setState({inputFocus:event.target.name});
+    }
+
+    inputOnBlur = (event) => {
+        this.setState({inputFocus:''});
+    }
+
     resetComment = () => {
         this.setState({comment:{author:'', body:'', id:'', timestamp:''}});
     }
@@ -57,8 +65,32 @@ class CommentForm extends Component{
         return (
             <form className="CommentForm" onSubmit={this.saveForm}>
                 <h2 className='Comment__Date'>{DateTimeHelper.timestampToHumanDate(timestamp)}</h2>
-                <input className='Comment__Author' name="author" type="text" value={author} onChange={(event) => this.onFieldChange('author',event.target.value)}  />
-                <textarea className='Comment__Body' name='body' value={body} onChange={(event) => this.onFieldChange('body',event.target.value)}  />
+                <div className={classname({
+                    Input__Wrapper:true,
+                    'Input__Wrapper--blurandempty':(this.state.inputFocus !== 'author' && this.state.comment.author === '')
+                })}>
+                    <input className='Comment__Author'
+                           name="author"
+                           type="text"
+                           value={author}
+                           onChange={(event) => this.onFieldChange('author',event.target.value)}
+                           onFocus={this.inputOnFocus}
+                           onBlur={this.inputOnBlur}
+                    />
+                </div>
+                <div className={classname({
+                    Input__Wrapper:true,
+                    'Input__Wrapper--blurandempty':(this.state.inputFocus !== 'body' && this.state.comment.body === '')
+                })}>
+                    <textarea
+                        className='Comment__Body'
+                        name='body'
+                        value={body}
+                        onChange={(event) => this.onFieldChange('body',event.target.value)}
+                        onFocus={this.inputOnFocus}
+                        onBlur={this.inputOnBlur}
+                    />
+                </div>
                 <input type="submit" value="Save" className={submitButtonClass} />
             </form>
         )

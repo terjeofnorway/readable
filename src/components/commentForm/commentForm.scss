@@ -24,8 +24,16 @@
     font-size: $font-base-size * 1.2;
     margin:0;
   }
+
   .Comment__Body {
     height:150px;
   }
 
+  .Input__Wrapper {
+    @include inputWrapper(false);
+  }
+
+  .Input__Wrapper--blurandempty {
+    @include inputWrapper(true);
+  }
 }

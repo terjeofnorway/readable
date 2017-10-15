@@ -71,3 +71,10 @@ export function updatePostEditorContent(content, field) {
         field,
     }
 }
+
+export function toggleCommentDatePicker(focused) {
+    return {
+        type: 'TOGGLE_COMMENT_DATE_PICKER',
+        focused,
+    }
+}

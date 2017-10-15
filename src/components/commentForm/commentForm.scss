@@ -1,12 +1,14 @@
 @import '../../constants/forms';
 
+@import '../../../node_modules/react-dates/lib/css/_datepicker.css';
+
 .CommentForm {
   display:flex;
   flex-direction:column;
   padding:1em;
 
-  input, textarea {
-    @include formField;
+  input:not(.DateInput_input), textarea {
+      @include formField;
   }
 
   input.Comment__Submit {
@@ -23,6 +25,40 @@
     font-weight: 300;
     font-size: $font-base-size * 1.2;
     margin:0;
+  }
+
+  .SingleDatePicker {
+    z-index:2000;
+    .SingleDatePickerInput {
+      border:0;
+    }
+    .DateInput {
+      padding:0;
+      width:100%;
+    }
+    .DateInput_input {
+      z-index:2000;
+    }
+    .DateInput_displayText__focused {
+      color:$nav-color-dark;
+    }
+    .DateInput_displayText {
+      position: relative;
+      background-color: #FFFFFF;
+      font-family: Muli, Arial, sans-serif;
+      font-size: 18.2px;
+      font-weight: 400;
+      display: block;
+      border: 1px solid #cacaca;
+      box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+      width: 100%;
+      border-radius: 3px;
+      padding: 0.8em 5px 0.8em 5px;
+      outline: 0;
+      transition: all 0.2s;
+      height: auto;
+      margin: 0 0 1rem;
+    }
   }
 
   .Comment__Body {

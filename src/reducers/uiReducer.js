@@ -22,7 +22,7 @@ const defaultState = {
         editorContent:{},
     },
     commentEditor: {
-        commentBeingEdited:'',
+        datePickerFocused:false,
         editorContent:{},
         activeCommentAction:'',
     }
@@ -65,6 +65,9 @@ function uiReducer(state = defaultState, action) {
             const actionId = state.commentEditor.activeCommentAction === action.commentId ? '' : action.commentId;
 
             return {...state, 'commentEditor':{...state.commentEditor,activeCommentAction:actionId}};
+
+        case 'TOGGLE_COMMENT_DATE_PICKER':
+            return {...state, 'commentEditor':{...state.commentEditor, isDatePickerShowing:action.focused}};
 
         default:
             return state;

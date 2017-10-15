@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import moment from 'moment';
 
 import {saveComment, deleteComment} from "../../actions/commentActions";
 import {startEditComment} from '../../actions/commentActions';
@@ -17,7 +18,7 @@ class CommentListItem extends Component {
             <CommentForm comment={this.props.comment} />
             :
             <div className='CommentListItem'>
-                <h2 className='Comment__Date'>{DateTimeHelper.timestampToHumanDate(timestamp)}</h2>
+                <h2 className='Comment__Date'>{moment(timestamp).format('ddd, MMMM Do YYYY')}</h2>
                 <p className='Comment__Author'>{author}</p>
                 <p className='Comment__Body'>{body}</p>
                 <EditDelete id={id} toggleEdit={id => this.props.startEditComment(id)} delete={(id) => this.props.delete(id)}/>

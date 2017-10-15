@@ -5,12 +5,17 @@
   background-color: $white;
   font-family: $font-face-sansserif;
   font-size:$font-base-size * 1.3;
+  font-weight:400;
   display: block;
+  border: 1px solid #cacaca;
+  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+  width:100%;
   border-radius: 3px;
   padding: 1em 5px 0.5em 5px;
   outline: 0;
   transition: all 0.2s;
   height:auto;
+  margin: 0 0 1rem;
 }
 
 @mixin inputWrapper($blurAndEmpty){

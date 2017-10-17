@@ -9,6 +9,7 @@ function postReducer(state = {}, action) {
         case 'INFLATE_POSTS':
             //Reduce the posts into an object where post.id is used as object key
             return action.posts.reduce((collection, item) => {
+                item.isEditing = false;
                 collection[item.id] = item;
                 return collection;
             }, {});
@@ -32,13 +33,11 @@ function postReducer(state = {}, action) {
 
             return newState;
 
-        case 'UPDATE_POST':
-            return (() => {
-                const {postId} = action.partialFields;
-                console.log('postid is '+ postId);
-                return {...state,[postId]:{...state[postId], ...action.partialFields}};
-            })();
+        case 'START_EDIT_POST':
+            return {...state,[action.id]:{...state[action.id], isEditing:true}};
 
+        case 'SAVE_POST':
+            return {...state, [action.post.id]:{...action.post}}
 
         default:
             return state

@@ -35,7 +35,6 @@
     "promise": "^8.0.1",
     "react": "^16.0.0",
     "react-addons-shallow-compare": "^15.6.2",
-    "react-contenteditable": "^2.0.5",
     "react-dates": "^13.0.5",
     "react-dev-utils": "^4.1.0",
     "react-dom": "^16.0.0",

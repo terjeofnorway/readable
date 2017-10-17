@@ -25,7 +25,7 @@ function commentReducer(state = {}, action) {
         case 'START_EDIT_COMMENT':
             return {...state,[action.commentId]:{...state[action.commentId], isEditing:true}};
 
-        case 'START_EDIT_COMMENT':
+        case 'STOP_EDIT_COMMENT':
             return {...state,[action.commentId]:{...state[action.commentId], isEditing:false}};
 
         case 'DELETE_COMMENT':

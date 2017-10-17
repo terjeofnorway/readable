@@ -51,12 +51,19 @@ export function deletePost(postId, confirmed){
                 rejectCallback,
             ))
     }
-
 }
 
-export function updatePost(partialFields){
+export function startEditPost(id){
     return {
-        type:'UPDATE_POST',
-        partialFields,
+        type: 'START_EDIT_POST',
+        id,
+    }
+}
+
+
+export function savePost(post){
+    return {
+        type:'SAVE_POST',
+        post,
     }
 }

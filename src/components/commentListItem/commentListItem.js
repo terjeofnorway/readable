@@ -5,7 +5,6 @@ import moment from 'moment';
 import {saveComment, deleteComment} from "../../actions/commentActions";
 import {startEditComment} from '../../actions/commentActions';
 import EditDelete from '../../components/editDelete/editDelete';
-import DateTimeHelper from '../../helpers/datetime.js';
 import CommentForm from '../commentForm/commentForm';
 import './commentListItem.scss';
 

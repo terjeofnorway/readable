@@ -7,7 +7,8 @@ import {savePost} from '../../actions/postActions';
 import {toggleCommentDatePicker} from '../../actions/uiActions';
 import './postForm.scss';
 import classname from 'classname';
-
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 class PostForm extends Component{
 
@@ -25,12 +26,11 @@ class PostForm extends Component{
         this.setState({post});
     }
 
-    onFieldChange = (target, input) => {
+    updateLocalTempPost = (target, input) => {
         const updateValue = (target === 'timestamp') ? (input.unix() * 1000) : input;
 
-        console.log(updateValue);
-
         const post = {...this.state.post,[target]:updateValue};
+        console.log(post);
         this.setState({post});
     }
 
@@ -54,25 +54,38 @@ class PostForm extends Component{
         this.setState({isDatePickerShowing:focused});
     }
 
+    selectChange = (event) => {
+        this.updateLocalTempPost('category',event.value);
+    }
+
     render(){
         if(!this.props.post) {return (<div></div>)}
 
-        const submitEnabled = false;
+
         const submitButtonClass = classname({Comment__Submit:true});
 
         return (
             <form className="PostForm" onSubmit={this.saveForm}>
+                <Select
+                    name="form-field-name"
+                    options={this.props.selectionCategories}
+                    allowCreate={false}
+                    searchable={false}
+                    value={this.state.post.category}
+                    clearable={false}
+                    onChange={this.selectChange}
+                />
                 <input
                     name="title"
                     className="Post__Title"
                     value={this.state.post.title}
-                    onChange={event => this.onFieldChange('title',event.target.value)}
+                    onChange={event => this.updateLocalTempPost('title',event.target.value)}
                     />
                 <input
                     name="author"
                     className="Post__Author"
                     value={this.state.post.author}
-                    onChange={event => this.onFieldChange('author',event.target.value)}
+                    onChange={event => this.updateLocalTempPost('author',event.target.value)}
                 />
                 <SingleDatePicker
                     onFocusChange={this.toggleDatepickerFocus}
@@ -82,13 +95,13 @@ class PostForm extends Component{
                     isOutsideRange={()=>false}
                     firstDayOfWeek={1}
                     displayFormat="ddd, MMMM Do YYYY"
-                    onDateChange={(momentObject) => this.onFieldChange('timestamp', momentObject)} />
+                    onDateChange={(momentObject) => this.updateLocalTempPost('timestamp', momentObject)} />
 
                 <textarea
                     name="body"
                     className="Post__Author"
                     value={this.state.post.body}
-                    onChange={event => this.onFieldChange('body',event.target.value)}
+                    onChange={event => this.updateLocalTempPost('body',event.target.value)}
                 />
 
                 <input type="submit" value="Save" className={submitButtonClass} />
@@ -97,8 +110,9 @@ class PostForm extends Component{
     }
 }
 
-const mapStateToProps = ({ui}) => {
+const mapStateToProps = ({categories}) => {
     return {
+        selectionCategories:categories.map(item => ({value: item.name, label: item.name})),
     }
 }
 

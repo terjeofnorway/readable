@@ -5,13 +5,8 @@ import {SingleDatePicker} from 'react-dates';
 import moment from 'moment';
 import {saveComment} from '../../actions/commentActions';
 import {toggleCommentDatePicker} from '../../actions/uiActions';
-import DateTimeHelper from '../../helpers/datetime.js';
 import './commentForm.scss';
 import classname from 'classname';
-
-const uuid = require('uuid/v4');
-
-
 
 class CommentForm extends Component{
 
@@ -64,7 +59,6 @@ class CommentForm extends Component{
     render(){
 
         const {author, timestamp, body} = this.state.comment;
-        const submitEnabled = false;
         const submitButtonClass = classname({Comment__Submit:true,'Comment__Submit--disabled':(author ==='' || body === '')})
 
         return (

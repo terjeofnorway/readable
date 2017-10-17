@@ -10,7 +10,6 @@ import DateTimeHelper from '../../helpers/datetime';
 
 import './postDetails.scss';
 import {addVoteScore} from '../../actions/postActions';
-import {updatePostEditorContent} from '../../actions/uiActions';
 import {loadComments} from "../../actions/commentActions";
 import PostForm from '../../components/postForm/postForm';
 

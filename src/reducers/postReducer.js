@@ -1,3 +1,5 @@
+const uuid = require('uuid/v4');
+
 /** Reducer handling the posts for the application
  *
  * @param state
@@ -38,6 +40,9 @@ function postReducer(state = {}, action) {
 
         case 'SAVE_POST':
             return {...state, [action.post.id]:{...action.post}}
+
+        case 'ADD_NEW_POST':
+            return {...state,[action.post.id]:action.post}
 
         default:
             return state

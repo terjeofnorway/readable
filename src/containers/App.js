@@ -10,6 +10,8 @@ import Titlebar from '../components/titleBar/titleBar';
 import Drawer from '../containers/drawer/drawer';
 import PostList from './postList/postList';
 import PostDetails from './postDetails/postDetails';
+import AddPost from '../components/addPost/addPostButton';
+import NewPost from './newPost/newPost';
 
 class App extends Component {
 
@@ -24,10 +26,19 @@ class App extends Component {
                     )
                 }} />
 
+                <Route path='/posts/new' exact render={ (props) => {
+                    return (
+                        <NewPost />
+                    )
+                }} />
+
                 <Route path='/categories/:categorySlug' exact render={ (props) => {
 
                     return (
-                        <PostList categorySlug={props.match.params.categorySlug} />
+                        <div>
+                            <PostList categorySlug={props.match.params.categorySlug} />
+                            <AddPost />
+                        </div>
                     )
                 }} />
 

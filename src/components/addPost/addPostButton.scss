@@ -1,0 +1,16 @@
+@import '../../constants/forms';
+
+.Add__Post{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background-color: #D97D00;
+
+  a {
+    @include submitButton;
+    display:flex;
+    flex-grow:1;
+    justify-content:center;
+  }
+}

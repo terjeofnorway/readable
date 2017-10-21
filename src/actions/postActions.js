@@ -67,3 +67,10 @@ export function savePost(post){
         post,
     }
 }
+
+export function addNewPost(post){
+    return {
+        type:'ADD_NEW_POST',
+        post
+    }
+}

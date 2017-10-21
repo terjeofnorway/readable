@@ -5,10 +5,10 @@ import {SingleDatePicker} from 'react-dates';
 import moment from 'moment';
 import {savePost} from '../../actions/postActions';
 import {toggleCommentDatePicker} from '../../actions/uiActions';
-import './postForm.scss';
 import classname from 'classname';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import './postForm.scss';
 
 class PostForm extends Component{
 
@@ -37,6 +37,7 @@ class PostForm extends Component{
     saveForm = (event) => {
         event.preventDefault();
         const post = {...this.state.post};
+        // Todo: write separate validation function.
         if(post.author === '' || post.body === '') return;
         post.isEditing = false;
         this.props.savePost(post);
@@ -61,6 +62,8 @@ class PostForm extends Component{
     render(){
         if(!this.props.post) {return (<div></div>)}
 
+        const {category, title, timestamp, author, body} = this.props.post;
+
 
         const submitButtonClass = classname({Comment__Submit:true});
 
@@ -71,26 +74,26 @@ class PostForm extends Component{
                     options={this.props.selectionCategories}
                     allowCreate={false}
                     searchable={false}
-                    value={this.state.post.category}
+                    value={category}
                     clearable={false}
                     onChange={this.selectChange}
                 />
                 <input
                     name="title"
                     className="Post__Title"
-                    value={this.state.post.title}
+                    value={title}
                     onChange={event => this.updateLocalTempPost('title',event.target.value)}
                     />
                 <input
                     name="author"
                     className="Post__Author"
-                    value={this.state.post.author}
+                    value={author}
                     onChange={event => this.updateLocalTempPost('author',event.target.value)}
                 />
                 <SingleDatePicker
                     onFocusChange={this.toggleDatepickerFocus}
                     focused={this.state.isDatePickerShowing}
-                    date={moment(this.state.post.timestamp)}
+                    date={moment(timestamp)}
                     numberOfMonths={1}
                     isOutsideRange={()=>false}
                     firstDayOfWeek={1}
@@ -99,8 +102,8 @@ class PostForm extends Component{
 
                 <textarea
                     name="body"
-                    className="Post__Author"
-                    value={this.state.post.body}
+                    className="Post__Body"
+                    value={body}
                     onChange={event => this.updateLocalTempPost('body',event.target.value)}
                 />
 

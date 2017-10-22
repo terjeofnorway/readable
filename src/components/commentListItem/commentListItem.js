@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment';
 
-import {saveComment, deleteComment} from "../../actions/commentActions";
-import {startEditComment, addCommentVoteScore} from '../../actions/commentActions';
-import EditDelete from '../../components/editDelete/editDelete';
-import CommentForm from '../commentForm/commentForm';
-import Vote from '../vote/vote';
+import {saveComment, deleteComment} from "actions/commentActions";
+import {startEditComment, addCommentVoteScore} from 'actions/commentActions';
+import EditDelete from 'components/editDelete/editDelete';
+import CommentForm from 'components/commentForm/commentForm';
+import Vote from 'components/vote/vote';
 import './commentListItem.scss';
 
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import PostListItem from '../../components/postListItem/postListItem';
-import Filter from '../../components/filter/filter';
+import PostListItem from 'components/postListItem/postListItem';
+import Filter from 'components/filter/filter';
 
 import './postList.scss';
 

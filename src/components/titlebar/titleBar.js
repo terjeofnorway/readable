@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Row, Column} from 'react-foundation';
 import {withRouter} from 'react-router-dom';
 
-import {showDrawer} from "../../actions/uiActions";
+import {showDrawer} from "actions/uiActions";
 
 import './titleBar.scss';
 

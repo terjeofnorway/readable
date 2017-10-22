@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import PostForm from '../../components/postForm/postForm';
-import {savePost} from '../../actions/postActions';
+import PostForm from 'components/postForm/postForm';
+import {savePost} from 'actions/postActions';
 
 import './createPost.scss';
 

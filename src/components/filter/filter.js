@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {Row, Column} from 'react-foundation';
 
-import {toggleSortOrder} from "../../actions/uiActions";
+import {toggleSortOrder} from "actions/uiActions";
 
 import './filter.scss';
 

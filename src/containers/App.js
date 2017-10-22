@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Route, Switch} from 'react-router-dom';
-import Confirm from '../components/confirm/confirm';
+import Confirm from 'components/confirm/confirm';
 
 import {withRouter} from 'react-router-dom';
 
 import './App.scss';
-import Titlebar from '../components/titleBar/titleBar';
-import Drawer from '../containers/drawer/drawer';
-import PostList from './postList/postList';
-import PostDetails from './postDetails/postDetails';
-import AddPost from '../components/addPost/addPostButton';
-import CreatePost from './createPost/createPost';
+import Titlebar from 'components/titleBar/titleBar';
+import Drawer from 'containers/drawer/drawer';
+import PostList from 'containers/postList/postList';
+import PostDetails from 'containers/postDetails/postDetails';
+import AddPost from 'components/addPost/addPostButton';
+import CreatePost from 'containers/createPost/createPost';
 
 class App extends Component {
 

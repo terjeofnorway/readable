@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import 'react-dates/initialize';
 import {SingleDatePicker} from 'react-dates';
 import moment from 'moment';
-import {saveComment} from '../../actions/commentActions';
-import {toggleCommentDatePicker} from '../../actions/uiActions';
+import {saveComment} from 'actions/commentActions';
+import {toggleCommentDatePicker} from 'actions/uiActions';
 import './commentForm.scss';
 import classname from 'classname';
 

@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import CommentListItem from '../commentListItem/commentListItem';
-import CommentForm from '../commentForm/commentForm';
-import Filter from '../filter/filter';
+import CommentListItem from 'components/commentListItem/commentListItem';
+import CommentForm from 'components/commentForm/commentForm';
+import Filter from 'components/filter/filter';
 
 import './commentList.scss';
 

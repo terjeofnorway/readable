@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import DrawerCategoryListItem from '../drawerCategoryListItem/drawerCategoryListItem';
+import DrawerCategoryListItem from 'components/drawerCategoryListItem/drawerCategoryListItem';
 import './drawerCategories.scss';
 
 

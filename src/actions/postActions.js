@@ -1,6 +1,6 @@
 
-import {showConfirm} from "./uiActions";
-import API from '../helpers/api';
+import {showConfirm} from "actions/uiActions";
+import API from 'helpers/api';
 
 
 /** Adds a new vote to the total post score. Votes can be 1 or -1

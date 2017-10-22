@@ -3,19 +3,19 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Column, Row} from 'react-foundation';
 
-import Vote from '../../components/vote/vote';
-import EditDelete from '../../components/editDelete/editDelete';
-import Comments from '../../components/comments/comments';
-import DateTimeHelper from '../../helpers/datetime';
+import Vote from 'components/vote/vote';
+import EditDelete from 'components/editDelete/editDelete';
+import Comments from 'components/comments/comments';
+import DateTimeHelper from 'helpers/datetime';
 
 import './postDetails.scss';
-import {addPostVoteScore} from '../../actions/postActions';
-import {loadComments} from "../../actions/commentActions";
-import PostForm from '../../components/postForm/postForm';
+import {addPostVoteScore} from 'actions/postActions';
+import {loadComments} from "actions/commentActions";
+import PostForm from 'components/postForm/postForm';
 
-import {savePost} from '../../actions/postActions';
+import {savePost} from 'actions/postActions';
 
-import {deletePost, startEditPost} from '../../actions/postActions';
+import {deletePost, startEditPost} from 'actions/postActions';
 
 const uuid = require('uuid/v4');
 

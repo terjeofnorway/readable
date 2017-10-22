@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Column, Row} from 'react-foundation';
 import './confirm.scss';
-import {confirmOK, confirmCancel} from "../../actions/uiActions";
+import {confirmOK, confirmCancel} from "actions/uiActions";
 
 
 const Confirm = function (props) {

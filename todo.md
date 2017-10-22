@@ -8,6 +8,8 @@
 - Add Airbnb linting.
 - PLaceholder text for postForm.
 - Check large screens.
+- Add notes to reviewer.
+- Re-clone project to check for yarn install issues.
 
 #Issues
 ✅ Add post button covers lowest post item.

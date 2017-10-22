@@ -6,10 +6,10 @@ import {Link} from 'react-router-dom';
 import {Row, Column} from 'react-foundation';
 import './postListItem.scss';
 
-import DateTimeHelper from '../../helpers/datetime';
-import Vote from '../vote/vote';
+import DateTimeHelper from 'helpers/datetime';
+import Vote from 'components/vote/vote';
 
-import {addPostVoteScore} from '../../actions/postActions';
+import {addPostVoteScore} from 'actions/postActions';
 
 
 const PostListItem = function (props) {

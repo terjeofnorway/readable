@@ -1,4 +1,4 @@
-import API from '../helpers/api';
+import API from 'helpers/api';
 const uuid = require('uuid/v4');
 
 /** Adds a new vote to the total post score. Votes can be 1 or -1

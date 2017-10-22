@@ -15,10 +15,15 @@ class Titlebar extends Component {
         const {showDrawer} = this.props;
         const title = this.props.title ? this.props.title : 'Readable app';
 
+        const backButton = this.props.location.pathname !== '/' ?
+            <button className='Titlebar__Backbutton' onClick={() => this.props.history.push('/')}></button>
+            :
+            '';
+
         return (
             <Row className="TitleBar">
                 <Column small={2} large={3}>
-                    <button className='Titlebar__Backbutton' onClick={this.props.history.goBack}></button>
+                    {backButton}
                 </Column>
                 <Column small={8} large={6}>
                     <div className='Titlebar__Title'>{title}</div>

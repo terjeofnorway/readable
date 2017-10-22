@@ -1,3 +1,14 @@
+@import '../../constants/variables';
+
 .PostList {
   margin-bottom:5em;
+
+  .PostList__Header {
+    text-align:center;
+    color:$nav-color-dark;
+  }
+
+  .PostList__NoPosts {
+    text-align: center;
+  }
 }

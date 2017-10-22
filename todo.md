@@ -1,9 +1,10 @@
 #Todo
+✅ Add voting to comments.
 - Global variable
+- Connect logic to API for backend storing.
 - Refactor scss color variables
 - Refactor variables to global
 - Refactor stateful to stateless components where appropriate.
-- Add voting to comments.
 - Add Airbnb linting.
 - PLaceholder text for postForm.
 - Check large screens.

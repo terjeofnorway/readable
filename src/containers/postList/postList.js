@@ -13,7 +13,7 @@ class PostList extends Component {
 
 
         return (
-            <div>
+            <div class='PostList'>
                 <Filter sortTarget='post'/>
                 <div className="PostList__Container">
                     {

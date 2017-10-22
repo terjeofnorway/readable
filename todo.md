@@ -13,6 +13,6 @@
 ✅ Add post button covers lowest post item.
 ✅ /posts/ generate blank page.
 ✅ Category filtering not working.
+✅ Date picker zindex-issue.
 - Direct linking as first history will break the back button.
-- Date picker zindex-issue.
 - Back button needs fixing so that it goes back to front, not previous history.

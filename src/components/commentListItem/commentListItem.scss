@@ -26,4 +26,10 @@
   .Comment__Body {
 
   }
+
+  .Vote {
+    flex-direction: row;
+    justify-content: flex-end;
+    padding:1em 0;
+  }
 }

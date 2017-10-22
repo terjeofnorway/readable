@@ -54,3 +54,11 @@ export function deleteComment(commentId) {
     }
 }
 
+
+export function addCommentVoteScore(voteScore, commentId){
+    return {
+        type: 'ADD_VOTE_SCORE_TO_COMMENT',
+        voteScore,
+        commentId,
+    }
+}

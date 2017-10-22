@@ -9,7 +9,7 @@ import './postListItem.scss';
 import DateTimeHelper from '../../helpers/datetime';
 import Vote from '../vote/vote';
 
-import {addVoteScore} from '../../actions/postActions';
+import {addPostVoteScore} from '../../actions/postActions';
 
 
 const PostListItem = function (props) {
@@ -26,7 +26,7 @@ const PostListItem = function (props) {
                 </Link>
             </Column>
             <Column small={4} large={4}>
-                <Vote voteScore={voteScore} id={id} upVote={props.upVote} downVote={props.downVote}></Vote>
+                <Vote voteScore={voteScore} id={id} addVote={props.addVote} ></Vote>
             </Column>
         </Row>
     );
@@ -39,8 +39,7 @@ function mapStateToProps({}) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        upVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
-        downVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
+        addVote: (voteScore, postId) => dispatch(addPostVoteScore(voteScore, postId)),
     }
 }
 

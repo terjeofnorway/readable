@@ -9,9 +9,11 @@ import Comments from '../../components/comments/comments';
 import DateTimeHelper from '../../helpers/datetime';
 
 import './postDetails.scss';
-import {addVoteScore} from '../../actions/postActions';
+import {addPostVoteScore} from '../../actions/postActions';
 import {loadComments} from "../../actions/commentActions";
 import PostForm from '../../components/postForm/postForm';
+
+import {savePost} from '../../actions/postActions';
 
 import {deletePost, startEditPost} from '../../actions/postActions';
 
@@ -19,7 +21,7 @@ const uuid = require('uuid/v4');
 
 const PostBody = (props) => {
     const {id, title, author, timestamp, voteScore, body, category} = props.post;
-    const {downVote, upVote} = props;
+    const {addVote} = props;
 
     return (
         <div className='PostDetails'>
@@ -47,8 +49,8 @@ const PostBody = (props) => {
                     </Column>
                 </Row>
                 <Row>
-                    <Column small={12} large={12}><Vote id={id} voteScore={voteScore} upVote={upVote}
-                                                        downVote={downVote}></Vote>
+                    <Column small={12} large={12}>
+                        <Vote id={id} voteScore={voteScore} addVote={addVote} />
                     </Column>
                 </Row>
             </div>
@@ -84,9 +86,12 @@ class PostDetails extends Component {
         }
     }
 
-    handleContentChange = (event, field) => {
-        const newValue = event.target.value;
-        this.props.updatePostEditorContent(newValue,field);
+    savePost = post => {
+        this.props.savePost(post);
+        if(this.props.match.params.id !== post.id){
+            console.log(`/posts/${post.id}`);
+            this.props.history.push(`/posts/${post.id}`);
+        }
     }
 
     componentDidMount(){
@@ -96,7 +101,7 @@ class PostDetails extends Component {
     render() {
         const post = this.props.post ? this.props.post :  {...this.postTemplate, 'isEditing':true};
 
-        return(!post.isEditing ? (PostBody(this.props)) : (<PostForm post={post} />));
+        return(!post.isEditing ? (PostBody(this.props)) : (<PostForm post={post} savePost={this.savePost} />));
     }
 }
 
@@ -111,11 +116,11 @@ function mapStateToProps({posts, categories, ui}, {id}) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        upVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
-        downVote: (voteScore, postId) => dispatch(addVoteScore(voteScore, postId)),
+        addVote: (voteScore, postId) => dispatch(addPostVoteScore(voteScore, postId)),
         loadComments:(postId) => dispatch(loadComments(postId)),
         deletePost:(postId) => dispatch(deletePost(postId)),
         startEditPost:(postId) => dispatch(startEditPost(postId)),
+        savePost:(post) => dispatch(savePost(post)),
     }
 }
 

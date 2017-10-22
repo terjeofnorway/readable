@@ -9,7 +9,7 @@ import API from '../helpers/api';
  * @param postId String The unique ID of the post.
  * @returns {{type: string, voteScore: *, postId: *}}
  */
-export function addVoteScore(voteScore, postId){
+export function addPostVoteScore(voteScore, postId){
     return {
         type: 'ADD_VOTE_SCORE_TO_POST',
         voteScore,

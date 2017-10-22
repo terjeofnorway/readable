@@ -20,16 +20,20 @@ function commentReducer(state = {}, action) {
         case 'SAVE_COMMENT':
             const {comment} = action;
 
-            return {...state,[comment.id]:{...comment}};
+            return {...state, [comment.id]:{...comment}};
 
         case 'START_EDIT_COMMENT':
-            return {...state,[action.commentId]:{...state[action.commentId], isEditing:true}};
+            return {...state, [action.commentId]:{...state[action.commentId], isEditing:true}};
 
         case 'STOP_EDIT_COMMENT':
-            return {...state,[action.commentId]:{...state[action.commentId], isEditing:false}};
+            return {...state, [action.commentId]:{...state[action.commentId], isEditing:false}};
 
         case 'DELETE_COMMENT':
-            return {...state,[action.commentId]:{...state[action.commentId], deleted:true}}
+            return {...state, [action.commentId]:{...state[action.commentId], deleted:true}};
+
+        case 'ADD_VOTE_SCORE_TO_COMMENT':
+            const newVoteScore = state[action.commentId].voteScore + action.voteScore;
+            return {...state, [action.commentId]:{...state[action.commentId], voteScore:newVoteScore}};
         default:
             return state;
     }

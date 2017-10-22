@@ -30,6 +30,15 @@ class App extends Component {
                     )
                 }} />
 
+                    <Route path='/posts' exact render={ (props) => {
+                        return (
+                            <div>
+                                <PostList />
+                                <AddPost />
+                            </div>
+                        )
+                    }} />
+
                 <Route path='/posts/new' exact render={ (props) => {
                     return (
                         <CreatePost />

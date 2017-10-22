@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import Confirm from '../components/confirm/confirm';
 
 import {withRouter} from 'react-router-dom';
@@ -11,7 +11,7 @@ import Drawer from '../containers/drawer/drawer';
 import PostList from './postList/postList';
 import PostDetails from './postDetails/postDetails';
 import AddPost from '../components/addPost/addPostButton';
-import NewPost from './newPost/newPost';
+import CreatePost from './createPost/createPost';
 
 class App extends Component {
 
@@ -20,15 +20,19 @@ class App extends Component {
             <div className="App">
                 <Titlebar />
                 <Drawer />
+                <Switch>
                 <Route path='/' exact render={ (props) => {
                     return (
-                        <PostList />
+                        <div>
+                            <PostList />
+                            <AddPost />
+                        </div>
                     )
                 }} />
 
                 <Route path='/posts/new' exact render={ (props) => {
                     return (
-                        <NewPost />
+                        <CreatePost />
                     )
                 }} />
 
@@ -43,10 +47,12 @@ class App extends Component {
                 }} />
 
                 <Route path='/posts/:id' exact render={ (props) => {
+                    const id = props.match.params.id;
                     return (
-                        <PostDetails id={props.match.params.id} />
+                        id === 'new' ? <div /> : <PostDetails id={id} />
                     )
                 }} />
+                </Switch>
                 <Confirm></Confirm>
             </div>
         );

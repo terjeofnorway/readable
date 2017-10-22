@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 import 'react-dates/initialize';
 import {SingleDatePicker} from 'react-dates';
 import moment from 'moment';
-import {savePost} from '../../actions/postActions';
 import {toggleCommentDatePicker} from '../../actions/uiActions';
 import classname from 'classname';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import './postForm.scss';
+
 
 class PostForm extends Component{
 
@@ -17,12 +17,12 @@ class PostForm extends Component{
         isDatePickerShowing:false,
     }
 
+
     componentWillMount(){
         this.savePostToLocalState(this.props.post);
     }
 
     savePostToLocalState = (post) =>{
-        post = post ? post : {author:'',timestamp:Date.now(),body:'',deleted:false,title:'',voteScore:0};
         this.setState({post});
     }
 
@@ -30,13 +30,13 @@ class PostForm extends Component{
         const updateValue = (target === 'timestamp') ? (input.unix() * 1000) : input;
 
         const post = {...this.state.post,[target]:updateValue};
-        console.log(post);
         this.setState({post});
     }
 
     saveForm = (event) => {
         event.preventDefault();
         const post = {...this.state.post};
+
         // Todo: write separate validation function.
         if(post.author === '' || post.body === '') return;
         post.isEditing = false;
@@ -60,9 +60,7 @@ class PostForm extends Component{
     }
 
     render(){
-        if(!this.props.post) {return (<div></div>)}
-
-        const {category, title, timestamp, author, body} = this.props.post;
+        const {category, title, timestamp, author, body} = this.state.post;
 
 
         const submitButtonClass = classname({Comment__Submit:true});
@@ -121,7 +119,6 @@ const mapStateToProps = ({categories}) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        savePost:(post) => dispatch(savePost(post)),
         toggleDatePicker:({focused}) => dispatch(toggleCommentDatePicker(focused)),
     }
 }

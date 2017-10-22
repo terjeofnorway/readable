@@ -1,4 +1,3 @@
-const uuid = require('uuid/v4');
 
 /** Reducer handling the posts for the application
  *

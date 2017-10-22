@@ -15,6 +15,8 @@ import PostForm from '../../components/postForm/postForm';
 
 import {deletePost, startEditPost} from '../../actions/postActions';
 
+const uuid = require('uuid/v4');
+
 const PostBody = (props) => {
     const {id, title, author, timestamp, voteScore, body, category} = props.post;
     const {downVote, upVote} = props;
@@ -74,8 +76,6 @@ class PostDetails extends Component {
 
     constructor(props) {
         super(props);
-
-        this.handleContentChange = this.handleContentChange.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -84,19 +84,19 @@ class PostDetails extends Component {
         }
     }
 
-    handleContentChange(event, field) {
+    handleContentChange = (event, field) => {
         const newValue = event.target.value;
         this.props.updatePostEditorContent(newValue,field);
     }
 
     componentDidMount(){
-        this.props.loadComments(this.props.id);
+        this.props.id && this.props.loadComments(this.props.id);
     }
 
     render() {
-        const {post} = this.props;
+        const post = this.props.post ? this.props.post :  {...this.postTemplate, 'isEditing':true};
 
-        return(post && !post.isEditing ? (PostBody(this.props)) : (<PostForm post={this.props.post} />));
+        return(!post.isEditing ? (PostBody(this.props)) : (<PostForm post={post} />));
     }
 }
 

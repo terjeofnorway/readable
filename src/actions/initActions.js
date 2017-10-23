@@ -4,33 +4,30 @@
  * -----------------------------------------
  */
 
+import API from 'helpers/api';
 
-import API from '../helpers/api';
-
-
-/** Load categories **/
-export function loadCategories(){
-    return (dispatch) => API.loadCategoriesFromServer().then(data => dispatch(inflateCategories((data))));
+/* Inflate categories into the app for the first time. */
+export function inflateCategories(data) {
+  return {
+    type: 'INFLATE_CATEGORIES',
+    categories: data.categories,
+  };
 }
 
-/** Load Posts **/
-export function loadPosts(){
-    return (dispatch) => API.loadPostsFromServer().then(data => dispatch(inflatePosts((data))));
+/* Inflate posts into the app for the first time */
+export function inflatePosts(data) {
+  return {
+    type: 'INFLATE_POSTS',
+    posts: data,
+  };
 }
 
-
-/** Inflate categories into the app for the first time. **/
-export function inflateCategories(data){
-    return {
-        type: 'INFLATE_CATEGORIES',
-        categories: data.categories,
-    }
+/* Load categories */
+export function loadCategories() {
+  return dispatch => API.loadCategoriesFromServer().then(data => dispatch(inflateCategories((data))));
 }
 
-/** Inflate posts into the app for the first time **/
-export function inflatePosts(data){
-    return {
-        type: 'INFLATE_POSTS',
-        posts: data,
-    }
+/* Load Posts */
+export function loadPosts() {
+  return dispatch => API.loadPostsFromServer().then(data => dispatch(inflatePosts((data))));
 }

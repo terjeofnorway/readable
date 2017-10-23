@@ -1,46 +1,40 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React from 'react';
+import { connect } from 'react-redux';
+import PT from 'prop-types';
 import DrawerCategories from 'components/drawerCategories/drawerCategories';
-import {closeDrawer} from 'actions/uiActions';
+import { closeDrawer } from 'actions/uiActions';
 
 import './drawer.scss';
 
+const Drawer = props => {
+  const { visible } = props.drawer;
+  const mainClassName = visible ? 'Drawer' : 'Drawer Drawer--Collapsed';
 
-class Drawer extends Component {
+  return (
+    <div className={mainClassName}>
+      <div className="Drawer__Background" />
+      <div className="Drawer__Container">
+        <button className="Drawer__CloseButton" onClick={props.closeDrawer} />
+        <DrawerCategories />
+      </div>
+    </div>
+  );
+};
 
-    render() {
-        const {visible} = this.props.drawer;
-        const {closeDrawer} = this.props;
+Drawer.propTypes = {
+  closeDrawer: PT.func.isRequired,
+  drawer: PT.shape({ visible: PT.bool.isRequired }).isRequired,
+};
 
+const mapStateToProps = ({ ui }) => ({
+  drawer: ui.drawer,
+});
 
-        const mainClassName = visible ? 'Drawer' : 'Drawer Drawer--Collapsed';
-
-        return (
-            <div className={mainClassName}>
-                <div className='Drawer__Background'></div>
-                <div className='Drawer__Container'>
-                    <button className='Drawer__CloseButton' onClick={closeDrawer}></button>
-
-                    <DrawerCategories />
-                </div>
-            </div>
-        );
-    }
-}
-
-function mapStateToProps({ui}) {
-    return {
-        drawer:ui.drawer,
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        closeDrawer:() => dispatch(closeDrawer()),
-    }
-}
+const mapDispatchToProps = dispatch => ({
+  closeDrawer: () => dispatch(closeDrawer()),
+});
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(Drawer);

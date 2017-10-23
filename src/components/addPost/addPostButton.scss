@@ -5,7 +5,8 @@
   bottom:0;
   left:0;
   width:100%;
-  background-color: #D97D00;
+  background-color: $nav-color-dark;
+  color:$white;
 
   a {
     @include submitButton;

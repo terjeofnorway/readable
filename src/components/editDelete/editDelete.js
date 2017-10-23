@@ -1,33 +1,25 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import PT from 'prop-types';
 
 import './editDelete.scss';
 
+const EditDelete = props => (
+  <div className="EditDelete">
+    <button className="EditDelete__Edit" onClick={() => props.toggleEdit(props.id)} />
+    <button className="EditDelete__Delete" onClick={() => props.delete(props.id)} />
+  </div>
+);
 
-const EditDelete = function (props) {
+EditDelete.propTypes = {
+  id: PT.string,
+  toggleEdit: PT.func,
+  delete: PT.func,
+};
 
-    return (
-        <div className='EditDelete'>
-            <button className='EditDelete__Edit' onClick={() => props.toggleEdit(props.id)} />
-            <button className='EditDelete__Delete' onClick={() => props.delete(props.id)} />
-        </div>
-    );
-}
+EditDelete.defaultProps = {
+  id: '',
+  toggleEdit: () => {},
+  delete: () => {},
+};
 
-
-function mapStateToProps({}) {
-    return {
-
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(EditDelete);
+export default EditDelete;

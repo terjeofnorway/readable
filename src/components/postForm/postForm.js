@@ -1,127 +1,125 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import 'react-dates/initialize';
-import {SingleDatePicker} from 'react-dates';
+import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
-import {toggleCommentDatePicker} from 'actions/uiActions';
+import PT from 'prop-types';
+import { toggleCommentDatePicker } from 'actions/uiActions';
 import classname from 'classname';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import './postForm.scss';
 
+class PostForm extends Component {
+  static propTypes = {
+    post: PT.shape({
+      author: PT.string.isRequired,
+      timestamp: PT.number.isRequired,
+      title: PT.string.isRequired,
+      body: PT.string.isRequired,
+    }).isRequired,
+    savePost: PT.func.isRequired,
+    selectionCategories: PT.arrayOf(PT.shape({ value: PT.string.isRequired, label: PT.string.isRequired })).isRequired,
+  }
 
-class PostForm extends Component{
+  componentWillMount() {
+    this.setState({ isDatePickerShowing: false });
+    this.savePostToLocalState(this.props.post);
+  }
 
-    state = {
-        post:{},
-        isDatePickerShowing:false,
-    }
+  savePostToLocalState = post => {
+    this.setState({ post });
+  };
 
+  updateLocalTempPost = (target, input) => {
+    const updateValue = (target === 'timestamp') ? (input.unix() * 1000) : input;
 
-    componentWillMount(){
-        this.savePostToLocalState(this.props.post);
-    }
+    const post = { ...this.state.post, [target]: updateValue };
+    this.setState({ post });
+  };
 
-    savePostToLocalState = (post) =>{
-        this.setState({post});
-    }
+  saveForm = event => {
+    event.preventDefault();
+    const post = { ...this.state.post };
 
-    updateLocalTempPost = (target, input) => {
-        const updateValue = (target === 'timestamp') ? (input.unix() * 1000) : input;
+    // Todo: write separate validation function.
+    if (post.author === '' || post.body === '') return;
+    post.isEditing = false;
+    this.props.savePost(post);
+  };
 
-        const post = {...this.state.post,[target]:updateValue};
-        this.setState({post});
-    }
+  toggleDatepickerFocus = ({ focused }) => {
+    this.setState({ isDatePickerShowing: focused });
+  };
 
-    saveForm = (event) => {
-        event.preventDefault();
-        const post = {...this.state.post};
+  selectChange = event => {
+    this.updateLocalTempPost('category', event.value);
+  };
 
-        // Todo: write separate validation function.
-        if(post.author === '' || post.body === '') return;
-        post.isEditing = false;
-        this.props.savePost(post);
-    }
+  render() {
+    const {
+      category,
+      title,
+      timestamp,
+      author,
+      body,
+    } = this.state.post;
 
-    inputOnFocus = (event) => {
-        this.setState({inputFocus:event.target.name});
-    }
+    const submitButtonClass = classname({ Comment__Submit: true });
 
-    inputOnBlur = (event) => {
-        this.setState({inputFocus:''});
-    }
+    return (
+      <form className="PostForm" onSubmit={this.saveForm}>
+        <Select
+          name="form-field-name"
+          options={this.props.selectionCategories}
+          allowCreate={false}
+          searchable={false}
+          value={category}
+          clearable={false}
+          onChange={this.selectChange}
+        />
+        <input
+          name="title"
+          className="Post__Title"
+          value={title}
+          onChange={event => this.updateLocalTempPost('title', event.target.value)}
+        />
+        <input
+          name="author"
+          className="Post__Author"
+          value={author}
+          onChange={event => this.updateLocalTempPost('author', event.target.value)}
+        />
+        <SingleDatePicker
+          onFocusChange={this.toggleDatepickerFocus}
+          focused={this.state.isDatePickerShowing}
+          date={moment(timestamp)}
+          numberOfMonths={1}
+          isOutsideRange={() => false}
+          firstDayOfWeek={1}
+          displayFormat="ddd, MMMM Do YYYY"
+          onDateChange={momentObject => this.updateLocalTempPost('timestamp', momentObject)}
+        />
 
-    toggleDatepickerFocus = ({focused}) => {
-        this.setState({isDatePickerShowing:focused});
-    }
+        <textarea
+          name="body"
+          className="Post__Body"
+          value={body}
+          onChange={event => this.updateLocalTempPost('body', event.target.value)}
+        />
 
-    selectChange = (event) => {
-        this.updateLocalTempPost('category',event.value);
-    }
-
-    render(){
-        const {category, title, timestamp, author, body} = this.state.post;
-
-
-        const submitButtonClass = classname({Comment__Submit:true});
-
-        return (
-            <form className="PostForm" onSubmit={this.saveForm}>
-                <Select
-                    name="form-field-name"
-                    options={this.props.selectionCategories}
-                    allowCreate={false}
-                    searchable={false}
-                    value={category}
-                    clearable={false}
-                    onChange={this.selectChange}
-                />
-                <input
-                    name="title"
-                    className="Post__Title"
-                    value={title}
-                    onChange={event => this.updateLocalTempPost('title',event.target.value)}
-                    />
-                <input
-                    name="author"
-                    className="Post__Author"
-                    value={author}
-                    onChange={event => this.updateLocalTempPost('author',event.target.value)}
-                />
-                <SingleDatePicker
-                    onFocusChange={this.toggleDatepickerFocus}
-                    focused={this.state.isDatePickerShowing}
-                    date={moment(timestamp)}
-                    numberOfMonths={1}
-                    isOutsideRange={()=>false}
-                    firstDayOfWeek={1}
-                    displayFormat="ddd, MMMM Do YYYY"
-                    onDateChange={(momentObject) => this.updateLocalTempPost('timestamp', momentObject)} />
-
-                <textarea
-                    name="body"
-                    className="Post__Body"
-                    value={body}
-                    onChange={event => this.updateLocalTempPost('body',event.target.value)}
-                />
-
-                <input type="submit" value="Save" className={submitButtonClass} />
-            </form>
-        )
-    }
+        <input type="submit" value="Save" className={submitButtonClass} />
+      </form>
+    );
+  }
 }
 
-const mapStateToProps = ({categories}) => {
-    return {
-        selectionCategories:categories.map(item => ({value: item.name, label: item.name})),
-    }
-}
+const mapStateToProps = ({ categories }) => ({
+  selectionCategories: categories.map(item => ({ value: item.name, label: item.name })),
+});
 
-const mapDispatchToProps = dispatch => {
-    return {
-        toggleDatePicker:({focused}) => dispatch(toggleCommentDatePicker(focused)),
-    }
-}
-
+const mapDispatchToProps = dispatch => ({
+  toggleDatePicker: ({ focused }) => dispatch(toggleCommentDatePicker(focused)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostForm);

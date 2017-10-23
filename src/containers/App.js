@@ -1,11 +1,8 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Route, Switch} from 'react-router-dom';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import PT from 'prop-types';
 import Confirm from 'components/confirm/confirm';
-
-import {withRouter} from 'react-router-dom';
-
-import './App.scss';
 import Titlebar from 'components/titleBar/titleBar';
 import Drawer from 'containers/drawer/drawer';
 import PostList from 'containers/postList/postList';
@@ -13,71 +10,71 @@ import PostDetails from 'containers/postDetails/postDetails';
 import AddPost from 'components/addPost/addPostButton';
 import CreatePost from 'containers/createPost/createPost';
 
-class App extends Component {
+import './App.scss';
 
-    render() {
+const App = () => (
+  <div className="App">
+    <Titlebar />
+    <Drawer />
+    <Switch>
+      <Route
+        path="/" exact render={() => (
+          <div>
+            <PostList />
+            <AddPost />
+          </div>
+        )}
+      />
+
+      <Route
+        path="/posts" exact render={() => (
+          <div>
+            <PostList />
+            <AddPost />
+          </div>
+        )}
+      />
+
+      <Route
+        path="/posts/new" exact render={() => (
+          <CreatePost />
+      )}
+      />
+
+      <Route
+        path="/categories/:categorySlug" exact render={props => (
+          <div>
+            <PostList categorySlug={props.match.params.categorySlug} />
+            <AddPost />
+          </div>
+        )}
+      />
+
+      <Route
+        path="/posts/:id" exact render={props => {
+        const { id } = props.match.params;
         return (
-            <div className="App">
-                <Titlebar />
-                <Drawer />
-                <Switch>
-                <Route path='/' exact render={ (props) => {
-                    return (
-                        <div>
-                            <PostList />
-                            <AddPost />
-                        </div>
-                    )
-                }} />
-
-                    <Route path='/posts' exact render={ (props) => {
-                        return (
-                            <div>
-                                <PostList />
-                                <AddPost />
-                            </div>
-                        )
-                    }} />
-
-                <Route path='/posts/new' exact render={ (props) => {
-                    return (
-                        <CreatePost />
-                    )
-                }} />
-
-                <Route path='/categories/:categorySlug' exact render={ (props) => {
-
-                    return (
-                        <div>
-                            <PostList categorySlug={props.match.params.categorySlug} />
-                            <AddPost />
-                        </div>
-                    )
-                }} />
-
-                <Route path='/posts/:id' exact render={ (props) => {
-                    const id = props.match.params.id;
-                    return (
-                        id === 'new' ? <div /> : <PostDetails id={id} />
-                    )
-                }} />
-                </Switch>
-                <Confirm></Confirm>
-            </div>
+          id === 'new' ? <div /> : <PostDetails id={id} />
         );
-    }
-}
+      }}
+      />
+    </Switch>
+    <Confirm />
+  </div>
+);
 
-function mapStateToProps({}) {
-    return {
-    }
-}
+App.propTypes = {
+  match: PT.object,
+};
 
-function mapDispatchToProps(dispatch) {
-    return {}
-}
+App.defaultProps = {
+  match: {},
+};
+
+const mapStateToProps = () => ({});
+const mapDispatchToProps = () => ({});
 
 export default withRouter(connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(App));

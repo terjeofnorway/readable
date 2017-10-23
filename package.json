@@ -15,13 +15,9 @@
     "classname": "0.0.0",
     "css-loader": "0.28.4",
     "dotenv": "4.0.0",
-    "eslint": "4.4.1",
     "eslint-config-react-app": "^2.0.1",
     "eslint-loader": "1.9.0",
     "eslint-plugin-flowtype": "2.35.0",
-    "eslint-plugin-import": "2.7.0",
-    "eslint-plugin-jsx-a11y": "5.1.1",
-    "eslint-plugin-react": "7.1.0",
     "extract-text-webpack-plugin": "3.0.0",
     "file-loader": "0.11.2",
     "foundation-sites": "^6.4.3",
@@ -33,6 +29,7 @@
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.6",
     "promise": "^8.0.1",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-addons-shallow-compare": "^15.6.2",
     "react-dates": "^13.0.5",
@@ -56,11 +53,17 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
+    "eslint": "eslint src --ext .js --ext .jsx",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6"
   },

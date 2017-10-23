@@ -1,43 +1,38 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-
+import React from 'react';
+import { connect } from 'react-redux';
+import PT from 'prop-types';
 import CommentList from 'components/commentList/commentList';
-
 
 import './comments.scss';
 
+const Comments = props => (
+  <div className="Comments">
+    <h1>Comments</h1>
+    <CommentList comments={props.comments} />
+  </div>
+);
 
-class Comments extends Component {
-    render() {
-        return (
-            <div className="Comments">
-                <h1>Comments</h1>
-                <CommentList comments={this.props.comments}/>
-            </div>
-        );
-    }
-}
+Comments.propTypes = {
+  comments: PT.arrayOf(PT.object),
+};
 
-function mapStateToProps({ ui, comments }) {
-    const orderByCommentsKey = ui.comment_order.post_object_key;
+Comments.defaultProps = {
+  comments: [],
+};
 
-    const commentsArray = Object
-        .keys(comments)
-        .map(key => comments[key])
-        .filter(item => !item.deleted);
+const mapStateToProps = ({ ui, comments }) => {
+  const orderByCommentsKey = ui.comment_order.post_object_key;
+  const commentsArray = Object.keys(comments).map(key => comments[key]).filter(item => !item.deleted);
+  const sortedComments = commentsArray.sort((a, b) => a[orderByCommentsKey] < b[orderByCommentsKey]);
 
-    const sortedComments = commentsArray.sort((a,b) => a[orderByCommentsKey] < b[orderByCommentsKey]);
+  return {
+    comments: sortedComments,
+  };
+};
 
-    return {
-        comments: sortedComments,
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {}
-}
+const mapDispatchToProps = () => ({});
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(Comments);

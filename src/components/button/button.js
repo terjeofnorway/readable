@@ -1,25 +1,17 @@
 import React from 'react';
-import {connect} from 'react-redux';
-
+import PT from 'prop-types';
 
 import './button.scss';
 
-
-const Button = (props) => (
-    <button className="Button Button--Wide" onClick={props.onClick}>
-        {props.children}
-    </button>
+const Button = props => (
+  <button className="Button Button--Wide" onClick={props.onClick}>
+    {props.children}
+  </button>
 );
 
-function mapStateToProps({}) {
-    return {}
-}
+Button.propTypes = {
+  children: PT.node.isRequired,
+  onClick: PT.func.isRequired,
+};
 
-function mapDispatchToProps(dispatch) {
-    return {}
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Button);
+export default Button;

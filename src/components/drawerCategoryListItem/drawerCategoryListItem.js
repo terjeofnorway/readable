@@ -1,36 +1,35 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {closeDrawer} from "actions/uiActions";
-
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PT from 'prop-types';
+import { closeDrawer } from 'actions/uiActions';
 
 import './drawerCategoryListItem.scss';
 
+const DrawerCategoryListItem = props => {
+  const { path, name } = props.item;
 
-const DrawerCategoryListItem = function (props) {
-    const {path, name} = props.item;
-    const {closeDrawer} = props;
+  return (
+    <li className="CategoryListItem">
+      <Link to={`/categories/${path}`} onClick={props.closeDrawer}>
+        <div className="Category__Name">{name}</div>
+      </Link>
+    </li>
+  );
+};
 
-    return (
-        <li className='CategoryListItem'>
-            <Link to={`/categories/${path}`} onClick={closeDrawer}>
-                <div className='Category__Name'>{name}</div>
-            </Link>
-        </li>
-    );
-}
+DrawerCategoryListItem.propTypes = {
+  item: PT.shape({ path: PT.string.isRequired, name: PT.string.isRequired }).isRequired,
+  closeDrawer: PT.func.isRequired,
+};
 
-function mapStateToProps({}) {
-    return {}
-}
+const mapStateToProps = () => ({});
 
-function mapDispatchToProps(dispatch) {
-    return {
-        closeDrawer:() => dispatch(closeDrawer())
-    }
-}
+const mapDispatchToProps = dispatch => ({
+  closeDrawer: () => dispatch(closeDrawer()),
+});
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(DrawerCategoryListItem);

@@ -1,49 +1,61 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PT from 'prop-types';
+import moment from 'moment';
 
+import { Row, Column } from 'react-foundation';
+import Vote from 'components/vote/vote';
+import { addPostVoteScore } from 'actions/postActions';
+import { HUMAN_DATE_FORMAT } from 'constants/constants';
 
-import {Row, Column} from 'react-foundation';
 import './postListItem.scss';
 
-import DateTimeHelper from 'helpers/datetime';
-import Vote from 'components/vote/vote';
 
-import {addPostVoteScore} from 'actions/postActions';
+const PostListItem = props => {
+  const {
+    id,
+    timestamp,
+    title,
+    author,
+    category,
+    voteScore,
+  } = props.post;
 
+  return (
+    <Row className="PostListItem">
+      <Column small={8} large={8}>
+        <Link to={`/posts/${id}`}>
+          <div className="PostListItem__Category">{category}</div>
+          <div className="PostListItem__Date">{moment(timestamp).format(HUMAN_DATE_FORMAT)}</div>
+          <div className="PostListItem__Title">{title}</div>
+          <div className="PostListItem__Author">{author}</div>
+        </Link>
+      </Column>
+      <Column small={4} large={4}>
+        <Vote voteScore={voteScore} id={id} addVote={props.addVote} />
+      </Column>
+    </Row>
+  );
+};
 
-const PostListItem = function (props) {
-    const {id, timestamp, title, author, category, voteScore} = props.post;
+PostListItem.propTypes = {
+  post: PT.shape({
+    author: PT.string.isRequired,
+    timestamp: PT.number.isRequired,
+    title: PT.string.isRequired,
+    body: PT.string.isRequired,
+  }).isRequired,
+  addVote: PT.func.isRequired,
+};
 
-    return (
-        <Row className="PostListItem">
-            <Column small={8} large={8}>
-                <Link to={`/posts/${id}`}>
-                    <div className='PostListItem__Category'>{category}</div>
-                    <div className='PostListItem__Date'>{DateTimeHelper.timestampToHumanDate(timestamp)}</div>
-                    <div className='PostListItem__Title'>{title}</div>
-                    <div className='PostListItem__Author'>{author}</div>
-                </Link>
-            </Column>
-            <Column small={4} large={4}>
-                <Vote voteScore={voteScore} id={id} addVote={props.addVote} ></Vote>
-            </Column>
-        </Row>
-    );
-}
+const mapStateToProps = () => ({});
 
-function mapStateToProps({}) {
-    return {
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        addVote: (voteScore, postId) => dispatch(addPostVoteScore(voteScore, postId)),
-    }
-}
+const mapDispatchToProps = dispatch => ({
+  addVote: (voteScore, postId) => dispatch(addPostVoteScore(voteScore, postId)),
+});
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(PostListItem);

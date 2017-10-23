@@ -1,40 +1,40 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React from 'react';
+import { connect } from 'react-redux';
+import PT from 'prop-types';
 
 import DrawerCategoryListItem from 'components/drawerCategoryListItem/drawerCategoryListItem';
 import './drawerCategories.scss';
 
+const DrawerCategories = props => {
+  const { categories } = props;
 
-class DrawerCategories extends Component {
+  return (
+    <div className="DrawerCategories">
+      <h1 className="DrawerCategories__Title">Categories</h1>
+      <ul className="DrawerCategoryList">
+        {
+          categories.map(item => (
+            <DrawerCategoryListItem
+              key={item.name}
+              item={item}
+            />))
+        }
+      </ul>
+    </div>
+  );
+};
 
-    render() {
-        const {categories} = this.props;
+DrawerCategories.propTypes = {
+  categories: PT.arrayOf(PT.shape({ name: PT.string.isRequired, path: PT.string.isRequired })).isRequired,
+};
 
+const mapStateToProps = ({ categories }) => ({
+  categories,
+});
 
-        return (
-            <div className="DrawerCategories">
-                <h1 className='DrawerCategories__Title'>Categories</h1>
-                <ul className='DrawerCategoryList'>
-                    {
-                        categories.map((item) => <DrawerCategoryListItem key={item.name} item={item}/>)
-                    }
-                </ul>
-            </div>
-        );
-    }
-}
-
-function mapStateToProps({categories}) {
-    return {
-        categories,
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {}
-}
+const mapDispatchToProps = () => ({});
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(DrawerCategories);

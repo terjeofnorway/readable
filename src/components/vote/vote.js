@@ -1,30 +1,28 @@
 import React from 'react';
-import {connect} from 'react-redux';
-
-
+import PT from 'prop-types';
 import './vote.scss';
 
+const Vote = props => {
+  const { voteScore, id } = props;
+  return (
+    <div className="Vote">
+      <button className="Vote__VoteButton--Up" onClick={() => props.addVote(1, id)} />
+      <div className="Vote__CurrentScore">{voteScore}</div>
+      <button className="Vote__VoteButton--Down" onClick={() => props.addVote(-1, id)} />
+    </div>
+  );
+};
 
-const Vote = (props) => {
-    const {voteScore, id} = props;
-    return (
-        <div className="Vote">
-            <button className='Vote__VoteButton--Up' onClick={() => props.addVote(1,id)}></button>
-            <div className='Vote__CurrentScore'>{ voteScore }</div>
-            <button className='Vote__VoteButton--Down' onClick={() => props.addVote(-1,id)}></button>
-        </div>
-    );
-}
+Vote.propTypes = {
+  voteScore: PT.number,
+  id: PT.string,
+  addVote: PT.func,
+};
 
-function mapStateToProps({}) {
-    return {}
-}
+Vote.defaultProps = {
+  voteScore: 0,
+  id: '',
+  addVote: () => {},
+};
 
-function mapDispatchToProps(dispatch) {
-    return {}
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Vote);
+export default Vote;

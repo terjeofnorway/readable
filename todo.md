@@ -1,10 +1,10 @@
 #Todo
 ✅ Add voting to comments.
 ✅ Relative imports
+✅ Refactor stateful to stateless components where appropriate.
+✅ Add Airbnb linting.
 - Connect logic to API for backend storing.
 - Refactor scss color variables
-- Refactor stateful to stateless components where appropriate.
-- Add Airbnb linting.
 - Placeholder text for postForm.
 - Check large screens.
 - Add notes for reviewer.
@@ -18,6 +18,6 @@
 ✅ Date picker zindex-issue.
 ✅ Direct linking as first history will break the back button.
 ✅ Back button needs fixing so that it goes back to front, not previous history.
-- Category dropdown is off style.
-- Bogus post ID does not revert to main view
+✅ Bogus post ID does not revert to main view
+✅ Category dropdown is off style.
 - Adding comment directly after adding new post fails.

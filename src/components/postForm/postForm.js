@@ -65,7 +65,7 @@ class PostForm extends Component {
       body,
     } = this.state.post;
 
-    const submitButtonClass = classname({ Comment__Submit: true });
+    const submitButtonClass = classname({ Post__Submit: true });
 
     return (
       <form className="PostForm" onSubmit={this.saveForm}>
@@ -77,6 +77,7 @@ class PostForm extends Component {
           value={category}
           clearable={false}
           onChange={this.selectChange}
+          className="Post__Category"
         />
         <input
           name="title"

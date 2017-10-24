@@ -111,7 +111,6 @@ class PostDetails extends Component {
   savePost = post => {
     this.props.savePost(post);
     if (this.props.match.params.id !== post.id) {
-      console.log(`/posts/${post.id}`);
       this.props.history.push(`/posts/${post.id}`);
     }
   };

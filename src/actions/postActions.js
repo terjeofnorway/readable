@@ -56,15 +56,12 @@ export function startEditPost(id) {
 
 
 export function savePost(post) {
-  return {
-    type: 'SAVE_POST',
-    post,
-  };
-}
+  return dispatch => {
+    API.requestAddPost(post).then(value => console.log('got this from server:', value));
 
-export function addNewPost(post) {
-  return {
-    type: 'ADD_NEW_POST',
-    post,
+    return dispatch({
+      type: 'ADD_NEW_POST',
+      post,
+    });
   };
 }

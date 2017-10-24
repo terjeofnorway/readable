@@ -19,7 +19,6 @@ function postReducer(state = {}, action) {
       const newVoteScore = state[postId].voteScore + voteScore;
       const post = { ...state[postId], voteScore: newVoteScore };
 
-
       return { ...state, [postId]: { ...post } };
     }
 

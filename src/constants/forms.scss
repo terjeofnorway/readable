@@ -38,7 +38,7 @@
       }
 
       @if($blurAndEmpty == true){
-        padding:0.6em;
+        padding: .7em .6em .6em .2em;
         font-size: $font-base-size * 1.2;
       }
     }

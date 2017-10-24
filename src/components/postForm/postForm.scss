@@ -60,9 +60,13 @@
         font-family: $font-face-sansserif;
       }
 
+      .Select-value-label {
+        padding-left:.3em;
+      }
+
       .Select-placeholder {
         color:$nav-color-dark;
-        padding-left:0.8em;
+        padding-left: .4em;
       }
     }
   }
@@ -93,7 +97,7 @@
       box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
       width: 100%;
       border-radius: 3px;
-      padding: 0.8em 5px 0.8em 5px;
+      padding: 0.8em 5px 0.8em 12px;
       outline: 0;
       transition: all 0.2s;
       height: auto;

@@ -16,7 +16,7 @@ class CommentForm extends Component {
   }
 
   static defaultProps = {
-    comment: {},
+    comment: { author: '', body: '' },
     saveComment: () => {},
   }
 
@@ -96,8 +96,8 @@ class CommentForm extends Component {
         <div className={classname({
           Input__Wrapper: true,
           Input__Wrapper__Author: true,
-          'Input__Wrapper--blurandempty': (this.state.inputFocus !== 'author' &&
-            this.state.comment.author === ''),
+          'Input__Wrapper--blurandempty': ((this.state.inputFocus !== 'author' &&
+            this.state.comment.author === '')),
         })}
         >
           <input
@@ -113,8 +113,8 @@ class CommentForm extends Component {
         <div className={classname({
           Input__Wrapper: true,
           Input__Wrapper__Body: true,
-          'Input__Wrapper--blurandempty': (this.state.inputFocus !== 'body' &&
-            this.state.comment.body === ''),
+          'Input__Wrapper--blurandempty': ((this.state.inputFocus !== 'body' &&
+            this.state.comment.body === '') || this.state.comment.body === undefined),
         })}
         >
           <textarea

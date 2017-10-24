@@ -20,19 +20,55 @@
     color:$light-gray;
   }
 
+  .Input__Wrapper {
+    @include inputWrapper(false);
+  }
+
+  .Input__Wrapper--blurandempty {
+    @include inputWrapper(true);
+  }
+
+  .Input__Wrapper__Title {
+    &:before {
+      content:'Title';
+    }
+  }
+
+  .Input__Wrapper__Author {
+    &:before {
+      content:'Title';
+    }
+  }
+
+  .Input__Wrapper__Body {
+    &:before {
+      content:'Body';
+    }
+  }
+
   .Post__Category {
     margin-bottom:1.5em;
+    z-index:1999;
 
     .Select-control{
       box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
-      .Select-value-label {
-        line-height:41px;
+      height:46px;
+
+      .Select-placeholder, .Select-value-label {
+        line-height:44px;
+        font-size:$font-base-size * 1.2;
+        font-family: $font-face-sansserif;
+      }
+
+      .Select-placeholder {
+        color:$nav-color-dark;
+        padding-left:0.8em;
       }
     }
   }
 
   .SingleDatePicker {
-    z-index:2000;
+    z-index:1999;
     .SingleDatePickerInput {
       border:0;
     }

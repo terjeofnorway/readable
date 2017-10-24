@@ -56,6 +56,14 @@ class PostForm extends Component {
     this.updateLocalTempPost('category', event.value);
   };
 
+  inputOnFocus = event => {
+    this.setState({ inputFocus: event.target.name });
+  };
+
+  inputOnBlur = () => {
+    this.setState({ inputFocus: '' });
+  };
+
   render() {
     const {
       category,
@@ -75,22 +83,43 @@ class PostForm extends Component {
           allowCreate={false}
           searchable={false}
           value={category}
+          placeholder="SELECT CATEGORY"
           clearable={false}
           onChange={this.selectChange}
           className="Post__Category"
         />
-        <input
-          name="title"
-          className="Post__Title"
-          value={title}
-          onChange={event => this.updateLocalTempPost('title', event.target.value)}
-        />
-        <input
-          name="author"
-          className="Post__Author"
-          value={author}
-          onChange={event => this.updateLocalTempPost('author', event.target.value)}
-        />
+        <div className={classname({
+          Input__Wrapper: true,
+          Input__Wrapper__Title: true,
+          'Input__Wrapper--blurandempty': (this.state.inputFocus !== 'title' &&
+            this.state.post.title === ''),
+        })}
+        >
+          <input
+            name="title"
+            className="Post__Title"
+            value={title}
+            onChange={event => this.updateLocalTempPost('title', event.target.value)}
+            onFocus={this.inputOnFocus}
+            onBlur={this.inputOnBlur}
+          />
+        </div>
+        <div className={classname({
+          Input__Wrapper: true,
+          Input__Wrapper__Author: true,
+          'Input__Wrapper--blurandempty': (this.state.inputFocus !== 'author' &&
+            this.state.post.author === ''),
+        })}
+        >
+          <input
+            name="author"
+            className="Post__Author"
+            value={author}
+            onChange={event => this.updateLocalTempPost('author', event.target.value)}
+            onFocus={this.inputOnFocus}
+            onBlur={this.inputOnBlur}
+          />
+        </div>
         <SingleDatePicker
           onFocusChange={this.toggleDatepickerFocus}
           focused={this.state.isDatePickerShowing}
@@ -101,14 +130,22 @@ class PostForm extends Component {
           displayFormat="ddd, MMMM Do YYYY"
           onDateChange={momentObject => this.updateLocalTempPost('timestamp', momentObject)}
         />
-
-        <textarea
-          name="body"
-          className="Post__Body"
-          value={body}
-          onChange={event => this.updateLocalTempPost('body', event.target.value)}
-        />
-
+        <div className={classname({
+          Input__Wrapper: true,
+          Input__Wrapper__Body: true,
+          'Input__Wrapper--blurandempty': (this.state.inputFocus !== 'body' &&
+            this.state.post.body === ''),
+        })}
+        >
+          <textarea
+            name="body"
+            className="Post__Body"
+            value={body}
+            onChange={event => this.updateLocalTempPost('body', event.target.value)}
+            onFocus={this.inputOnFocus}
+            onBlur={this.inputOnBlur}
+          />
+        </div>
         <input type="submit" value="Save" className={submitButtonClass} />
       </form>
     );

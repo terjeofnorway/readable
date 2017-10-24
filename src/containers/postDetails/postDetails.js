@@ -99,10 +99,6 @@ class PostDetails extends Component {
   }
 
   componentDidMount() {
-    if (Object.keys(this.props.post).length === 0 || this.props.post.deleted) {
-      this.props.history.push('/');
-    }
-
     this.props.id && this.props.loadComments(this.props.id);
   }
 

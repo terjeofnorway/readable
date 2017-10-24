@@ -3,9 +3,9 @@
 ✅ Relative imports
 ✅ Refactor stateful to stateless components where appropriate.
 ✅ Add Airbnb linting.
+✅ Placeholder text for postForm.
 - Connect logic to API for backend storing.
 - Refactor scss color variables
-- Placeholder text for postForm.
 - Check large screens.
 - Add notes for reviewer.
 - Re-clone project to check for yarn install issues.

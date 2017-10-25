@@ -8,6 +8,7 @@
 - Refactor scss color variables
 - Check large screens.
 - Add notes for reviewer.
+- Clean code.
 - Re-clone project to check for yarn install issues.
 - Re-check requirements.
 

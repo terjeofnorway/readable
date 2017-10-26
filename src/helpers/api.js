@@ -55,13 +55,24 @@ class API {
   }
 
   static requestAddPost(post) {
-    console.log('requestAddPost()');
     const stringifiedPost = JSON.stringify(post);
-    console.log(stringifiedPost);
 
     return fetch(`${API.serverHost}/posts`, {
       method: 'POST',
       body: stringifiedPost,
+      headers: { Authorization: 'whatever-you-want', 'Content-Type': 'application/json' },
+    }).then(response => {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      return response;
+    }).then(response => response.json());
+  }
+
+  static requestSaveComment(comment) {
+    return fetch(`${API.serverHost}/comments`, {
+      method: 'POST',
+      body: JSON.stringify(comment),
       headers: { Authorization: 'whatever-you-want', 'Content-Type': 'application/json' },
     }).then(response => {
       if (!response.ok) {

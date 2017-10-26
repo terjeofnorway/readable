@@ -6,6 +6,7 @@ import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
 import { saveComment } from 'actions/commentActions';
 import { toggleCommentDatePicker } from 'actions/uiActions';
+import { createCommentTemplate } from 'constants/constants';
 import classname from 'classname';
 import './commentForm.scss';
 
@@ -13,10 +14,11 @@ class CommentForm extends Component {
   static propTypes = {
     comment: PT.object,
     saveComment: PT.func,
+    parentId: PT.string.isRequired,
   }
 
   static defaultProps = {
-    comment: { author: '', body: '' },
+    comment: createCommentTemplate(),
     saveComment: () => {},
   }
 
@@ -37,11 +39,9 @@ class CommentForm extends Component {
   saveCommentToLocalState = comment => {
     const localComment = comment ?
       { ...comment } :
-      {
-        author: '',
-        timestamp: Date.now(),
-        body: '',
-      };
+      createCommentTemplate();
+
+    console.log(localComment);
     this.setState({ comment: localComment });
   };
 
@@ -50,6 +50,7 @@ class CommentForm extends Component {
     const comment = { ...this.state.comment };
     if (comment.author === '' || comment.body === '') return;
     comment.isEditing = false;
+    comment.parentId = comment.parentId ? comment.parentId : this.props.parentId;
     this.props.saveComment(comment);
     this.resetComment();
   };
@@ -64,9 +65,7 @@ class CommentForm extends Component {
 
   resetComment = () => {
     this.setState({
-      comment: {
-        author: '', body: '', id: '', timestamp: Date.now(),
-      },
+      comment: createCommentTemplate(),
     });
   };
 

@@ -2,7 +2,6 @@ import React from 'react';
 import PT from 'prop-types';
 
 import CommentListItem from 'components/commentListItem/commentListItem';
-import CommentForm from 'components/commentForm/commentForm';
 import Filter from 'components/filter/filter';
 
 import './commentList.scss';
@@ -15,7 +14,6 @@ const CommentList = props => (
         comment={props.comments[key]}
         key={key}
       />))}
-      <CommentForm parentId={22} />
     </div>
   </div>
 );

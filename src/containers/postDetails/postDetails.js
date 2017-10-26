@@ -29,7 +29,7 @@ const PostBody = props => {
 
   const { addVote } = props;
 
-  return (
+  return Object.keys(props.post).length === 0 ? null : (
     <div className="PostDetails">
       <div className="PostDetails_Header">
         <Row>

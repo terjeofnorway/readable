@@ -1,8 +1,5 @@
 import API from 'helpers/api';
 
-const uuid = require('uuid/v4');
-
-
 export function injectComments(comments) {
   return {
     type: 'INFLATE_COMMENTS',
@@ -22,15 +19,13 @@ export function startEditComment(commentId) {
 }
 
 export function saveComment(comment) {
-  const cleanComment = comment.id ? { ...comment }
-    :
-    {
-      ...comment, id: uuid(), isEditing: false, voteScore: 0,
-    };
+  return dispatch => {
+    API.requestSaveComment(comment).then(value => console.log(value));
 
-  return {
-    type: 'SAVE_COMMENT',
-    comment: cleanComment,
+    dispatch({
+      type: 'SAVE_COMMENT',
+      comment,
+    });
   };
 }
 

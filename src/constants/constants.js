@@ -17,4 +17,12 @@ export const createPostTemplate = () => ({
   isEditing: false,
 });
 
+export const createCommentTemplate = () => ({
+  id: uuid(),
+  timestamp: Date.now(),
+  title: '',
+  voteScore: 0,
+  isEditing: false,
+});
+
 export const HUMAN_DATE_FORMAT = 'ddd, MMMM YYYY';

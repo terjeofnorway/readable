@@ -55,13 +55,28 @@ class API {
   }
 
   static requestAddPost(post) {
-    console.log('requestAddPost()');
     const stringifiedPost = JSON.stringify(post);
     console.log(stringifiedPost);
 
     return fetch(`${API.serverHost}/posts`, {
       method: 'POST',
       body: stringifiedPost,
+      headers: { Authorization: 'whatever-you-want', 'Content-Type': 'application/json' },
+    }).then(response => {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      return response;
+    }).then(response => response.json());
+  }
+
+  static requestVoteForPost(voteDirection, postId) {
+    console.log('resuestvote for post:', voteDirection, postId);
+    const stringifiedBody = JSON.stringify({ option: voteDirection });
+
+    return fetch(`${API.serverHost}/posts/${postId}`, {
+      method: 'POST',
+      body: stringifiedBody,
       headers: { Authorization: 'whatever-you-want', 'Content-Type': 'application/json' },
     }).then(response => {
       if (!response.ok) {

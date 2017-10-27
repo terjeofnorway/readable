@@ -81,6 +81,15 @@ class API {
       return response;
     }).then(response => response.json());
   }
+
+  static requestDeleteComment(commentId) {
+    return fetch(`${API.serverHost}/comments/${commentId}`, { method: 'DELETE', headers: { Authorization: 'whatever-you-want' } }).then(response => {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      return response;
+    }).then(response => response.json());
+  }
 }
 
 export default API;

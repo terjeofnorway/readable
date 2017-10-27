@@ -31,9 +31,13 @@ export function saveComment(comment) {
 
 
 export function deleteComment(commentId) {
-  return {
-    type: 'DELETE_COMMENT',
-    commentId,
+  return dispatch => {
+    API.requestDeleteComment(commentId).then(value => console.log(value));
+
+    dispatch({
+      type: 'DELETE_COMMENT',
+      commentId,
+    });
   };
 }
 

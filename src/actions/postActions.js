@@ -8,10 +8,15 @@ import API from 'helpers/api';
  * @returns {{type: string, voteScore: *, postId: *}}
  */
 export function addPostVoteScore(voteScore, postId) {
-  return {
-    type: 'ADD_VOTE_SCORE_TO_POST',
-    voteScore,
-    postId,
+  return dispatch => {
+    const voteDirection = voteScore === -1 ? 'downVote' : 'upVote';
+    API.requestVoteForPost(voteDirection, postId).then(value => console.log('got this from server:', value));
+
+    return dispatch({
+      type: 'ADD_VOTE_SCORE_TO_POST',
+      voteScore,
+      postId,
+    });
   };
 }
 

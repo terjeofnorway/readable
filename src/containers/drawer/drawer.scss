@@ -21,11 +21,11 @@
   .Drawer__Container {
     display:flex;
     flex-direction: column;
-    width:80%;
     background-color: $background-color-dark;
     box-shadow:-3px 0 2px rgba(0,0,0,.3);
     z-index:2;
     transition:all .5s;
+    width:20em;
 
     .Drawer__CloseButton {
       width:25px;

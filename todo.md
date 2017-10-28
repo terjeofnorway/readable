@@ -4,14 +4,14 @@
 ✅ Refactor stateful to stateless components where appropriate.
 ✅ Add Airbnb linting.
 ✅ Placeholder text for postForm.
-- Insert object from mock server when saving.
-- Connect logic to API for backend storing.
-- Refactor scss color variables
+✅ Connect logic to API for backend storing.
+✅ Insert object from mock server when saving.
 - Check large screens.
 - Add notes for reviewer.
 - Clean code.
 - Re-clone project to check for yarn install issues.
 - Re-check requirements.
+- Check error in mock server API.
 
 #Issues
 ✅ Add post button covers lowest post item.

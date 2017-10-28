@@ -7,19 +7,15 @@ import API from 'helpers/api';
  * @param postId String The unique ID of the post.
  * @returns {{type: string, voteScore: *, postId: *}}
  */
-export function addPostVoteScore(voteScore, postId) {
+export function addPostVoteScore(voteScore, id) {
   return dispatch => {
     const voteDirection = voteScore === -1 ? 'downVote' : 'upVote';
-    API.requestVoteForPost(voteDirection, postId).then(value => console.log('got this from server:', value));
-
-    return dispatch({
+    API.requestVoteForPost(voteDirection, id).then(post => dispatch({
       type: 'ADD_VOTE_SCORE_TO_POST',
-      voteScore,
-      postId,
-    });
+      post,
+    }));
   };
 }
-
 
 export function deletePost(postId, confirmed) {
   return dispatch => {
@@ -33,22 +29,25 @@ export function deletePost(postId, confirmed) {
     }).then(() => {
       // Redispatch theis action, but with confirmed as true
       dispatch(deletePost(postId, true));
-      API.requestDeletePost(postId).then(value => console.log('god this from server:', value))
-        .catch(error => console.log(error));
     }).catch(() => {});
 
-    return confirmed ?
-      dispatch({
-        type: 'DELETE_POST',
-        postId,
-      })
-      :
-      dispatch(showConfirm(
+    if (confirmed) {
+      API.requestDeletePost(postId).then(post =>
+        dispatch({
+          type: 'DELETE_POST',
+          post,
+        })).catch(error => console.log(error));
+    }
+
+    return !confirmed ?
+      (dispatch(showConfirm(
         'Are you sure?',
         'Will delete the post altogether!',
         resolveCallback,
         rejectCallback,
-      ));
+      )))
+      :
+      null;
   };
 }
 
@@ -62,11 +61,9 @@ export function startEditPost(id) {
 
 export function savePost(post) {
   return dispatch => {
-    API.requestAddPost(post).then(value => console.log('got this from server:', value));
-
-    return dispatch({
+    API.requestAddPost(post).then(returnPost => dispatch({
       type: 'ADD_NEW_POST',
-      post,
-    });
+      post: returnPost,
+    }));
   };
 }

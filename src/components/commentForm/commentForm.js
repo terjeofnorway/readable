@@ -41,7 +41,6 @@ class CommentForm extends Component {
       { ...comment } :
       createCommentTemplate();
 
-    console.log(localComment);
     this.setState({ comment: localComment });
   };
 

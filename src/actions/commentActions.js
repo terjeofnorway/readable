@@ -20,11 +20,11 @@ export function startEditComment(commentId) {
 
 export function saveComment(comment) {
   return dispatch => {
-    API.requestSaveComment(comment).then(value => console.log(value));
-
-    dispatch({
-      type: 'SAVE_COMMENT',
-      comment,
+    API.requestSaveComment(comment).then(returnComment => {
+      dispatch({
+        type: 'SAVE_COMMENT',
+        comment: returnComment,
+      });
     });
   };
 }
@@ -32,20 +32,23 @@ export function saveComment(comment) {
 
 export function deleteComment(commentId) {
   return dispatch => {
-    API.requestDeleteComment(commentId).then(value => console.log(value));
-
-    dispatch({
-      type: 'DELETE_COMMENT',
-      commentId,
+    API.requestDeleteComment(commentId).then(comment => {
+      dispatch({
+        type: 'DELETE_COMMENT',
+        comment,
+      });
     });
   };
 }
 
-
 export function addCommentVoteScore(voteScore, commentId) {
-  return {
-    type: 'ADD_VOTE_SCORE_TO_COMMENT',
-    voteScore,
-    commentId,
+  return dispatch => {
+    const voteDirection = voteScore === -1 ? 'downVote' : 'upVote';
+    API.requestVoteForComment(voteDirection, commentId).then(comment => {
+      dispatch({
+        type: 'ADD_VOTE_SCORE_TO_COMMENT',
+        comment,
+      });
+    });
   };
 }

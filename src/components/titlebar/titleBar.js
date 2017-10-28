@@ -18,14 +18,16 @@ const Titlebar = props => {
 
   return (
     <Row className="TitleBar">
-      <Column small={2} large={3}>
+      <Column small={2} large={3} className="Backbutton__Column">
         {backButton}
       </Column>
-      <Column small={8} large={6}>
+      <Column small={8} large={6} className="Titlebar__Column">
         <div className="Titlebar__Title">{title}</div>
       </Column>
-      <Column small={2} large={3}>
-        <button className="Titlebar__Menubutton" onClick={props.showDrawer} />
+      <Column small={2} large={3} className="Menubutton__Column">
+        <div className="Titlebar__Menubutton">
+          <button className="Menubutton__Clickable" onClick={props.showDrawer} />
+        </div>
       </Column>
     </Row>
   );

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PT from 'prop-types';
 import moment from 'moment';
 
-import { Row, Column } from 'react-foundation';
+import { Row, Column, GridContainer } from 'react-foundation';
 import Vote from 'components/vote/vote';
 import { addPostVoteScore } from 'actions/postActions';
 import { HUMAN_DATE_FORMAT } from 'constants/constants';
@@ -23,19 +23,23 @@ const PostListItem = props => {
   } = props.post;
 
   return (
-    <Row className="PostListItem">
-      <Column small={8} large={8}>
-        <Link to={`/posts/${id}`}>
-          <div className="PostListItem__Category">{category}</div>
-          <div className="PostListItem__Date">{moment(timestamp).format(HUMAN_DATE_FORMAT)}</div>
-          <div className="PostListItem__Title">{title}</div>
-          <div className="PostListItem__Author">{author}</div>
-        </Link>
-      </Column>
-      <Column small={4} large={4}>
-        <Vote voteScore={voteScore} id={id} addVote={props.addVote} />
-      </Column>
-    </Row>
+    <Column small={12} large={6}>
+      <div className="PostListItem">
+        <Row>
+          <Column small={8} large={8}>
+            <Link to={`/posts/${id}`}>
+              <div className="PostListItem__Category">{category}</div>
+              <div className="PostListItem__Date">{moment(timestamp).format(HUMAN_DATE_FORMAT)}</div>
+              <div className="PostListItem__Title">{title}</div>
+              <div className="PostListItem__Author">{author}</div>
+            </Link>
+          </Column>
+          <Column small={4} large={4}>
+            <Vote voteScore={voteScore} id={id} addVote={props.addVote} />
+          </Column>
+        </Row>
+      </div>
+    </Column>
   );
 };
 

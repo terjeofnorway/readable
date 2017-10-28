@@ -27,43 +27,45 @@ const PostBody = props => {
     category,
   } = props.post;
 
+  const bodyWithPararaphs = body && body.split('\n').map(item => (<p>{item}</p>));
+
   const { addVote } = props;
 
   return Object.keys(props.post).length === 0 ? null : (
     <div className="PostDetails">
       <div className="PostDetails_Header">
         <Row>
-          <Column small={12} large={12}><span className="Header__Category">{category}</span></Column>
+          <Column small={12} large={10} offsetOnLarge={1}><span className="Header__Category">{category}</span></Column>
         </Row>
         <Row>
-          <Column small={12} large={12}>
+          <Column small={12} large={10} offsetOnLarge={1}>
             <h1 className="Header__Title">{title}</h1>
           </Column>
         </Row>
         <Row>
-          <Column small={12} large={6}>
+          <Column small={12} large={10} offsetOnLarge={1}>
             <span className="Header__Author">{author}</span>
           </Column>
-          <Column small={12} large={6}>
+          <Column small={12} large={10} offsetOnLarge={1}>
             <span className="Header__Date">{moment(timestamp).format(HUMAN_DATE_FORMAT)}</span>
           </Column>
         </Row>
         <Row>
-          <Column small={12} large={12}>
+          <Column small={12} large={10} offsetOnLarge={1}>
             <Vote id={id} voteScore={voteScore} addVote={addVote} />
           </Column>
         </Row>
       </div>
       <div className="PostDetails__Content">
         <Row>
-          <Column small={12} large={12}>
+          <Column small={12} large={8} offsetOnLarge={2}>
             <div className="PostDetails__Body">
-              {body}
+              {bodyWithPararaphs}
             </div>
           </Column>
         </Row>
         <Row>
-          <Column small={12} large={12}>
+          <Column small={12} large={8} offsetOnLarge={2}>
             <EditDelete id={id} toggleEdit={() => props.startEditPost(id)} delete={() => props.deletePost(id)} />
           </Column>
         </Row>

@@ -4,6 +4,7 @@ import 'react-dates/initialize';
 import PT from 'prop-types';
 import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
+import { Column, Row } from 'react-foundation';
 import { saveComment } from 'actions/commentActions';
 import { toggleCommentDatePicker } from 'actions/uiActions';
 import { createCommentTemplate } from 'constants/constants';
@@ -80,52 +81,54 @@ class CommentForm extends Component {
     });
 
     return (
-      <form className="CommentForm" onSubmit={this.saveForm}>
-        <SingleDatePicker
-          onFocusChange={this.toggleDatepickerFocus}
-          focused={this.state.isDatePickerShowing}
-          date={moment(timestamp)}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-          firstDayOfWeek={1}
-          displayFormat="ddd, MMMM Do YYYY"
-          onDateChange={momentObject => this.onFieldChange('timestamp', momentObject)}
-        />
-        <div className={classname({
-          Input__Wrapper: true,
-          Input__Wrapper__Author: true,
-          'Input__Wrapper--blurandempty': ((this.state.inputFocus !== 'author' &&
-            this.state.comment.author === '')),
-        })}
-        >
-          <input
-            className="Comment__Author"
-            name="author"
-            type="text"
-            value={author}
-            onChange={event => this.onFieldChange('author', event.target.value)}
-            onFocus={this.inputOnFocus}
-            onBlur={this.inputOnBlur}
+      <Column small={12} medium={8} offsetOnMedium={2}>
+        <form className="CommentForm" onSubmit={this.saveForm}>
+          <SingleDatePicker
+            onFocusChange={this.toggleDatepickerFocus}
+            focused={this.state.isDatePickerShowing}
+            date={moment(timestamp)}
+            numberOfMonths={1}
+            isOutsideRange={() => false}
+            firstDayOfWeek={1}
+            displayFormat="ddd, MMMM Do YYYY"
+            onDateChange={momentObject => this.onFieldChange('timestamp', momentObject)}
           />
-        </div>
-        <div className={classname({
-          Input__Wrapper: true,
-          Input__Wrapper__Body: true,
-          'Input__Wrapper--blurandempty': ((this.state.inputFocus !== 'body' &&
-            this.state.comment.body === '') || this.state.comment.body === undefined),
-        })}
-        >
-          <textarea
-            className="Comment__Body"
-            name="body"
-            value={body}
-            onChange={event => this.onFieldChange('body', event.target.value)}
-            onFocus={this.inputOnFocus}
-            onBlur={this.inputOnBlur}
-          />
-        </div>
-        <input type="submit" value="Save" className={submitButtonClass} />
-      </form>
+          <div className={classname({
+            Input__Wrapper: true,
+            Input__Wrapper__Author: true,
+            'Input__Wrapper--blurandempty': ((this.state.inputFocus !== 'author' &&
+              this.state.comment.author === '')),
+          })}
+          >
+            <input
+              className="Comment__Author"
+              name="author"
+              type="text"
+              value={author}
+              onChange={event => this.onFieldChange('author', event.target.value)}
+              onFocus={this.inputOnFocus}
+              onBlur={this.inputOnBlur}
+            />
+          </div>
+          <div className={classname({
+            Input__Wrapper: true,
+            Input__Wrapper__Body: true,
+            'Input__Wrapper--blurandempty': ((this.state.inputFocus !== 'body' &&
+              this.state.comment.body === '') || this.state.comment.body === undefined),
+          })}
+          >
+            <textarea
+              className="Comment__Body"
+              name="body"
+              value={body}
+              onChange={event => this.onFieldChange('body', event.target.value)}
+              onFocus={this.inputOnFocus}
+              onBlur={this.inputOnBlur}
+            />
+          </div>
+          <input type="submit" value="Save" className={submitButtonClass} />
+        </form>
+      </Column>
     );
   }
 }

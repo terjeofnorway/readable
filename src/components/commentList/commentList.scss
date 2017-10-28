@@ -1,6 +1,13 @@
 @import '../../constants/constants';
 
 .CommentList {
+
+  .CommentList__Emptytext {
+    text-align: center;
+    color:$nav-color-dark;
+    font-size:$font-base-size * 1.5;
+  }
+
   .Comments__AddComments {
     background-color: $white;
     border-radius: 3px;

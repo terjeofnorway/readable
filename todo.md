@@ -4,6 +4,7 @@
 ✅ Refactor stateful to stateless components where appropriate.
 ✅ Add Airbnb linting.
 ✅ Placeholder text for postForm.
+- Insert object from mock server when saving.
 - Connect logic to API for backend storing.
 - Refactor scss color variables
 - Check large screens.
@@ -22,3 +23,4 @@
 ✅ Bogus post ID does not revert to main view
 ✅ Category dropdown is off style.
 - Adding comment directly after adding new post fails.
+- Focus on comment field does not size down placeholder text.

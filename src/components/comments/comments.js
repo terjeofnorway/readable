@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PT from 'prop-types';
 import CommentList from 'components/commentList/commentList';
+import CommentForm from 'components/commentForm/commentForm';
 
 import './comments.scss';
 
@@ -9,11 +10,13 @@ const Comments = props => (
   <div className="Comments">
     <h1>Comments</h1>
     <CommentList comments={props.comments} />
+    <CommentForm parentId={props.parentId} />
   </div>
 );
 
 Comments.propTypes = {
   comments: PT.arrayOf(PT.object),
+  parentId: PT.string.isRequired,
 };
 
 Comments.defaultProps = {

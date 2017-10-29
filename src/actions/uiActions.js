@@ -1,11 +1,14 @@
+import { LIST_ORDER_OPTIONS } from '../constants/constants';
+
 /** Toggles the sort order for listing posts. This gglobal for the entire
  * application.
  * @returns {{type: string}}
  */
-export function toggleSortOrder(sortTarget) {
+export function cycleListOrder(sortTarget) {
   return {
-    type: 'TOGGLE_SORT_ORDER',
+    type: 'CYCLE_LIST_ORDER',
     sortTarget,
+    listOrderOptions: LIST_ORDER_OPTIONS, // Supply with the action object reducer to keep reducer pure.
   };
 }
 

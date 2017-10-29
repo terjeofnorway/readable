@@ -2,19 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PT from 'prop-types';
 import { Row, Column } from 'react-foundation';
-import { toggleSortOrder } from 'actions/uiActions';
+import { cycleListOrder } from 'actions/uiActions';
 
 import './filter.scss';
 
 const Filter = props => {
-  const { filterLabel } = props;
+  const { sortBy } = props;
 
   return (
     <Row>
       <Column small={12} large={12}>
         <button className="Filter" onClick={() => props.toggleSortOrder(props.sortTarget)}>
           <div className="Filter__Button">
-            <span className="Filter__ButtonLabel">{filterLabel}</span>
+            <span className="Filter__ButtonLabel">{sortBy}</span>
           </div>
         </button>
       </Column>
@@ -25,16 +25,20 @@ const Filter = props => {
 Filter.propTypes = {
   sortTarget: PT.string.isRequired,
   toggleSortOrder: PT.func.isRequired,
-  filterLabel: PT.string.isRequired,
+  sortBy: PT.string.isRequired,
 };
 
+/**
+ * sortTarget: Determines if the sort should affect 'comment' or 'post'.
+ * sortBy: The label shown in the UI.
+ */
 const mapStateToProps = ({ ui }, { sortTarget }) => ({
   sortTarget,
-  filterLabel: ui[`${sortTarget}_order`].label,
+  sortBy: ui[`${sortTarget}_order`].label,
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleSortOrder: sortTarget => dispatch(toggleSortOrder(sortTarget)),
+  toggleSortOrder: sortTarget => dispatch(cycleListOrder(sortTarget)),
 });
 
 export default connect(

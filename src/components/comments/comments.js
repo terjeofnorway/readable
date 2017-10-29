@@ -25,7 +25,7 @@ Comments.defaultProps = {
 };
 
 const mapStateToProps = ({ ui, comments }) => {
-  const orderByCommentsKey = ui.comment_order.post_object_key;
+  const orderByCommentsKey = ui.comment_order.field_key;
   const commentsArray = Object.keys(comments).map(key => comments[key]).filter(item => !item.deleted);
   const sortedComments = commentsArray.sort((a, b) => a[orderByCommentsKey] < b[orderByCommentsKey]);
 

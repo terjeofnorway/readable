@@ -1,13 +1,11 @@
-import { UI_FILTER } from '../constants/constants';
-
 /**
  * The UI reducer makes it possible to store the entire application state and
  * late re-hydrate it into a new application launch for percistance.
  */
 
 const defaultState = {
-  post_order: UI_FILTER[0],
-  comment_order: UI_FILTER[0],
+  post_order: { id: 'BY_NAME', label: 'By name', field_key: 'title' },
+  comment_order: { id: 'BY_NAME', label: 'By name', field_key: 'title' },
   confirm: {
     visible: false,
     title: '',
@@ -30,12 +28,20 @@ const defaultState = {
 
 function uiReducer(state = defaultState, action) {
   switch (action.type) {
-    case 'TOGGLE_SORT_ORDER': {
-      const sortTarget = `${action.sortTarget}_order` || 'post_order';
-      const currentOrderPos = UI_FILTER.findIndex(item => (item === state[sortTarget]));
-      const newOrderPos = currentOrderPos + 1 < UI_FILTER.length ? currentOrderPos + 1 : 0;
+    case 'CYCLE_LIST_ORDER': {
+      const { sortTarget, listOrderOptions } = action;
 
-      return { ...state, [sortTarget]: UI_FILTER[newOrderPos] };
+      // Get the target list to sort, either comment or post. Default to 'post_order' if something failed.
+      const sortTargetKey = `${sortTarget}_order` || 'post_order';
+
+      // Get the current position of the order cycle.
+      const currentOrderPos = listOrderOptions.findIndex(item => (item.id === state[sortTargetKey].id));
+
+      // Set the new cycle position either by increment 1 or cycle back to 0;
+      const newOrderPos = currentOrderPos + 1 < listOrderOptions.length ? currentOrderPos + 1 : 0;
+
+      // Update state with new sort object.
+      return { ...state, [sortTargetKey]: listOrderOptions[newOrderPos] };
     }
 
     case 'SHOW_CONFIRM': {

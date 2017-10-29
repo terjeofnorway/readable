@@ -40,15 +40,16 @@ const mapStateToProps = ({ posts, categories, ui }, props) => {
   const orderByPostKey = ui.post_order.field_key;
   const filterCategory = props.categorySlug;
 
-  const postArray = Object.keys(posts).map(key => posts[key]);
-  const postFiltered = filterCategory ?
-    postArray.filter(item => (item.category === filterCategory) && !item.deleted)
-    :
-    postArray.filter(item => !item.deleted);
-  const sortedPosts = postFiltered.sort((a, b) => a[orderByPostKey] < b[orderByPostKey]);
+  // One might argue that filtering should be done in ONE call, but then
+  // there's code readability vs theoretical performance issues. I chose the first in this case.
+  const postArray = Object.keys(posts)
+    .map(key => posts[key])
+    .filter(item => !item.deleted)
+    .filter(item => (filterCategory ? item.category === filterCategory : true))
+    .sort((a, b) => a[orderByPostKey] < b[orderByPostKey]);
 
   return {
-    posts: sortedPosts,
+    posts: postArray,
     post_order: ui.post_order,
     categories,
   };

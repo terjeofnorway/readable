@@ -6,12 +6,12 @@
 ✅ Placeholder text for postForm.
 ✅ Connect logic to API for backend storing.
 ✅ Insert object from mock server when saving.
-- Check large screens.
+✅ Check large screens.
+- Refactor code.
 - Add notes for reviewer.
-- Clean code.
 - Re-clone project to check for yarn install issues.
 - Re-check requirements.
-- Check error in mock server API.
+- Check error in mock server API. (returning post object)
 
 #Issues
 ✅ Add post button covers lowest post item.
@@ -22,5 +22,5 @@
 ✅ Back button needs fixing so that it goes back to front, not previous history.
 ✅ Bogus post ID does not revert to main view
 ✅ Category dropdown is off style.
-- Adding comment directly after adding new post fails.
-- Focus on comment field does not size down placeholder text.
+✅ Adding comment directly after adding new post fails.
+✅ Focus on comment field does not size down placeholder text.

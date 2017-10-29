@@ -21,7 +21,7 @@ class PostForm extends Component {
     }).isRequired,
     savePost: PT.func.isRequired,
     selectionCategories: PT.arrayOf(PT.shape({ value: PT.string.isRequired, label: PT.string.isRequired })).isRequired,
-  }
+  };
 
   componentWillMount() {
     this.setState({ isDatePickerShowing: false });
@@ -33,18 +33,15 @@ class PostForm extends Component {
   };
 
   updateLocalTempPost = (target, input) => {
-    const updateValue = (target === 'timestamp') ? (input.unix() * 1000) : input;
-
-    const post = { ...this.state.post, [target]: updateValue };
+    const post = { ...this.state.post, [target]: input };
     this.setState({ post });
   };
 
   saveForm = event => {
     event.preventDefault();
     const post = { ...this.state.post };
-
-    // Todo: write separate validation function.
-    if (post.author === '' || post.body === '') return;
+    // Crude post validation
+    if (post.author === '' || post.body === '' || post.title === '') return;
     post.isEditing = false;
     this.props.savePost(post);
   };
@@ -53,7 +50,7 @@ class PostForm extends Component {
     this.setState({ isDatePickerShowing: focused });
   };
 
-  selectChange = event => {
+  categoryChange = event => {
     this.updateLocalTempPost('category', event.value);
   };
 
@@ -88,7 +85,7 @@ class PostForm extends Component {
               value={category}
               placeholder="SELECT CATEGORY"
               clearable={false}
-              onChange={this.selectChange}
+              onChange={this.categoryChange}
               className="Post__Category"
             />
             <div className={classname({
@@ -131,7 +128,7 @@ class PostForm extends Component {
               isOutsideRange={() => false}
               firstDayOfWeek={1}
               displayFormat="ddd, MMMM Do YYYY"
-              onDateChange={momentObject => this.updateLocalTempPost('timestamp', momentObject)}
+              onDateChange={momentObject => this.updateLocalTempPost('timestamp', momentObject.unix() * 1000)}
             />
             <div className={classname({
               Input__Wrapper: true,

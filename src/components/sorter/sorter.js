@@ -12,7 +12,7 @@ const Sorter = props => {
   return (
     <Row>
       <Column small={12} large={12}>
-        <button className="Filter" onClick={() => props.toggleSortOrder(props.sortTarget)}>
+        <button className="Filter" onClick={() => props.cycleSortOrder(props.sortTarget)}>
           <div className="Filter__Button">
             <span className="Filter__ButtonLabel">{sortBy}</span>
           </div>
@@ -24,7 +24,7 @@ const Sorter = props => {
 
 Sorter.propTypes = {
   sortTarget: PT.string.isRequired,
-  toggleSortOrder: PT.func.isRequired,
+  cycleSortOrder: PT.func.isRequired,
   sortBy: PT.string.isRequired,
 };
 
@@ -38,7 +38,7 @@ const mapStateToProps = ({ ui }, { sortTarget }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleSortOrder: sortTarget => dispatch(cycleListOrder(sortTarget)),
+  cycleSortOrder: sortTarget => dispatch(cycleListOrder(sortTarget)),
 });
 
 export default connect(

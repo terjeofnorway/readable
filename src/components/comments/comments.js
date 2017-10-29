@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PT from 'prop-types';
+import { Column } from 'react-foundation';
+
 import CommentList from 'components/commentList/commentList';
 import CommentForm from 'components/commentForm/commentForm';
 
@@ -11,7 +13,9 @@ const Comments = props => (
     <h1>Readers comments</h1>
     <CommentList comments={props.comments} />
     <h1>Add your own comment</h1>
-    <CommentForm parentId={props.parentId} />
+    <Column small={12} large={8} offsetOnLarge={2}>
+      <CommentForm parentId={props.parentId} />
+    </Column>
   </div>
 );
 

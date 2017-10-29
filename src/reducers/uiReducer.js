@@ -28,6 +28,7 @@ const defaultState = {
 
 function uiReducer(state = defaultState, action) {
   switch (action.type) {
+    /* Cycle the ordering of posts and comments between TITLE, TIMESTAMP AND VOTESCORE */
     case 'CYCLE_LIST_ORDER': {
       const { sortTarget, listOrderOptions } = action;
 

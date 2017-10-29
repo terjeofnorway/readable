@@ -9,8 +9,7 @@ function postReducer(state = {}, action) {
     case 'INFLATE_POSTS': {
       return action.posts.reduce((collection, item) => {
         const newItem = { ...item, isEditing: false };
-        const newCollection = { ...collection, [item.id]: newItem };
-        return newCollection;
+        return { ...collection, [item.id]: newItem };
       }, {});
     }
 
@@ -19,7 +18,6 @@ function postReducer(state = {}, action) {
     }
 
     case 'DELETE_POST': {
-      console.log(action.post);
       return { ...state, [action.post.id]: { ...action.post } };
     }
 
@@ -28,9 +26,6 @@ function postReducer(state = {}, action) {
 
     case 'SAVE_POST':
       return { ...state, [action.post.id]: { ...action.post } };
-
-    case 'ADD_NEW_POST':
-      return { ...state, [action.post.id]: action.post };
 
     default:
       return state;

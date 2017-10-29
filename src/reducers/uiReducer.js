@@ -77,17 +77,6 @@ function uiReducer(state = defaultState, action) {
       return { ...state, drawer: { visible: true } };
     }
 
-    case 'TOGGLE_EDIT_POST': {
-      const newFlag = !state.postEditor.isEditingPost;
-      const newPostEditor = { ...state.postEditor, isEditingPost: newFlag, editorContent: {} };
-
-      return { ...state, postEditor: newPostEditor };
-    }
-
-    case 'TOGGLE_COMMENT_DATE_PICKER': {
-      return { ...state, commentEditor: { ...state.commentEditor, isDatePickerShowing: action.focused } };
-    }
-
     default:
       return state;
   }

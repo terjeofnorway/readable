@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import PT from 'prop-types';
 import Confirm from 'components/confirm/confirm';
 import Titlebar from 'components/titleBar/titleBar';
@@ -17,6 +17,7 @@ const App = () => (
     <Titlebar />
     <Drawer />
     <Switch>
+      { /* The base route will display all unfiltered posts */ }
       <Route
         path="/" exact render={() => (
           <div>
@@ -26,28 +27,37 @@ const App = () => (
         )}
       />
 
+      { /* Make sure the /post works by redirecting */ }
       <Route
         path="/posts" exact render={() => (
-          <div>
-            <PostList />
-            <AddPost />
-          </div>
+          <Redirect to="/" />
         )}
       />
 
+      { /* Set explicit route for creating new post. Wrapping in Switch
+       will ensure that routes below will not conflict. */ }
       <Route
         path="/posts/new" exact render={() => (
           <CreatePost />
       )}
       />
 
+      { /* Display posts from all categories */ }
       <Route
-        path="/categories/:categorySlug" exact render={props => (
+        path="/:categorySlug/posts" exact render={props => (
           <div>
             <PostList categorySlug={props.match.params.categorySlug} />
             <AddPost />
           </div>
         )}
+      />
+
+      { /* Just using the category slug shoul redirect to the proper
+       path as above. */ }
+      <Route
+        path="/:categorySlug" exact render={props => (
+          <Redirect to={`${props.match.params.categorySlug}/posts`} />
+      )}
       />
 
       <Route

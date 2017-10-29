@@ -4,8 +4,8 @@
  */
 
 const defaultState = {
-  post_order: { id: 'BY_NAME', label: 'By name', field_key: 'title' },
-  comment_order: { id: 'BY_NAME', label: 'By name', field_key: 'title' },
+  post_order: { id: 'BY_SCORE', label: 'By votes', field_key: 'voteScore' },
+  comment_order: { id: 'BY_SCORE', label: 'By votes', field_key: 'voteScore' },
   confirm: {
     visible: false,
     title: '',

@@ -89,7 +89,6 @@ class PostDetails extends Component {
   static propTypes = {
     savePost: PT.func.isRequired,
     history: PT.shape({ push: PT.func.isRequired }).isRequired,
-    match: PT.shape({ params: PT.shape({ id: PT.string.isRequired }) }).isRequired,
     id: PT.string.isRequired,
     post: PT.object,
     loadComments: PT.func.isRequired,
@@ -113,12 +112,6 @@ class PostDetails extends Component {
 
   savePost = post => {
     this.props.savePost(post);
-
-    // If the posts id for some reson changed or if the post is new
-    // ie. the route is '/posts/new', redirect to actual post id.
-    if (this.props.match.params.id !== post.id) {
-      this.props.history.push(`/posts/${post.id}`);
-    }
   };
 
   render() {

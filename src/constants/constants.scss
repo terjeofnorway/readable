@@ -1,24 +1,26 @@
 
-$background-color:#FFFCF8;
-$background-color-dark:#454545;
-$text-color:#454545;
-$text-color-light:#9A9A9A;
-$text-color-negative:#ffffff;
-$nav-color-light:#EDAC54;
-$nav-color-dark:#D97D00;
-
-
-$light-gray:#CBCBCB;
-$dark-gray:#636364;
+/* General color definitions */
+$light-gray: #CBCBCB;
+$mid-gray: #636364;
+$dark-gray: #454545;
+$light-orange: #EDAC54;
+$dark-orange: #D97D00;
 $white:#FFFFFF;
+$off-white: #FFFCF8;
 
-
+/* Color mapping */
+$background-color: $off-white;
+$background-color-dark: $dark-gray;
+$text-color: $dark-gray;
+$text-color-light: $mid-gray;
+$text-color-negative: $white;
+$nav-color-light: $light-orange;
+$nav-color-dark: $dark-orange;
 
 /* Typography and font settings */
 $font-face-sansserif: Muli, Arial, sans-serif;
 $font-face-serif:'Cormorant Garamond','Times New Roman',Times, serif;
 $font-base-size:14px;
-
 
 /* Grid */
 $grid-small: 40em;

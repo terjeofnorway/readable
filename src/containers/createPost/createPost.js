@@ -13,21 +13,24 @@ class CreatePost extends Component {
     history: PT.object,
     match: PT.object,
     savePost: PT.func.isRequired,
-  }
+  };
 
   static defaultProps = {
     history: {},
     match: {},
-  }
+  };
 
   savePost = post => {
     this.props.savePost(post);
+
+    // The route is '/posts/new', so redirect to actual post id after saving.
     if (this.props.match.params.id !== post.id) {
       this.props.history.push(`/posts/${post.id}`);
     }
   };
 
   render() {
+    // Create a post template with empty fields to give as prop to PostForm.
     const post = { ...createPostTemplate() };
     return (
       <div className="CreatePost">

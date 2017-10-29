@@ -8,8 +8,9 @@ import './comments.scss';
 
 const Comments = props => (
   <div className="Comments">
-    <h1>Comments</h1>
+    <h1>Readers comments</h1>
     <CommentList comments={props.comments} />
+    <h1>Add your own comment</h1>
     <CommentForm parentId={props.parentId} />
   </div>
 );

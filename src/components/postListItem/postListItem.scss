@@ -1,10 +1,18 @@
-@import '../../constants/variables';
+@import '../../constants/constants';
 
 .PostListItem {
-  margin: 20px 0;
-  padding: 10px 0;
+
+  padding: 2em;
   background-color: #ffffff;
   box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+
+  @media screen and (max-width: $grid-large) {
+    margin: 0.4em 0;
+  }
+
+  @media screen and (min-width: $grid-large) {
+    margin: 1.2em 0;
+  }
 
   .PostListItem__Category {
     text-transform:uppercase;
@@ -16,7 +24,6 @@
   .PostListItem__Date {
     float:left;
     color:$text-color-light;
-
   }
   .PostListItem__Title {
     display:block;

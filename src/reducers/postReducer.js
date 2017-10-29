@@ -15,16 +15,12 @@ function postReducer(state = {}, action) {
     }
 
     case 'ADD_VOTE_SCORE_TO_POST': {
-      const { postId, voteScore } = action;
-      const newVoteScore = state[postId].voteScore + voteScore;
-      const post = { ...state[postId], voteScore: newVoteScore };
-
-      return { ...state, [postId]: { ...post } };
+      return { ...state, [action.post.id]: { ...action.post } };
     }
 
     case 'DELETE_POST': {
-      const newState = { ...state, [action.postId]: { ...state[action.postId], deleted: true } };
-      return newState;
+      console.log(action.post);
+      return { ...state, [action.post.id]: { ...action.post } };
     }
 
     case 'START_EDIT_POST':

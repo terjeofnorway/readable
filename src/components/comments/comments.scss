@@ -1,4 +1,4 @@
-@import '../../constants/variables';
+@import '../../constants/constants';
 
 .Comments {
   h1 {
@@ -8,6 +8,6 @@
     align-items: center;
     font-weight:100;
     font-size:$font-base-size * 2;
-
+    margin-top:2em;
   }
 }

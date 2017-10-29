@@ -1,4 +1,4 @@
-@import '../../constants/variables';
+@import '../../constants/constants';
 
 .Filter {
   display:flex;
@@ -17,7 +17,7 @@
       font-size:$font-base-size  * 1.3;
       font-weight:bold;
       margin-left:50px;
-      line-height:0;
+      line-height:1.2em;
       color:$nav-color-dark;
     }
 

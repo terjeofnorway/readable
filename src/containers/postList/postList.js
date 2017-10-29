@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PT from 'prop-types';
+import { Row } from 'react-foundation';
 import PostListItem from 'components/postListItem/postListItem';
 import Filter from 'components/filter/filter';
 
@@ -16,12 +17,12 @@ const PostList = props => {
     <div className="PostList">
       <Filter sortTarget="post" />
       {filterHeader}
-      <div className="PostList__Container">
+      <Row className="PostList__Container">
         {
           posts.map(post => (<PostListItem post={post} key={post.id} />))
         }
         {noPostsFound}
-      </div>
+      </Row>
     </div>
   );
 };

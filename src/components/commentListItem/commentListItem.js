@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import PT from 'prop-types';
+import { Column, Row } from 'react-foundation';
 
 import { saveComment, deleteComment, startEditComment, addCommentVoteScore } from 'actions/commentActions';
 import EditDelete from 'components/editDelete/editDelete';
@@ -27,18 +28,18 @@ const CommentListItem = props => {
     <CommentForm comment={props.comment} />
     :
     (
-      <div className="CommentListItem">
-        <h2 className="Comment__Date">{moment(timestamp).format(HUMAN_DATE_FORMAT)}</h2>
-        <p className="Comment__Author">{author}</p>
-        <p className="Comment__Body">{body}</p>
-        <Vote id={id} voteScore={voteScore} addVote={addVote} />
-        <EditDelete id={id} toggleEdit={props.startEditComment} delete={props.delete} />
-      </div>
+      <Column small={12} large={12}>
+        <div className="CommentListItem">
+          <h2 className="Comment__Date">{moment(timestamp).format(HUMAN_DATE_FORMAT)}</h2>
+          <p className="Comment__Author">{author}</p>
+          <p className="Comment__Body">{body}</p>
+          <Vote id={id} voteScore={voteScore} addVote={addVote} />
+          <EditDelete id={id} toggleEdit={props.startEditComment} delete={props.delete} />
+        </div>
+      </Column>
     );
 
-  return (
-    <div>{content}</div>
-  );
+  return (content);
 };
 
 CommentListItem.propTypes = {

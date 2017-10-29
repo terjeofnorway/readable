@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
+import { Column, Row } from 'react-foundation';
 import PT from 'prop-types';
 import { toggleCommentDatePicker } from 'actions/uiActions';
 import classname from 'classname';
@@ -76,78 +77,82 @@ class PostForm extends Component {
     const submitButtonClass = classname({ Post__Submit: true });
 
     return (
-      <form className="PostForm" onSubmit={this.saveForm}>
-        <Select
-          name="form-field-name"
-          options={this.props.selectionCategories}
-          allowCreate={false}
-          searchable={false}
-          value={category}
-          placeholder="SELECT CATEGORY"
-          clearable={false}
-          onChange={this.selectChange}
-          className="Post__Category"
-        />
-        <div className={classname({
-          Input__Wrapper: true,
-          Input__Wrapper__Title: true,
-          'Input__Wrapper--blurandempty': (this.state.inputFocus !== 'title' &&
-            this.state.post.title === ''),
-        })}
-        >
-          <input
-            name="title"
-            className="Post__Title"
-            value={title}
-            onChange={event => this.updateLocalTempPost('title', event.target.value)}
-            onFocus={this.inputOnFocus}
-            onBlur={this.inputOnBlur}
-          />
-        </div>
-        <div className={classname({
-          Input__Wrapper: true,
-          Input__Wrapper__Author: true,
-          'Input__Wrapper--blurandempty': (this.state.inputFocus !== 'author' &&
-            this.state.post.author === ''),
-        })}
-        >
-          <input
-            name="author"
-            className="Post__Author"
-            value={author}
-            onChange={event => this.updateLocalTempPost('author', event.target.value)}
-            onFocus={this.inputOnFocus}
-            onBlur={this.inputOnBlur}
-          />
-        </div>
-        <SingleDatePicker
-          onFocusChange={this.toggleDatepickerFocus}
-          focused={this.state.isDatePickerShowing}
-          date={moment(timestamp)}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-          firstDayOfWeek={1}
-          displayFormat="ddd, MMMM Do YYYY"
-          onDateChange={momentObject => this.updateLocalTempPost('timestamp', momentObject)}
-        />
-        <div className={classname({
-          Input__Wrapper: true,
-          Input__Wrapper__Body: true,
-          'Input__Wrapper--blurandempty': (this.state.inputFocus !== 'body' &&
-            this.state.post.body === ''),
-        })}
-        >
-          <textarea
-            name="body"
-            className="Post__Body"
-            value={body}
-            onChange={event => this.updateLocalTempPost('body', event.target.value)}
-            onFocus={this.inputOnFocus}
-            onBlur={this.inputOnBlur}
-          />
-        </div>
-        <input type="submit" value="Save" className={submitButtonClass} />
-      </form>
+      <Row>
+        <Column small={12} large={10} offsetOnLarge={1}>
+          <form className="PostForm" onSubmit={this.saveForm}>
+            <Select
+              name="form-field-name"
+              options={this.props.selectionCategories}
+              allowCreate={false}
+              searchable={false}
+              value={category}
+              placeholder="SELECT CATEGORY"
+              clearable={false}
+              onChange={this.selectChange}
+              className="Post__Category"
+            />
+            <div className={classname({
+              Input__Wrapper: true,
+              Input__Wrapper__Title: true,
+              'Input__Wrapper--blurandempty': (this.state.inputFocus !== 'title' &&
+                this.state.post.title === ''),
+            })}
+            >
+              <input
+                name="title"
+                className="Post__Title"
+                value={title}
+                onChange={event => this.updateLocalTempPost('title', event.target.value)}
+                onFocus={this.inputOnFocus}
+                onBlur={this.inputOnBlur}
+              />
+            </div>
+            <div className={classname({
+              Input__Wrapper: true,
+              Input__Wrapper__Author: true,
+              'Input__Wrapper--blurandempty': (this.state.inputFocus !== 'author' &&
+                this.state.post.author === ''),
+            })}
+            >
+              <input
+                name="author"
+                className="Post__Author"
+                value={author}
+                onChange={event => this.updateLocalTempPost('author', event.target.value)}
+                onFocus={this.inputOnFocus}
+                onBlur={this.inputOnBlur}
+              />
+            </div>
+            <SingleDatePicker
+              onFocusChange={this.toggleDatepickerFocus}
+              focused={this.state.isDatePickerShowing}
+              date={moment(timestamp)}
+              numberOfMonths={1}
+              isOutsideRange={() => false}
+              firstDayOfWeek={1}
+              displayFormat="ddd, MMMM Do YYYY"
+              onDateChange={momentObject => this.updateLocalTempPost('timestamp', momentObject)}
+            />
+            <div className={classname({
+              Input__Wrapper: true,
+              Input__Wrapper__Body: true,
+              'Input__Wrapper--blurandempty': (this.state.inputFocus !== 'body' &&
+                this.state.post.body === ''),
+            })}
+            >
+              <textarea
+                name="body"
+                className="Post__Body"
+                value={body}
+                onChange={event => this.updateLocalTempPost('body', event.target.value)}
+                onFocus={this.inputOnFocus}
+                onBlur={this.inputOnBlur}
+              />
+            </div>
+            <input type="submit" value="Save" className={submitButtonClass} />
+          </form>
+        </Column>
+      </Row>
     );
   }
 }

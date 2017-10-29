@@ -20,6 +20,7 @@ const PostListItem = props => {
     author,
     category,
     voteScore,
+    commentCount,
   } = props.post;
 
   return (
@@ -32,6 +33,7 @@ const PostListItem = props => {
               <div className="PostListItem__Date">{moment(timestamp).format(HUMAN_DATE_FORMAT)}</div>
               <div className="PostListItem__Title">{title}</div>
               <div className="PostListItem__Author">{author}</div>
+              <div className="PostListItem__CommentCount">{commentCount} comments</div>
             </Link>
           </Column>
           <Column small={4} large={4}>

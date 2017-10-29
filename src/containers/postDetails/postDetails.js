@@ -16,6 +16,8 @@ import { HUMAN_DATE_FORMAT } from 'constants/constants';
 
 import './postDetails.scss';
 
+const uuid = require('uuid/v4');
+
 const PostBody = props => {
   const {
     id,
@@ -27,7 +29,7 @@ const PostBody = props => {
     category,
   } = props.post;
 
-  const bodyWithPararaphs = body && body.split('\n').map(item => (<p>{item}</p>));
+  const bodyWithPararaphs = body && body.split('\n').map(item => (<p key={uuid()}>{item}</p>));
 
   const { addVote } = props;
 

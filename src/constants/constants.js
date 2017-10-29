@@ -21,6 +21,8 @@ export const createCommentTemplate = () => ({
   id: uuid(),
   timestamp: Date.now(),
   title: '',
+  author: '',
+  body: '',
   voteScore: 0,
   isEditing: false,
 });

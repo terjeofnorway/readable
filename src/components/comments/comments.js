@@ -10,7 +10,7 @@ import './comments.scss';
 
 const Comments = props => (
   <div className="Comments">
-    <h1>Readers comments</h1>
+    <h1>{props.comments.length} comments from readers</h1>
     <CommentList comments={props.comments} />
     <h1>Add your own comment</h1>
     <Column small={12} large={8} offsetOnLarge={2}>

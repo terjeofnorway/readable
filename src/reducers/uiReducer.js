@@ -84,16 +84,6 @@ function uiReducer(state = defaultState, action) {
       return { ...state, postEditor: newPostEditor };
     }
 
-    case 'UPDATE_POST_EDITOR_CONTENT': {
-      const newPostEditorContent = { ...state.postEditor.editorContent, [action.field]: action.content };
-      return { ...state, postEditor: { ...state.postEditor, editorContent: newPostEditorContent } };
-    }
-
-    case 'TOGGLE_COMMENT_ACTIONS': {
-      const actionId = state.commentEditor.activeCommentAction === action.commentId ? '' : action.commentId;
-      return { ...state, commentEditor: { ...state.commentEditor, activeCommentAction: actionId } };
-    }
-
     case 'TOGGLE_COMMENT_DATE_PICKER': {
       return { ...state, commentEditor: { ...state.commentEditor, isDatePickerShowing: action.focused } };
     }

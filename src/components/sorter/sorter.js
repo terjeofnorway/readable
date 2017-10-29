@@ -4,9 +4,9 @@ import PT from 'prop-types';
 import { Row, Column } from 'react-foundation';
 import { cycleListOrder } from 'actions/uiActions';
 
-import './filter.scss';
+import './sorter.scss';
 
-const Filter = props => {
+const Sorter = props => {
   const { sortBy } = props;
 
   return (
@@ -22,7 +22,7 @@ const Filter = props => {
   );
 };
 
-Filter.propTypes = {
+Sorter.propTypes = {
   sortTarget: PT.string.isRequired,
   toggleSortOrder: PT.func.isRequired,
   sortBy: PT.string.isRequired,
@@ -44,4 +44,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Filter);
+)(Sorter);

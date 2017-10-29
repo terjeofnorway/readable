@@ -4,7 +4,7 @@ import PT from 'prop-types';
 import { Row, Column } from 'react-foundation';
 
 import PostListItem from 'components/postListItem/postListItem';
-import Filter from 'components/filter/filter';
+import Sorter from 'components/sorter/sorter';
 
 import './postList.scss';
 
@@ -17,7 +17,7 @@ const PostList = props => {
 
   return (
     <div className="PostList">
-      <Filter sortTarget="post" />
+      <Sorter sortTarget="post" />
       {listHeader}
       <Row className="PostList__Container">
         {posts.map(post => (<PostListItem post={post} key={post.id} />))}

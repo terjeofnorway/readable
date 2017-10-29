@@ -2,7 +2,7 @@ import React from 'react';
 import PT from 'prop-types';
 import { Column, Row } from 'react-foundation';
 import CommentListItem from 'components/commentListItem/commentListItem';
-import Filter from 'components/filter/filter';
+import Sorter from 'components/sorter/sorter';
 
 import './commentList.scss';
 
@@ -10,7 +10,7 @@ const CommentList = props => (
   <div className="CommentList">
     <Row>
       <Column small={12} medium={8} offsetOnMedium={2}>
-        {Object.keys(props.comments).length > 0 ? <Filter sortTarget="comment" /> : ''}
+        {Object.keys(props.comments).length > 0 ? <Sorter sortTarget="comment" /> : ''}
       </Column>
     </Row>
     <Row>

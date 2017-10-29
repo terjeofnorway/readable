@@ -57,7 +57,7 @@ class API {
     }).then(response => response.json());
   }
 
-  static requestAddPost(post) {
+  static requestSavePost(post) {
     const stringifiedPost = JSON.stringify(post);
 
     return fetch(`${API.serverHost}/posts`, {

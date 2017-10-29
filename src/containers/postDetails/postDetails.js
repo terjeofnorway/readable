@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Column, Row } from 'react-foundation';
 import PT from 'prop-types';
+import moment from 'moment';
 
 import Vote from 'components/vote/vote';
 import EditDelete from 'components/editDelete/editDelete';
 import Comments from 'components/comments/comments';
-import moment from 'moment';
-
-import { addPostVoteScore, savePost, deletePost, startEditPost } from 'actions/postActions';
-import { loadComments } from 'actions/commentActions';
 import PostForm from 'components/postForm/postForm';
+
 import { HUMAN_DATE_FORMAT } from 'constants/constants';
+import { loadComments } from 'actions/commentActions';
+import { addPostVoteScore, savePost, deletePost, startEditPost } from 'actions/postActions';
 
 import './postDetails.scss';
 
@@ -29,9 +29,10 @@ const PostBody = props => {
     category,
   } = props.post;
 
-  const bodyWithPararaphs = body && body.split('\n').map(item => (<p key={uuid()}>{item}</p>));
-
   const { addVote } = props;
+
+  // Split newlines into array in order to create paragraphed text.
+  const bodyWithPararaphs = body && body.split('\n').map(item => (<p key={uuid()}>{item}</p>));
 
   return Object.keys(props.post).length === 0 ? null : (
     <div className="PostDetails">
@@ -78,35 +79,32 @@ const PostBody = props => {
 };
 
 PostBody.propTypes = {
-  post: PT.object,
+  post: PT.object.isRequired,
   addVote: PT.func.isRequired,
   startEditPost: PT.func.isRequired,
   deletePost: PT.func.isRequired,
-};
-
-PostBody.defaultProps = {
-  post: {},
 };
 
 class PostDetails extends Component {
   static propTypes = {
     savePost: PT.func.isRequired,
     history: PT.shape({ push: PT.func.isRequired }).isRequired,
-    match: PT.shape({ params: PT.shape({ id: PT.string.isRequired }) }).isRequired,
     id: PT.string.isRequired,
     post: PT.object,
     loadComments: PT.func.isRequired,
-  }
+  };
 
   static defaultProps = {
     post: {},
-  }
+  };
 
   componentDidMount() {
     this.props.id && this.props.loadComments(this.props.id);
   }
 
   componentWillReceiveProps(nextProps) {
+    // If the post is deleted (by setting deleted flag)
+    // while viewing the post, redirect to route root by default.
     if (nextProps.post === {} || nextProps.post.deleted) {
       nextProps.history.push('/');
     }
@@ -114,15 +112,14 @@ class PostDetails extends Component {
 
   savePost = post => {
     this.props.savePost(post);
-    if (this.props.match.params.id !== post.id) {
-      this.props.history.push(`/posts/${post.id}`);
-    }
   };
 
   render() {
-    const post = this.props.post ? this.props.post : { ...this.postTemplate, isEditing: true };
-
-    return (!post.isEditing ? (PostBody(this.props)) : (<PostForm post={post} savePost={this.savePost} />));
+    const { post } = this.props;
+    return (!post.isEditing ?
+      (PostBody(this.props))
+      :
+      (<PostForm post={post} savePost={this.savePost} />));
   }
 }
 

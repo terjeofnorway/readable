@@ -11,15 +11,9 @@ const EditDelete = props => (
 );
 
 EditDelete.propTypes = {
-  id: PT.string,
-  toggleEdit: PT.func,
-  delete: PT.func,
-};
-
-EditDelete.defaultProps = {
-  id: '',
-  toggleEdit: () => {},
-  delete: () => {},
+  id: PT.string.isRequired,
+  toggleEdit: PT.func.isRequired,
+  delete: PT.func.isRequired,
 };
 
 export default EditDelete;

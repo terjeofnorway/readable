@@ -1,5 +1,6 @@
 .EditDelete{
   margin:10px 0;
+
   .EditDelete__Edit, .EditDelete__Delete {
     width:20px;
     height:20px;
@@ -9,8 +10,8 @@
 
   .EditDelete__Edit {
     background-image:url('../../graphics/icon-edit.svg');
-
   }
+
   .EditDelete__Delete {
     background-image:url('../../graphics/icon-delete.svg');
   }

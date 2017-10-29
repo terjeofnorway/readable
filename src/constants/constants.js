@@ -1,9 +1,9 @@
 const uuid = require('uuid/v4');
 
-export const UI_FILTER = [
-  { id: 'BY_NAME', label: 'By name', post_object_key: 'title' },
-  { id: 'BY_DATE', label: 'By date', post_object_key: 'timestamp' },
-  { id: 'BY_SCORE', label: 'By votes', post_object_key: 'voteScore' },
+export const LIST_ORDER_OPTIONS = [
+  { id: 'BY_NAME', label: 'By name', field_key: 'title' },
+  { id: 'BY_DATE', label: 'By date', field_key: 'timestamp' },
+  { id: 'BY_SCORE', label: 'By votes', field_key: 'voteScore' },
 ];
 
 export const createPostTemplate = () => ({

@@ -11,7 +11,7 @@ const DrawerCategoryListItem = props => {
 
   return (
     <li className="CategoryListItem">
-      <Link to={`/categories/${path}`} onClick={props.closeDrawer}>
+      <Link to={`/${path}/posts`} onClick={props.closeDrawer}>
         <div className="Category__Name">{name}</div>
       </Link>
     </li>
@@ -19,7 +19,10 @@ const DrawerCategoryListItem = props => {
 };
 
 DrawerCategoryListItem.propTypes = {
-  item: PT.shape({ path: PT.string.isRequired, name: PT.string.isRequired }).isRequired,
+  item: PT.shape({
+    path: PT.string.isRequired,
+    name: PT.string.isRequired,
+  }).isRequired,
   closeDrawer: PT.func.isRequired,
 };
 

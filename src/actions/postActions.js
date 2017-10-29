@@ -1,12 +1,6 @@
 import { showConfirm } from 'actions/uiActions';
 import API from 'helpers/api';
 
-/** Adds a new vote to the total post score. Votes can be 1 or -1
- *
- * @param voteScore Number The Score to add (can be 1 or -1)
- * @param postId String The unique ID of the post.
- * @returns {{type: string, voteScore: *, postId: *}}
- */
 export function addPostVoteScore(voteScore, id) {
   return dispatch => {
     const voteDirection = voteScore === -1 ? 'downVote' : 'upVote';
@@ -60,9 +54,11 @@ export function startEditPost(id) {
 
 
 export function savePost(post) {
+  // This action handles both adding new and updating existing posts, as the API
+  // will handle adding any no-existing posts into DB via the POST method.
   return dispatch => {
-    API.requestAddPost(post).then(returnPost => dispatch({
-      type: 'ADD_NEW_POST',
+    API.requestSavePost(post).then(returnPost => dispatch({
+      type: 'SAVE_POST',
       post: returnPost,
     }));
   };

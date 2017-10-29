@@ -7,7 +7,7 @@
 ✅ Connect logic to API for backend storing.
 ✅ Insert object from mock server when saving.
 ✅ Check large screens.
-- Refactor code.
+✅  Refactor code.
 - Add notes for reviewer.
 - Re-clone project to check for yarn install issues.
 - Re-check requirements.

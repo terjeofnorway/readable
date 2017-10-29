@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import PT from 'prop-types';
-import { Column, Row } from 'react-foundation';
+import { Column } from 'react-foundation';
 
 import { saveComment, deleteComment, startEditComment, addCommentVoteScore } from 'actions/commentActions';
 import EditDelete from 'components/editDelete/editDelete';
 import CommentForm from 'components/commentForm/commentForm';
 import Vote from 'components/vote/vote';
+
 import { HUMAN_DATE_FORMAT } from 'constants/constants';
 import './commentListItem.scss';
 

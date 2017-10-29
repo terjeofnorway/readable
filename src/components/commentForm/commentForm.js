@@ -4,54 +4,61 @@ import 'react-dates/initialize';
 import PT from 'prop-types';
 import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
+import classname from 'classname';
+
 import { saveComment } from 'actions/commentActions';
 import { toggleCommentDatePicker } from 'actions/uiActions';
 import { createCommentTemplate } from 'constants/constants';
-import classname from 'classname';
+
 import './commentForm.scss';
 
 class CommentForm extends Component {
   static propTypes = {
     comment: PT.object,
-    saveComment: PT.func,
+    saveComment: PT.func.isRequired,
     parentId: PT.string.isRequired,
   };
 
   static defaultProps = {
     comment: createCommentTemplate(),
-    saveComment: () => {},
   };
 
   componentWillMount() {
     this.setState({ isDatePickerShowing: false });
-    this.saveCommentToLocalState(this.props.comment);
+
+    // Set a local state of the comment for editing. This state object will be sent
+    // to commentReducer on save. The object is either derived from and existing
+    // comment to be edited or from defaultProps if the comment is new.
+    this.setState({ comment: { ...this.props.comment } });
   }
 
   onFieldChange = (target, input) => {
-    const updateValue = (target === 'timestamp') ?
-      (input.unix() * 1000) :
-      input;
-
-    const comment = { ...this.state.comment, [target]: updateValue };
-    this.setState({ comment });
-  };
-
-  saveCommentToLocalState = comment => {
-    const localComment = comment ?
-      { ...comment } :
-      createCommentTemplate();
-
-    this.setState({ comment: localComment });
+    // Update the local copy of the comment. The actuall redux state is updated
+    // when user hits save.
+    this.setState({ comment: { ...this.state.comment, [target]: input } });
   };
 
   saveForm = event => {
     event.preventDefault();
+
+    // Create copy of comment object to avoid state mutation.
     const comment = { ...this.state.comment };
+
+    // Crude form validation
     if (comment.author === '' || comment.body === '') return;
+
+    // Make some adjustments to comment object before sending to reducer.
     comment.isEditing = false;
     comment.parentId = comment.parentId ? comment.parentId : this.props.parentId;
+
     this.props.saveComment(comment);
-    this.resetComment();
+    this.resetCommentForm();
+  };
+
+  resetCommentForm = () => {
+    // Reset the form by creating a new local comment object for the
+    // controlled form.
+    this.setState({ comment: createCommentTemplate() });
   };
 
   inputOnFocus = event => {
@@ -62,18 +69,14 @@ class CommentForm extends Component {
     this.setState({ inputFocus: '' });
   };
 
-  resetComment = () => {
-    this.setState({
-      comment: createCommentTemplate(),
-    });
-  };
-
   toggleDatepickerFocus = ({ focused }) => {
     this.setState({ isDatePickerShowing: focused });
   };
 
   render() {
     const { author, timestamp, body } = this.state.comment;
+
+    // Disable the submit button if some fields are empty.
     const submitButtonClass = classname({
       Comment__Submit: true,
       'Comment__Submit--disabled': (author === '' || body === ''),
@@ -89,7 +92,7 @@ class CommentForm extends Component {
           isOutsideRange={() => false}
           firstDayOfWeek={1}
           displayFormat="ddd, MMMM Do YYYY"
-          onDateChange={momentObject => this.onFieldChange('timestamp', momentObject)}
+          onDateChange={momentObject => this.onFieldChange('timestamp', momentObject.unix() * 1000)}
         />
         <div className={classname({
           Input__Wrapper: true,

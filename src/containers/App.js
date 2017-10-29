@@ -44,20 +44,12 @@ const App = () => (
 
       { /* Display posts from all categories */ }
       <Route
-        path="/:categorySlug/posts" exact render={props => (
+        path="/:categorySlug" exact render={props => (
           <div>
             <PostList categorySlug={props.match.params.categorySlug} />
             <AddPost />
           </div>
         )}
-      />
-
-      { /* Just using the category slug shoul redirect to the proper
-       path as above. */ }
-      <Route
-        path="/:categorySlug" exact render={props => (
-          <Redirect to={`${props.match.params.categorySlug}/posts`} />
-      )}
       />
 
       <Route

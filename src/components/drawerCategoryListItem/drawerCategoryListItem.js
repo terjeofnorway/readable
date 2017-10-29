@@ -11,7 +11,7 @@ const DrawerCategoryListItem = props => {
 
   return (
     <li className="CategoryListItem">
-      <Link to={`/${path}/posts`} onClick={props.closeDrawer}>
+      <Link to={`/${path}`} onClick={props.closeDrawer}>
         <div className="Category__Name">{name}</div>
       </Link>
     </li>

@@ -1,6 +1,7 @@
 import React from 'react';
 import PT from 'prop-types';
 import { Column, Row } from 'react-foundation';
+
 import CommentListItem from 'components/commentListItem/commentListItem';
 import Sorter from 'components/sorter/sorter';
 

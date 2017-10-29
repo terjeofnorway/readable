@@ -19,7 +19,10 @@ const DrawerCategoryListItem = props => {
 };
 
 DrawerCategoryListItem.propTypes = {
-  item: PT.shape({ path: PT.string.isRequired, name: PT.string.isRequired }).isRequired,
+  item: PT.shape({
+    path: PT.string.isRequired,
+    name: PT.string.isRequired,
+  }).isRequired,
   closeDrawer: PT.func.isRequired,
 };
 

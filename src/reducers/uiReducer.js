@@ -1,3 +1,5 @@
+import * as Types from 'actions/types';
+
 /**
  * The UI reducer makes it possible to store the entire application state and
  * late re-hydrate it into a new application launch for percistance.
@@ -29,7 +31,7 @@ const defaultState = {
 function uiReducer(state = defaultState, action) {
   switch (action.type) {
     /* Cycle the ordering of posts and comments between TITLE, TIMESTAMP AND VOTESCORE */
-    case 'CYCLE_LIST_ORDER': {
+    case Types.CYCLE_LIST_ORDER: {
       const { sortTarget, listOrderOptions } = action;
 
       // Get the target list to sort, either comment or post. Default to 'post_order' if something failed.
@@ -45,7 +47,7 @@ function uiReducer(state = defaultState, action) {
       return { ...state, [sortTargetKey]: listOrderOptions[newOrderPos] };
     }
 
-    case 'SHOW_CONFIRM': {
+    case Types.SHOW_CONFIRM: {
       const {
         title,
         body,
@@ -65,15 +67,15 @@ function uiReducer(state = defaultState, action) {
       };
     }
 
-    case 'HIDE_CONFIRM': {
+    case Types.HIDE_CONFIRM: {
       return { ...state, confirm: { visible: false, title: null, body: null } };
     }
 
-    case 'CLOSE_DRAWER': {
+    case Types.CLOSE_DRAWER: {
       return { ...state, drawer: { visible: false } };
     }
 
-    case 'SHOW_DRAWER': {
+    case Types.SHOW_DRAWER: {
       return { ...state, drawer: { visible: true } };
     }
 

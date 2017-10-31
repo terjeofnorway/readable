@@ -1,15 +1,17 @@
+import API from 'helpers/api';
+import * as Types from 'actions/types';
+
 /** ----------------------------------------
  * These exported action creators are used
  * for initial application loading.
  * -----------------------------------------
  */
 
-import API from 'helpers/api';
 
 /* Inflate categories into the app for the first time. */
 export function inflateCategories(data) {
   return {
-    type: 'INFLATE_CATEGORIES',
+    type: Types.INFLATE_CATEGORIES,
     categories: data.categories,
   };
 }
@@ -17,7 +19,7 @@ export function inflateCategories(data) {
 /* Inflate posts into the app for the first time */
 export function inflatePosts(data) {
   return {
-    type: 'INFLATE_POSTS',
+    type: Types.INFLATE_POSTS,
     posts: data,
   };
 }

@@ -1,3 +1,5 @@
+import * as Types from '../actions/types';
+
 /** Reducer handling the posts for the application
  *
  * @param state
@@ -6,25 +8,25 @@
  */
 function postReducer(state = {}, action) {
   switch (action.type) {
-    case 'INFLATE_POSTS': {
+    case Types.INFLATE_POSTS: {
       return action.posts.reduce((collection, item) => {
         const newItem = { ...item, isEditing: false };
         return { ...collection, [item.id]: newItem };
       }, {});
     }
 
-    case 'ADD_VOTE_SCORE_TO_POST': {
+    case Types.ADD_VOTE_SCORE_TO_POST: {
       return { ...state, [action.post.id]: { ...action.post } };
     }
 
-    case 'DELETE_POST': {
+    case Types.DELETE_POST: {
       return { ...state, [action.post.id]: { ...action.post } };
     }
 
-    case 'START_EDIT_POST':
+    case Types.START_EDIT_POST:
       return { ...state, [action.id]: { ...state[action.id], isEditing: true } };
 
-    case 'SAVE_POST':
+    case Types.SAVE_POST:
       return { ...state, [action.post.id]: { ...action.post } };
 
     default:

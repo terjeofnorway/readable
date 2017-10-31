@@ -45,6 +45,13 @@
   }
 }
 
+.Post__Unavailable {
+  color:$nav-color-dark;
+  font-size:$font-base-size * 2;
+  text-align:center;
+  padding:3em 0;
+}
+
 .PostDetails--editing {
   .Header__Title, .Header__Author, .Header__Date, .PostDetails__Body {
     background-color:$white;

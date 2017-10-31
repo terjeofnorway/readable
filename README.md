@@ -24,9 +24,17 @@ In addition to custom built, components, the application derives on the followin
 I considered implementing both a ducks strategy to actions/reducers and also reselect however it seemed out of bounds of the assignment.
 
 # Installation instructions
-To install and run app locally:
-1. `npm install`
-2. `npm start`
+In order to run the application locally, you need both the frontend React application and a mock server running on your localhost.
+
+To install and run the mock server locally
+1. clone the app using `git clone https://github.com/terjeofnorway/readable.git`
+2. In your terminal, run `npm install`
+2. Then run `npm start`
+
+To install and run frontend app locally:
+1. clone the mock server repo using `git clone https://github.com/udacity/reactnd-project-readable-starter.git`
+2. In your terminal, inside the folder `api-server` run `npm install`
+2. Then run `node server`
 
 ## Available Scripts
 

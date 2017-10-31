@@ -1,8 +1,9 @@
 import API from 'helpers/api';
+import * as Types from 'actions/types';
 
 export function injectComments(comments) {
   return {
-    type: 'INFLATE_COMMENTS',
+    type: Types.INFLATE_COMMENTS,
     comments,
   };
 }
@@ -13,7 +14,7 @@ export function loadComments(postId) {
 
 export function startEditComment(commentId) {
   return {
-    type: 'START_EDIT_COMMENT',
+    type: Types.START_EDIT_COMMENT,
     commentId,
   };
 }
@@ -22,7 +23,7 @@ export function saveComment(comment) {
   return dispatch => {
     API.requestSaveComment(comment).then(returnComment => {
       dispatch({
-        type: 'SAVE_COMMENT',
+        type: Types.SAVE_COMMENT,
         comment: returnComment,
       });
     });
@@ -34,7 +35,7 @@ export function deleteComment(commentId) {
   return dispatch => {
     API.requestDeleteComment(commentId).then(comment => {
       dispatch({
-        type: 'DELETE_COMMENT',
+        type: Types.DELETE_COMMENT,
         comment,
       });
     });
@@ -46,7 +47,7 @@ export function addCommentVoteScore(voteScore, commentId) {
     const voteDirection = voteScore === -1 ? 'downVote' : 'upVote';
     API.requestVoteForComment(voteDirection, commentId).then(comment => {
       dispatch({
-        type: 'ADD_VOTE_SCORE_TO_COMMENT',
+        type: Types.ADD_VOTE_SCORE_TO_COMMENT,
         comment,
       });
     });

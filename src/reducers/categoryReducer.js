@@ -1,3 +1,5 @@
+import * as Types from '../actions/types';
+
 /** Reducer handling the categories of the application
  *
  * @param state
@@ -8,7 +10,7 @@ function categoriesReducer(state = [], action) {
   const { categories } = action;
 
   switch (action.type) {
-    case 'INFLATE_CATEGORIES': {
+    case Types.INFLATE_CATEGORIES: {
       return [...state, ...categories];
     }
     default: {

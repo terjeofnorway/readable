@@ -34,48 +34,56 @@ const PostBody = props => {
   // Split newlines into array in order to create paragraphed text.
   const bodyWithPararaphs = body && body.split('\n').map(item => (<p key={uuid()}>{item}</p>));
 
-  return Object.keys(props.post).length === 0 ? null : (
-    <div className="PostDetails">
-      <div className="PostDetails_Header">
-        <Row>
-          <Column small={12} large={10} offsetOnLarge={1}><span className="Header__Category">{category}</span></Column>
-        </Row>
-        <Row>
-          <Column small={12} large={10} offsetOnLarge={1}>
-            <h1 className="Header__Title">{title}</h1>
-          </Column>
-        </Row>
-        <Row>
-          <Column small={12} large={10} offsetOnLarge={1}>
-            <span className="Header__Author">{author}</span>
-          </Column>
-          <Column small={12} large={10} offsetOnLarge={1}>
-            <span className="Header__Date">{moment(timestamp).format(HUMAN_DATE_FORMAT)}</span>
-          </Column>
-        </Row>
-        <Row>
-          <Column small={12} large={10} offsetOnLarge={1}>
-            <Vote id={id} voteScore={voteScore} addVote={addVote} />
-          </Column>
-        </Row>
+  return Object.keys(props.post).length === 0 ?
+    (
+      <Row>
+        <Column small={12} medium={8} offsetOnMedium={2}>
+          <div className="Post__Unavailable">Sorry, the post you are trying to view is currently not available or has been deleted.</div>
+        </Column>
+      </Row>)
+    :
+    (
+      <div className="PostDetails">
+        <div className="PostDetails_Header">
+          <Row>
+            <Column small={12} large={10} offsetOnLarge={1}><span className="Header__Category">{category}</span></Column>
+          </Row>
+          <Row>
+            <Column small={12} large={10} offsetOnLarge={1}>
+              <h1 className="Header__Title">{title}</h1>
+            </Column>
+          </Row>
+          <Row>
+            <Column small={12} large={10} offsetOnLarge={1}>
+              <span className="Header__Author">{author}</span>
+            </Column>
+            <Column small={12} large={10} offsetOnLarge={1}>
+              <span className="Header__Date">{moment(timestamp).format(HUMAN_DATE_FORMAT)}</span>
+            </Column>
+          </Row>
+          <Row>
+            <Column small={12} large={10} offsetOnLarge={1}>
+              <Vote id={id} voteScore={voteScore} addVote={addVote} />
+            </Column>
+          </Row>
+        </div>
+        <div className="PostDetails__Content">
+          <Row>
+            <Column small={12} large={8} offsetOnLarge={2}>
+              <div className="PostDetails__Body">
+                {bodyWithPararaphs}
+              </div>
+            </Column>
+          </Row>
+          <Row>
+            <Column small={12} large={8} offsetOnLarge={2}>
+              <EditDelete id={id} toggleEdit={() => props.startEditPost(id)} delete={() => props.deletePost(id)} />
+            </Column>
+          </Row>
+        </div>
+        <Comments parentId={id} />
       </div>
-      <div className="PostDetails__Content">
-        <Row>
-          <Column small={12} large={8} offsetOnLarge={2}>
-            <div className="PostDetails__Body">
-              {bodyWithPararaphs}
-            </div>
-          </Column>
-        </Row>
-        <Row>
-          <Column small={12} large={8} offsetOnLarge={2}>
-            <EditDelete id={id} toggleEdit={() => props.startEditPost(id)} delete={() => props.deletePost(id)} />
-          </Column>
-        </Row>
-      </div>
-      <Comments parentId={id} />
-    </div>
-  );
+    );
 };
 
 PostBody.propTypes = {
@@ -116,6 +124,8 @@ class PostDetails extends Component {
 
   render() {
     const { post } = this.props;
+
+
     return (!post.isEditing ?
       (PostBody(this.props))
       :
